@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="brunito centraliza estrategia, pauta, web, datos y soluciones digitales para empresas que quieren crecer sin coordinar múltiples proveedores.">
-  <title>brunito | Marketing, datos y soluciones digitales</title>
+  <meta name="description" content="brunito es un estudio digital senior para empresas: estrategia, Google Ads, Meta Ads, Data Science, automatizaciones, webs y soluciones a medida sin costos de agencia tradicional.">
+  <title>brunito | Estudio digital senior para marketing, data y desarrollo</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Header: navegación principal del sitio -->
-  <header class="site-header">
+  <header class="site-header" data-header>
     <nav class="navbar container" aria-label="Navegación principal">
-      <a class="logo" href="#hero" aria-label="Ir al inicio">brunito</a>
+      <a class="logo" href="#hero" aria-label="Ir al inicio"><span>brunito</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
         <span class="sr-only">Abrir menú</span>
         <span class="nav-toggle__line"></span>
@@ -20,163 +19,107 @@
       </button>
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#proceso">Cómo trabajo</a></li>
+        <li><a href="#proceso">Proceso</a></li>
         <li><a href="#experiencia">Experiencia</a></li>
-        <li><a href="#sobre-mi">Sobre brunito</a></li>
+        <li><a href="#casos">Casos</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Hero: primera impresión y llamada a la acción -->
     <section class="hero section" id="hero">
-      <div class="container hero__content">
+      <div class="hero__mesh" aria-hidden="true"></div>
+      <div class="container hero__content reveal">
         <div class="hero__copy">
+          <div class="badge-row" aria-label="Áreas principales">
+            <span class="mini-badge">Ads</span>
+            <span class="mini-badge">Data</span>
+            <span class="mini-badge">Web</span>
+            <span class="mini-badge">Automatización</span>
+          </div>
           <p class="eyebrow">Estudio digital para crecer con orden</p>
-          <h1>Marketing, datos y soluciones digitales en un solo lugar.</h1>
-          <p class="hero__text">brunito acompaña a empresas y negocios que necesitan vender mejor, ordenar su presencia online y ejecutar sin tener que coordinar cinco proveedores distintos.</p>
+          <h1>Marketing, datos y soluciones digitales para vender mejor sin sumar complejidad.</h1>
+          <p class="hero__text">brunito acompaña a empresas y negocios que necesitan estrategia, pauta, desarrollo y medición en una misma mesa: con experiencia senior, ejecución simple y costos más accesibles que una agencia tradicional.</p>
           <div class="hero__actions">
-            <a class="button button--primary" href="#contacto">Hablar por WhatsApp</a>
-            <a class="button button--secondary" href="#servicios">Ver qué puedo resolver</a>
+            <a class="button button--primary" href="https://wa.me/?text=Hola%20brunito%2C%20quiero%20conversar%20sobre%20un%20proyecto%20digital" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+            <a class="button button--secondary" href="#servicios">Ver capacidades</a>
           </div>
         </div>
-        <aside class="hero__panel" aria-label="Resumen de experiencia">
-          <p>Dirección senior, ejecución simple y foco en resultados.</p>
+        <aside class="hero__panel" aria-label="Resumen de capacidades">
+          <div class="panel-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+          <p>Una mirada integral para conectar captación, conversión, datos y operación.</p>
           <div class="hero__stats">
-            <span><strong>20</strong> años en publicidad</span>
-            <span><strong>10+</strong> años en Paid Media</span>
-            <span><strong>3</strong> años en Data Science</span>
+            <span><strong>+20</strong> años en publicidad</span>
+            <span><strong>+10</strong> años en Paid Media</span>
+            <span><strong>+3</strong> años en Data Science</span>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- Servicios: capacidades principales -->
     <section class="section" id="servicios">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading reveal">
           <p class="eyebrow">Servicios</p>
           <h2>Todo lo que suele quedar separado, trabajado con una misma mirada.</h2>
           <p>Estrategia, campañas, web, datos y automatizaciones conectadas para que cada decisión tenga sentido de negocio.</p>
         </div>
         <div class="cards-grid services-grid">
-          <article class="card service-card">
-            <span class="card__tag">01</span>
-            <h3>Estrategia digital</h3>
-            <p>Definición de prioridades, propuesta de valor, mensajes y acciones concretas para ordenar la presencia online.</p>
-          </article>
-          <article class="card service-card">
-            <span class="card__tag">02</span>
-            <h3>Google Ads y Meta Ads</h3>
-            <p>Campañas de performance para negocios y empresas, con seguimiento cercano, lectura comercial y optimización continua.</p>
-          </article>
-          <article class="card service-card">
-            <span class="card__tag">03</span>
-            <h3>Páginas web y landings</h3>
-            <p>Sitios claros, rápidos y enfocados en convertir consultas, explicar servicios o validar una nueva unidad de negocio.</p>
-          </article>
-          <article class="card service-card">
-            <span class="card__tag">04</span>
-            <h3>Datos y reporting</h3>
-            <p>Medición, tableros y análisis para entender qué pasa, qué conviene mejorar y dónde invertir con más criterio.</p>
-          </article>
-          <article class="card service-card">
-            <span class="card__tag">05</span>
-            <h3>Automatizaciones</h3>
-            <p>Procesos simples para ahorrar tiempo, reducir tareas manuales y conectar herramientas sin sumar complejidad innecesaria.</p>
-          </article>
-          <article class="card service-card">
-            <span class="card__tag">06</span>
-            <h3>Soluciones digitales a medida</h3>
-            <p>Apps, catálogos B2B, plataformas internas y herramientas digitales pensadas para resolver necesidades reales de operación.</p>
-          </article>
+          <article class="card service-card reveal"><span class="icon icon--strategy" aria-hidden="true"></span><span class="card__tag">Estrategia</span><h3>Estrategia digital</h3><p>Definición de prioridades, propuesta de valor, mensajes y acciones concretas para ordenar la presencia online.</p></article>
+          <article class="card service-card reveal"><span class="icon icon--ads" aria-hidden="true"></span><span class="card__tag">Ads</span><h3>Google Ads y Meta Ads</h3><p>Campañas de performance con seguimiento cercano, lectura comercial y optimización continua.</p></article>
+          <article class="card service-card reveal"><span class="icon icon--web" aria-hidden="true"></span><span class="card__tag">Web</span><h3>Páginas web y landings</h3><p>Sitios claros, rápidos y enfocados en convertir consultas, explicar servicios o validar una unidad de negocio.</p></article>
+          <article class="card service-card reveal"><span class="icon icon--data" aria-hidden="true"></span><span class="card__tag">Data</span><h3>Datos y reporting</h3><p>Medición, tableros y análisis para entender qué pasa, qué mejorar y dónde invertir con más criterio.</p></article>
+          <article class="card service-card reveal"><span class="icon icon--auto" aria-hidden="true"></span><span class="card__tag">Automatización</span><h3>Automatizaciones</h3><p>Procesos simples para ahorrar tiempo, reducir tareas manuales y conectar herramientas sin sumar complejidad.</p></article>
+          <article class="card service-card reveal"><span class="icon icon--custom" aria-hidden="true"></span><span class="card__tag">A medida</span><h3>Soluciones digitales</h3><p>Apps, catálogos B2B, plataformas internas y herramientas digitales pensadas para necesidades reales de operación.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- Cómo trabajo: pasos del proceso -->
     <section class="section section--muted" id="proceso">
       <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Cómo trabajo</p>
-          <h2>Menos vueltas, más claridad y ejecución posible.</h2>
-        </div>
+        <div class="section-heading reveal"><p class="eyebrow">Cómo trabajo</p><h2>Menos vueltas, más claridad y ejecución posible.</h2></div>
         <div class="steps">
-          <article class="step">
-            <span class="step__number">01</span>
-            <h3>Diagnóstico</h3>
-            <p>Reviso objetivos, oferta, canales activos, datos disponibles y problemas comerciales antes de proponer acciones.</p>
-          </article>
-          <article class="step">
-            <span class="step__number">02</span>
-            <h3>Plan simple</h3>
-            <p>Ordeno prioridades y defino qué conviene hacer primero: campañas, web, medición, automatización o desarrollo.</p>
-          </article>
-          <article class="step">
-            <span class="step__number">03</span>
-            <h3>Ejecución y mejora</h3>
-            <p>Implemento, mido, ajusto y explico lo importante sin reportes eternos ni reuniones que no empujan resultados.</p>
-          </article>
+          <article class="step reveal"><span class="step__number">01</span><h3>Diagnóstico</h3><p>Reviso objetivos, oferta, canales activos, datos disponibles y problemas comerciales antes de proponer acciones.</p></article>
+          <article class="step reveal"><span class="step__number">02</span><h3>Plan simple</h3><p>Ordeno prioridades y defino qué conviene hacer primero: campañas, web, medición, automatización o desarrollo.</p></article>
+          <article class="step reveal"><span class="step__number">03</span><h3>Ejecución y mejora</h3><p>Implemento, mido, ajusto y explico lo importante sin reportes eternos ni reuniones que no empujan resultados.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- Experiencia / casos: ejemplos o resultados destacados -->
-    <section class="section" id="experiencia">
+    <section class="section experience-band" id="experiencia">
+      <div class="container experience-panel reveal">
+        <div><p class="eyebrow">Experiencia senior</p><h2>Publicidad, performance, data y desarrollo aplicados a problemas concretos.</h2><p>Clientes reales y soluciones desarrolladas a medida, sin inventar métricas ni logos de relleno.</p></div>
+        <div class="experience-metrics" aria-label="Experiencia destacada">
+          <div><strong>+20</strong><span>años en publicidad</span></div>
+          <div><strong>+10</strong><span>años en Paid Media</span></div>
+          <div><strong>+3</strong><span>años en Data Science</span></div>
+          <div><strong>1:1</strong><span>dirección senior y ejecución directa</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="casos">
       <div class="container split-layout">
-        <div class="section-heading section-heading--sticky">
-          <p class="eyebrow">Experiencia / casos</p>
-          <h2>Experiencia real combinando publicidad, performance, datos y desarrollo.</h2>
-          <p>No se muestran métricas inventadas ni logos de relleno: estos son tipos de proyectos concretos trabajados desde la estrategia hasta la ejecución.</p>
-        </div>
+        <div class="section-heading section-heading--sticky reveal"><p class="eyebrow">Proyectos / casos</p><h2>Ejemplos de soluciones trabajadas de punta a punta.</h2><p>Tipos de proyectos concretos abordados desde la estrategia hasta la implementación.</p></div>
         <div class="case-list">
-          <article class="case-item">
-            <span class="case-item__type">App digital</span>
-            <h3>Vocacion360</h3>
-            <p>Aplicación de test vocacional online con resultados personalizados, pensada para transformar una necesidad educativa en una experiencia digital clara.</p>
-          </article>
-          <article class="case-item">
-            <span class="case-item__type">Plataforma virtual</span>
-            <h3>Escuela con cursos online</h3>
-            <p>Desarrollo de una plataforma para crear cursos, cargar alumnos y organizar materiales de estudio en un entorno simple de administrar.</p>
-          </article>
-          <article class="case-item">
-            <span class="case-item__type">Herramienta comercial</span>
-            <h3>Catálogo B2B completo</h3>
-            <p>Solución digital para presentar productos y ordenar información comercial orientada a empresas y procesos de venta B2B.</p>
-          </article>
-          <article class="case-item">
-            <span class="case-item__type">Performance</span>
-            <h3>Campañas de Meta Ads y Google Ads</h3>
-            <p>Planificación, implementación y optimización de campañas para negocios y empresas que necesitan generar demanda, consultas y ventas medibles.</p>
-          </article>
+          <article class="case-item reveal"><span class="case-item__type">App digital</span><h3>Vocacion360</h3><p>Aplicación de test vocacional online con resultados personalizados para transformar una necesidad educativa en una experiencia digital clara.</p></article>
+          <article class="case-item reveal"><span class="case-item__type">Plataforma virtual</span><h3>Escuela con cursos online</h3><p>Plataforma para crear cursos, cargar alumnos y organizar materiales de estudio en un entorno simple de administrar.</p></article>
+          <article class="case-item reveal"><span class="case-item__type">Herramienta comercial</span><h3>Catálogo B2B completo</h3><p>Solución digital para presentar productos y ordenar información comercial orientada a empresas y procesos de venta B2B.</p></article>
+          <article class="case-item reveal"><span class="case-item__type">Performance</span><h3>Campañas de Meta Ads y Google Ads</h3><p>Planificación, implementación y optimización para negocios y empresas que necesitan generar demanda, consultas y ventas medibles.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- Sobre brunito: presentación personal o de marca -->
     <section class="section section--muted" id="sobre-mi">
-      <div class="container about">
-        <div class="about__avatar" aria-hidden="true">b</div>
-        <div>
-          <p class="eyebrow">Sobre brunito</p>
-          <h2>No es una agencia grande. Es un estudio digital con experiencia senior.</h2>
-          <p>brunito nace para trabajar cerca de empresas que necesitan resolver marketing, publicidad, datos y herramientas digitales sin estructuras pesadas ni costos de agencia tradicional.</p>
-          <p>La diferencia está en conectar mirada estratégica con ejecución: entender el negocio, armar campañas, mejorar la web, medir bien y construir soluciones cuando una herramienta estándar no alcanza.</p>
-          <ul class="experience-list" aria-label="Experiencia destacada">
-            <li>Casi 20 años de experiencia en publicidad.</li>
-            <li>Más de 10 años trabajando en Paid Media.</li>
-            <li>3 años aplicando Data Science a problemas digitales.</li>
-            <li>Desarrollo de apps y soluciones para empresas.</li>
-          </ul>
-        </div>
+      <div class="container about reveal">
+        <div class="about__mark" aria-hidden="true"><span>b</span></div>
+        <div><p class="eyebrow">Sobre brunito</p><h2>No es una agencia grande. Es un estudio digital con experiencia senior.</h2><p>brunito nace para resolver marketing, publicidad, datos y herramientas digitales sin estructuras pesadas ni costos de agencia tradicional.</p><p>La diferencia está en conectar mirada estratégica con ejecución: entender el negocio, armar campañas, mejorar la web, medir bien y construir soluciones cuando una herramienta estándar no alcanza.</p></div>
       </div>
     </section>
 
-    <!-- Contacto: llamada final para conversar -->
     <section class="section contact" id="contacto">
-      <div class="container contact__content">
+      <div class="container contact__content reveal">
         <p class="eyebrow">Contacto</p>
         <h2>¿Querés ordenar tu presencia digital y vender mejor?</h2>
         <p>Contame en qué etapa está tu negocio y vemos qué conviene resolver primero: campañas, web, datos, automatizaciones o una solución a medida.</p>
@@ -185,7 +128,6 @@
     </section>
   </main>
 
-  <!-- Footer: información secundaria y cierre -->
   <footer class="site-footer">
     <div class="container footer__content">
       <p>&copy; <span id="current-year"></span> brunito. Marketing, datos y soluciones digitales.</p>
