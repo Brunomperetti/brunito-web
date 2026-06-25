@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Landing web de brunito-web: diseño y desarrollo de experiencias digitales claras, rápidas y humanas.">
+  <title>brunito-web | Landing web</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header: navegación principal del sitio -->
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a class="logo" href="#hero" aria-label="Ir al inicio">brunito-web</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+        <span class="sr-only">Abrir menú</span>
+        <span class="nav-toggle__line"></span>
+        <span class="nav-toggle__line"></span>
+        <span class="nav-toggle__line"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Cómo trabajo</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#sobre-mi">Sobre brunito</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero: primera impresión y llamada a la acción -->
+    <section class="hero section" id="hero">
+      <div class="container hero__content">
+        <p class="eyebrow">HTML, CSS y JavaScript puro</p>
+        <h1>Landing web simple, rápida y pensada para comunicar mejor.</h1>
+        <p class="hero__text">brunito-web nace como una base limpia para construir una presencia digital con foco en claridad, rendimiento y una experiencia responsive.</p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#contacto">Empezar un proyecto</a>
+          <a class="button button--secondary" href="#servicios">Ver servicios</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios: resumen de lo que ofrece la landing -->
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Servicios</p>
+          <h2>Soluciones digitales sin complicaciones.</h2>
+          <p>Una estructura flexible para presentar propuestas, productos o perfiles profesionales.</p>
+        </div>
+        <div class="cards-grid">
+          <article class="card">
+            <h3>Landing pages</h3>
+            <p>Páginas enfocadas en explicar una idea, captar consultas y guiar al usuario hacia una acción concreta.</p>
+          </article>
+          <article class="card">
+            <h3>Maquetación responsive</h3>
+            <p>Interfaces que se adaptan a celulares, tablets y escritorio con HTML semántico y CSS ordenado.</p>
+          </article>
+          <article class="card">
+            <h3>Interacción liviana</h3>
+            <p>Pequeñas mejoras con JavaScript puro para navegación, accesibilidad y experiencia de uso.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo trabajo: pasos del proceso -->
+    <section class="section section--muted" id="proceso">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Cómo trabajo</p>
+          <h2>Un proceso claro desde la idea hasta la publicación.</h2>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step__number">01</span>
+            <h3>Entender</h3>
+            <p>Definir objetivos, público y mensajes clave antes de escribir una línea de código.</p>
+          </article>
+          <article class="step">
+            <span class="step__number">02</span>
+            <h3>Construir</h3>
+            <p>Crear una estructura simple, mantenible y fácil de iterar con tecnologías web base.</p>
+          </article>
+          <article class="step">
+            <span class="step__number">03</span>
+            <h3>Mejorar</h3>
+            <p>Revisar detalles visuales, rendimiento, responsive y accesibilidad para lanzar con confianza.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiencia / casos: ejemplos o resultados destacados -->
+    <section class="section" id="experiencia">
+      <div class="container split-layout">
+        <div>
+          <p class="eyebrow">Experiencia / casos</p>
+          <h2>Base lista para mostrar trabajos, aprendizajes y resultados.</h2>
+        </div>
+        <div class="case-list">
+          <article class="case-item">
+            <h3>Proyecto editorial</h3>
+            <p>Organización de contenido para que cada sección tenga una intención clara.</p>
+          </article>
+          <article class="case-item">
+            <h3>Perfil profesional</h3>
+            <p>Presentación breve de servicios, proceso y vías de contacto en una sola página.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre brunito: presentación personal o de marca -->
+    <section class="section section--muted" id="sobre-mi">
+      <div class="container about">
+        <div class="about__avatar" aria-hidden="true">b</div>
+        <div>
+          <p class="eyebrow">Sobre brunito</p>
+          <h2>Una identidad simple para construir con intención.</h2>
+          <p>Este proyecto arranca desde cero, sin frameworks ni librerías externas, para aprender y controlar cada parte de la landing: estructura, estilos e interacciones.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto: llamada final para conversar -->
+    <section class="section contact" id="contacto">
+      <div class="container contact__content">
+        <p class="eyebrow">Contacto</p>
+        <h2>¿Tenés una idea para llevar a la web?</h2>
+        <p>Escribime y armemos una primera versión simple, clara y lista para crecer.</p>
+        <a class="button button--primary" href="mailto:hola@brunito-web.com">hola@brunito-web.com</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer: información secundaria y cierre -->
+  <footer class="site-footer">
+    <div class="container footer__content">
+      <p>&copy; <span id="current-year"></span> brunito-web. Hecho con HTML, CSS y JavaScript puro.</p>
+      <a href="#hero">Volver arriba</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
