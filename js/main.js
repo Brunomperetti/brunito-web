@@ -23,9 +23,10 @@ const syncHeader = () => {
 syncHeader();
 window.addEventListener('scroll', syncHeader, { passive: true });
 
-
-document.querySelectorAll('.services-grid .reveal, .case-list .reveal, .reveal-group > *, .hero__grid span, .panel-diagram span').forEach((element, index) => {
-  element.style.setProperty('--item-index', index);
+document.querySelectorAll('.services-grid, .case-list, .reveal-group, .hero__grid, .panel-diagram').forEach((group) => {
+  group.querySelectorAll('.reveal, .metric-item, span').forEach((element, index) => {
+    element.style.setProperty('--item-index', index);
+  });
 });
 
 const revealElements = document.querySelectorAll('.reveal, .reveal-group');
