@@ -51,7 +51,7 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 
 const elevatorWord = document.querySelector('[data-elevator-word]');
 const elevatorPassenger = document.querySelector('.elevator-passenger');
-const elevatorWords = ['EMPRESAS', 'NEGOCIOS', 'EMPRENDEDORES', 'MARCAS'];
+const elevatorWords = ['NEGOCIO', 'MARCA PERSONAL', 'EMPRENDEDORES'];
 
 if (elevatorWord && elevatorPassenger && !reduceMotion) {
   let elevatorWordIndex = 0;
