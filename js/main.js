@@ -24,7 +24,7 @@ const syncHeader = () => {
 syncHeader();
 window.addEventListener('scroll', syncHeader, { passive: true });
 
-document.querySelectorAll('.services-grid, .case-list, .reveal-group, .hero__grid, .panel-diagram').forEach((group) => {
+document.querySelectorAll('.services-grid, .case-list, .reveal-group, .hero__grid').forEach((group) => {
   group.querySelectorAll('.reveal, .metric-item, span').forEach((element, index) => {
     element.style.setProperty('--item-index', index);
   });
