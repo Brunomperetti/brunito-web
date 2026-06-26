@@ -50,13 +50,13 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 
 
 const elevatorWord = document.querySelector('[data-elevator-word]');
-const elevatorPerson = document.querySelector('.business-person');
+const elevatorTimeline = document.querySelector('.elevator-cabin');
 const elevatorTerms = ['EMPRESAS', 'NEGOCIOS', 'EMPRENDEDORES'];
 
-if (elevatorWord && elevatorPerson && !reduceMotion) {
+if (elevatorWord && elevatorTimeline && !reduceMotion) {
   let elevatorTermIndex = 0;
 
-  elevatorPerson.addEventListener('animationiteration', () => {
+  elevatorTimeline.addEventListener('animationiteration', () => {
     elevatorTermIndex = (elevatorTermIndex + 1) % elevatorTerms.length;
     elevatorWord.textContent = elevatorTerms[elevatorTermIndex];
   });
