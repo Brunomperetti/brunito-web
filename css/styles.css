@@ -121,11 +121,11 @@ p { color: var(--color-muted); }
 .elevator-door--right { transform-origin: right center; }
 .elevator-cabin__split, .elevator-cabin__shine, .elevator-indicator path { fill: none; stroke: rgba(111,141,150,.42); stroke-width: 1.1; stroke-linecap: round; }
 .elevator-indicator circle { fill: var(--color-warm); opacity: .76; }
-.business-person { transform-box: fill-box; transform-origin: center; }
+.business-person, .business-chip { transform-box: fill-box; transform-origin: center; }
 .business-person__head { fill: var(--color-ink); }
 .business-person__body { fill: none; stroke: var(--color-ink); stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
-.business-person__tag { fill: rgba(250,253,252,.96); stroke: rgba(198,79,53,.34); stroke-width: 1; filter: drop-shadow(0 10px 16px rgba(16,19,24,.08)); }
-.business-person__text { fill: var(--color-ink); font-size: 9.2px; font-weight: 900; letter-spacing: .075em; text-transform: uppercase; }
+.business-chip__tag { fill: rgba(250,253,252,.96); stroke: rgba(198,79,53,.34); stroke-width: 1; filter: drop-shadow(0 10px 16px rgba(16,19,24,.08)); }
+.business-chip__text { fill: var(--color-ink); font-size: 9.2px; font-weight: 900; letter-spacing: .075em; text-transform: uppercase; }
 .elevator-success { opacity: 0; }
 .elevator-success path { stroke: var(--color-warm); stroke-width: 1.5; }
 .elevator-success circle { fill: var(--color-warm); opacity: .78; }
@@ -215,12 +215,13 @@ p { color: var(--color-muted); }
   .hero__grid span { animation: node-breathe 5.8s ease-in-out infinite; animation-delay: calc(var(--item-index, 0) * -1.2s); }
   .hero__panel.is-visible { animation: panel-float 8.5s ease-in-out infinite; }
   .hero__panel::after, .contact__content::after { animation: soft-pulse 7s ease-in-out infinite; }
-  .elevator-cabin { animation: elevator-rise 8.8s cubic-bezier(.65,0,.35,1) infinite; }
-  .elevator-door--left { animation: elevator-door-left 8.8s cubic-bezier(.65,0,.35,1) infinite; }
-  .elevator-door--right { animation: elevator-door-right 8.8s cubic-bezier(.65,0,.35,1) infinite; }
-  .business-person { animation: business-person-route 8.8s cubic-bezier(.65,0,.35,1) infinite; }
-  .elevator-arrow { animation: elevator-arrow-pulse 8.8s ease-in-out infinite; }
-  .elevator-success { animation: elevator-success-cue 8.8s ease-in-out infinite; }
+  .elevator-cabin { animation: elevator-rise 10s cubic-bezier(.65,0,.35,1) infinite; }
+  .elevator-door--left { animation: elevator-door-left 10s cubic-bezier(.65,0,.35,1) infinite; }
+  .elevator-door--right { animation: elevator-door-right 10s cubic-bezier(.65,0,.35,1) infinite; }
+  .business-person { animation: business-person-route 10s cubic-bezier(.65,0,.35,1) infinite; }
+  .business-chip { animation: business-chip-cycle 10s ease-in-out infinite; }
+  .elevator-arrow { animation: elevator-arrow-pulse 10s ease-in-out infinite; }
+  .elevator-success { animation: elevator-success-cue 10s ease-in-out infinite; }
   .contact__content::before { animation: glow-drift 10s ease-in-out infinite; }
 }
 @keyframes panel-float {
@@ -240,35 +241,47 @@ p { color: var(--color-muted); }
   50% { opacity: 1; filter: saturate(1.35); transform: rotate(-12deg) scaleX(1.025); }
 }
 @keyframes elevator-rise {
-  0%, 34% { transform: translate3d(0, 0, 0); }
-  48%, 100% { transform: translate3d(0, -120px, 0); }
+  0%, 36% { opacity: 1; transform: translate3d(0, 0, 0); }
+  52%, 88% { opacity: 1; transform: translate3d(0, -120px, 0); }
+  92% { opacity: 0; transform: translate3d(0, -120px, 0); }
+  96% { opacity: 0; transform: translate3d(0, 0, 0); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 @keyframes elevator-door-left {
-  0%, 18% { transform: scaleX(.56); opacity: .74; }
-  28%, 55% { transform: scaleX(1); opacity: .96; }
-  67%, 92% { transform: scaleX(.56); opacity: .76; }
-  96%, 100% { transform: scaleX(.56); opacity: 0; }
+  0%, 24% { transform: scaleX(.18); opacity: .68; }
+  34%, 58% { transform: scaleX(1); opacity: .96; }
+  68%, 88% { transform: scaleX(.18); opacity: .70; }
+  92%, 96% { transform: scaleX(.18); opacity: 0; }
+  100% { transform: scaleX(.18); opacity: .68; }
 }
 @keyframes elevator-door-right {
-  0%, 18% { transform: scaleX(.56); opacity: .74; }
-  28%, 55% { transform: scaleX(1); opacity: .96; }
-  67%, 92% { transform: scaleX(.56); opacity: .76; }
-  96%, 100% { transform: scaleX(.56); opacity: 0; }
+  0%, 24% { transform: scaleX(.18); opacity: .68; }
+  34%, 58% { transform: scaleX(1); opacity: .96; }
+  68%, 88% { transform: scaleX(.18); opacity: .70; }
+  92%, 96% { transform: scaleX(.18); opacity: 0; }
+  100% { transform: scaleX(.18); opacity: .68; }
 }
 @keyframes business-person-route {
   0%, 10% { opacity: 1; transform: translate3d(0, 0, 0); }
-  22%, 36% { opacity: 1; transform: translate3d(46px, 0, 0); }
-  48%, 62% { opacity: 1; transform: translate3d(46px, -120px, 0); }
-  76%, 88% { opacity: 1; transform: translate3d(140px, -120px, 0); }
-  94%, 100% { opacity: 0; transform: translate3d(140px, -120px, 0); }
+  24%, 30% { opacity: 1; transform: translate3d(88px, 0, 0); }
+  36%, 62% { opacity: 0; transform: translate3d(88px, 0, 0); }
+  66% { opacity: 0; transform: translate3d(88px, -120px, 0); }
+  70%, 74% { opacity: 1; transform: translate3d(88px, -120px, 0); }
+  86% { opacity: 1; transform: translate3d(158px, -120px, 0); }
+  92%, 100% { opacity: 0; transform: translate3d(158px, -120px, 0); }
+}
+@keyframes business-chip-cycle {
+  0%, 28% { opacity: 1; transform: translate3d(0, 0, 0); }
+  36%, 86% { opacity: .18; transform: translate3d(0, 2px, 0); }
+  92%, 100% { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 @keyframes elevator-arrow-pulse {
-  0%, 28%, 64%, 100% { opacity: .42; transform: translate3d(0, 0, 0); }
-  38%, 50% { opacity: .96; transform: translate3d(0, -6px, 0); }
+  0%, 32%, 62%, 100% { opacity: .42; transform: translate3d(0, 0, 0); }
+  40%, 52% { opacity: .96; transform: translate3d(0, -6px, 0); }
 }
 @keyframes elevator-success-cue {
-  0%, 62% { opacity: 0; transform: translate3d(-6px, 0, 0); }
-  72%, 90% { opacity: 1; transform: translate3d(0, 0, 0); }
+  0%, 66% { opacity: 0; transform: translate3d(-6px, 0, 0); }
+  74%, 88% { opacity: 1; transform: translate3d(0, 0, 0); }
   100% { opacity: 0; transform: translate3d(4px, 0, 0); }
 }
 @keyframes glow-drift {
@@ -292,8 +305,9 @@ p { color: var(--color-muted); }
   html { scroll-behavior: auto; }
   .js .reveal, .js .reveal-group > * { opacity: 1; transform: none; transition: none; }
   .elevator-cabin { transform: translate3d(0, -120px, 0); }
-  .business-person { transform: translate3d(140px, -120px, 0); }
-  .elevator-door--left, .elevator-door--right { transform: scaleX(.58); opacity: .74; }
+  .business-person { transform: translate3d(128px, -120px, 0); }
+  .business-chip { opacity: .82; }
+  .elevator-door--left, .elevator-door--right { transform: scaleX(.18); opacity: .74; }
   .elevator-success { opacity: 1; }
 }
 @media (max-width: 860px) {
