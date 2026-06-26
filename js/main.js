@@ -24,7 +24,7 @@ syncHeader();
 window.addEventListener('scroll', syncHeader, { passive: true });
 
 
-document.querySelectorAll('.services-grid .reveal, .case-list .reveal, .reveal-group > *, .hero__grid span').forEach((element, index) => {
+document.querySelectorAll('.services-grid .reveal, .case-list .reveal, .reveal-group > *, .hero__grid span, .panel-diagram span').forEach((element, index) => {
   element.style.setProperty('--item-index', index);
 });
 
@@ -41,9 +41,13 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.14 });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.16 });
 
   revealElements.forEach((element) => revealObserver.observe(element));
 }
 
-document.querySelector('#current-year').textContent = new Date().getFullYear();
+const currentYear = document.querySelector('#current-year');
+
+if (currentYear) {
+  currentYear.textContent = new Date().getFullYear();
+}
