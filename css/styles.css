@@ -121,13 +121,14 @@ p { color: var(--color-muted); }
 .elevator-door--right { transform-origin: right center; }
 .elevator-cabin__split, .elevator-cabin__shine, .elevator-indicator path { fill: none; stroke: rgba(111,141,150,.42); stroke-width: 1.1; stroke-linecap: round; }
 .elevator-indicator circle { fill: var(--color-warm); opacity: .76; }
-.client-chip, .elevator-people, .elevator-person { transform-box: view-box; transform-origin: center; }
-.client-chip__tag { fill: rgba(250,253,252,.92); stroke: rgba(94,125,134,.40); stroke-width: 1; filter: drop-shadow(0 10px 16px rgba(16,19,24,.07)); }
-.client-chip__text { fill: var(--color-ink); font-size: 7.8px; font-weight: 900; letter-spacing: .052em; text-transform: uppercase; }
+.elevator-passenger, .elevator-person, .elevator-balloon { transform-box: view-box; transform-origin: center; }
+.elevator-passenger { transform: translate3d(92px, 164px, 0); }
+.elevator-balloon-lines path { fill: none; stroke: rgba(16,24,32,.28); stroke-width: .8; stroke-linecap: round; }
+.elevator-balloon__shape { fill: rgba(250,253,252,.92); stroke: rgba(94,125,134,.38); stroke-width: .9; filter: drop-shadow(0 9px 14px rgba(16,19,24,.055)); }
+.elevator-balloon__text { fill: var(--color-ink); font-size: 6.9px; font-weight: 900; letter-spacing: .055em; text-transform: uppercase; }
 .elevator-person__head { fill: var(--color-ink); }
-.elevator-person__body { fill: none; stroke: var(--color-ink); stroke-width: 1.55; stroke-linecap: round; stroke-linejoin: round; }
-.elevator-person--guide { transform: translate3d(118px, 164px, 0); }
-.elevator-person--client { opacity: 0; transform: translate3d(264px, 164px, 0); }
+.elevator-person__body { fill: none; stroke: var(--color-ink); stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+.elevator-person__warm-detail { fill: var(--color-warm); opacity: .78; }
 .elevator-success { opacity: 0; }
 .elevator-success path { stroke: var(--color-warm); stroke-width: 1.5; }
 .elevator-success circle { fill: var(--color-warm); opacity: .78; }
@@ -221,9 +222,7 @@ p { color: var(--color-muted); }
   .elevator-cabin { animation: elevator-rise 10s cubic-bezier(.65,0,.35,1) infinite; }
   .elevator-door--left { animation: elevator-door-left 10s cubic-bezier(.65,0,.35,1) infinite; }
   .elevator-door--right { animation: elevator-door-right 10s cubic-bezier(.65,0,.35,1) infinite; }
-  .elevator-person--guide { animation: elevator-guide-route 10s cubic-bezier(.65,0,.35,1) infinite; }
-  .elevator-person--client { animation: elevator-client-route 10s cubic-bezier(.65,0,.35,1) infinite; }
-  .client-chip { animation: client-chip-hold 10s ease-in-out infinite; }
+  .elevator-passenger { animation: elevator-passenger-route 10s cubic-bezier(.65,0,.35,1) infinite; }
   .elevator-arrow { animation: elevator-arrow-pulse 10s ease-in-out infinite; }
   .elevator-success { animation: elevator-success-cue 10s ease-in-out infinite; }
   .contact__content::before { animation: glow-drift 10s ease-in-out infinite; }
@@ -265,31 +264,15 @@ p { color: var(--color-muted); }
   92%, 96% { transform: scaleX(.18); opacity: 0; }
   100% { transform: scaleX(.18); opacity: .68; }
 }
-@keyframes elevator-guide-route {
-  0%, 10% { opacity: 1; transform: translate3d(118px, 164px, 0); }
-  18%, 24% { opacity: 1; transform: translate3d(138px, 164px, 0); }
-  32% { opacity: 1; transform: translate3d(148px, 164px, 0); }
-  38%, 62% { opacity: 0; transform: translate3d(156px, 164px, 0); }
-  66% { opacity: 0; transform: translate3d(156px, 44px, 0); }
-  72%, 78% { opacity: 1; transform: translate3d(156px, 44px, 0); }
+@keyframes elevator-passenger-route {
+  0%, 8% { opacity: 1; transform: translate3d(92px, 164px, 0); }
+  18% { opacity: 1; transform: translate3d(132px, 164px, 0); }
+  27% { opacity: 1; transform: translate3d(156px, 164px, 0); }
+  33%, 62% { opacity: 0; transform: translate3d(164px, 164px, 0); }
+  66% { opacity: 0; transform: translate3d(164px, 44px, 0); }
+  72%, 78% { opacity: 1; transform: translate3d(164px, 44px, 0); }
   88% { opacity: 1; transform: translate3d(236px, 44px, 0); }
-  94%, 100% { opacity: 0; transform: translate3d(252px, 44px, 0); }
-}
-@keyframes elevator-client-route {
-  0% { opacity: 0; transform: translate3d(268px, 164px, 0); }
-  8% { opacity: 1; transform: translate3d(238px, 164px, 0); }
-  18%, 24% { opacity: 1; transform: translate3d(168px, 164px, 0); }
-  32% { opacity: 1; transform: translate3d(168px, 164px, 0); }
-  38%, 62% { opacity: 0; transform: translate3d(176px, 164px, 0); }
-  66% { opacity: 0; transform: translate3d(176px, 44px, 0); }
-  72%, 78% { opacity: 1; transform: translate3d(176px, 44px, 0); }
-  88% { opacity: 1; transform: translate3d(256px, 44px, 0); }
-  94%, 100% { opacity: 0; transform: translate3d(272px, 44px, 0); }
-}
-@keyframes client-chip-hold {
-  0%, 86% { opacity: 1; transform: translate3d(0, 0, 0); }
-  92%, 96% { opacity: 0; transform: translate3d(0, -2px, 0); }
-  100% { opacity: 1; transform: translate3d(0, 0, 0); }
+  94%, 100% { opacity: 0; transform: translate3d(258px, 44px, 0); }
 }
 @keyframes elevator-arrow-pulse {
   0%, 32%, 62%, 100% { opacity: .42; transform: translate3d(0, 0, 0); }
@@ -321,9 +304,7 @@ p { color: var(--color-muted); }
   html { scroll-behavior: auto; }
   .js .reveal, .js .reveal-group > * { opacity: 1; transform: none; transition: none; }
   .elevator-cabin { transform: translate3d(0, -120px, 0); }
-  .elevator-person--guide { opacity: 1; transform: translate3d(236px, 44px, 0); }
-  .elevator-person--client { opacity: 1; transform: translate3d(256px, 44px, 0); }
-  .client-chip { opacity: 1; }
+  .elevator-passenger { opacity: 1; transform: translate3d(236px, 44px, 0); }
   .elevator-door--left, .elevator-door--right { transform: scaleX(.18); opacity: .74; }
   .elevator-success { opacity: 1; }
 }
