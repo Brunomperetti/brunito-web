@@ -23,7 +23,12 @@ const syncHeader = () => {
 syncHeader();
 window.addEventListener('scroll', syncHeader, { passive: true });
 
-const revealElements = document.querySelectorAll('.reveal');
+
+document.querySelectorAll('.services-grid .reveal, .case-list .reveal, .reveal-group > *, .hero__grid span').forEach((element, index) => {
+  element.style.setProperty('--item-index', index);
+});
+
+const revealElements = document.querySelectorAll('.reveal, .reveal-group');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (reduceMotion || !('IntersectionObserver' in window)) {
