@@ -75,24 +75,11 @@
                 <circle cx="296" cy="184" r="3.5" />
                 <path d="M304 184h14" />
               </g>
-              <g class="elevator-directory" aria-hidden="true">
-                <rect class="elevator-directory__plate" x="252" y="47" width="72" height="150" rx="9" />
-                <path class="elevator-directory__line" d="M262 64V184" />
-                <g class="elevator-directory__item elevator-directory__item--active">
-                  <circle cx="262" cy="64" r="2.8" />
-                  <path d="M266 64h6" />
-                  <text x="274" y="66">2do piso — Crecimiento</text>
-                </g>
-                <g class="elevator-directory__item">
-                  <circle cx="262" cy="124" r="2.4" />
-                  <path d="M266 124h6" />
-                  <text x="274" y="126">1er piso — Ejecución</text>
-                </g>
-                <g class="elevator-directory__item">
-                  <circle cx="262" cy="184" r="2.4" />
-                  <path d="M266 184h6" />
-                  <text x="274" y="186">Planta baja — Estrategia</text>
-                </g>
+              <g class="elevator-directory elevator-directory--hint" aria-hidden="true">
+                <path class="elevator-directory__line" d="M304 64V184" />
+                <circle cx="304" cy="64" r="2" />
+                <circle cx="304" cy="124" r="2" />
+                <circle cx="304" cy="184" r="2" />
               </g>
               <g class="elevator-arrow">
                 <path d="M34 178V78" />
@@ -132,10 +119,10 @@
             </svg>
           </div>
           <div class="panel-message" aria-hidden="true">Te llevamos al siguiente nivel.</div>
-          <div class="panel-footer panel-levels" aria-hidden="true">
-            <span><strong>01</strong> Estrategia</span>
-            <span><strong>02</strong> Ejecución</span>
-            <span><strong>03</strong> Crecimiento</span>
+          <div class="panel-footer panel-levels" aria-label="Indicador de pisos del ascensor">
+            <span class="panel-level panel-level--top"><strong>2do piso</strong> Crecimiento</span>
+            <span class="panel-level panel-level--middle"><strong>1er piso</strong> Ejecución</span>
+            <span class="panel-level panel-level--base"><strong>PB</strong> Estrategia</span>
           </div>
         </aside>
       </div>
