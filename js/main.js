@@ -24,9 +24,10 @@ const syncHeader = () => {
 syncHeader();
 window.addEventListener('scroll', syncHeader, { passive: true });
 
-document.querySelectorAll('.services-grid, .case-list, .reveal-group, .hero__grid').forEach((group) => {
-  group.querySelectorAll('.reveal, .metric-item, span').forEach((element, index) => {
+document.querySelectorAll('.services-grid, .case-list, .reveal-group, .hero__grid, .elevator-thought-bubbles').forEach((group) => {
+  group.querySelectorAll('.reveal, .metric-item, span, circle').forEach((element, index) => {
     element.style.setProperty('--item-index', index);
+    element.style.setProperty('--bubble-index', index);
   });
 });
 
@@ -48,6 +49,18 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
   revealElements.forEach((element) => revealObserver.observe(element));
 }
 
+const elevatorWord = document.querySelector('[data-elevator-word]');
+const elevatorPassenger = document.querySelector('.elevator-passenger');
+const elevatorWords = ['EMPRESAS', 'NEGOCIOS', 'EMPRENDEDORES', 'MARCAS'];
+
+if (elevatorWord && elevatorPassenger && !reduceMotion) {
+  let elevatorWordIndex = 0;
+
+  elevatorPassenger.addEventListener('animationiteration', () => {
+    elevatorWordIndex = (elevatorWordIndex + 1) % elevatorWords.length;
+    elevatorWord.textContent = elevatorWords[elevatorWordIndex];
+  });
+}
 
 const currentYear = document.querySelector('#current-year');
 
