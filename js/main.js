@@ -48,6 +48,20 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
   revealElements.forEach((element) => revealObserver.observe(element));
 }
 
+
+const elevatorWord = document.querySelector('[data-elevator-word]');
+const elevatorPerson = document.querySelector('.business-person');
+const elevatorTerms = ['EMPRESAS', 'NEGOCIOS', 'EMPRENDEDORES'];
+
+if (elevatorWord && elevatorPerson && !reduceMotion) {
+  let elevatorTermIndex = 0;
+
+  elevatorPerson.addEventListener('animationiteration', () => {
+    elevatorTermIndex = (elevatorTermIndex + 1) % elevatorTerms.length;
+    elevatorWord.textContent = elevatorTerms[elevatorTermIndex];
+  });
+}
+
 const currentYear = document.querySelector('#current-year');
 
 if (currentYear) {

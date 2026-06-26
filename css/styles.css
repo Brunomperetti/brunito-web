@@ -102,7 +102,7 @@ p { color: var(--color-muted); }
 .panel-kicker { display: block; color: var(--color-warm); font-size: .68rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
 .panel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-warm); box-shadow: 0 0 20px rgba(94,125,134,.24); }
 .hero__panel p { position: relative; max-width: 315px; margin-bottom: 0; color: var(--color-ink); font-size: clamp(1.35rem, 2vw, 1.62rem); font-weight: 850; line-height: 1.06; letter-spacing: -.045em; z-index: 1; }
-.elevator-scene { position: relative; isolation: isolate; min-height: 222px; margin-top: 1.5rem; border-block: 1px solid rgba(174,193,199,.58); background: linear-gradient(90deg, rgba(16,19,24,.035) 1px, transparent 1px), linear-gradient(rgba(16,19,24,.028) 1px, transparent 1px); background-size: 54px 100%, 100% 40px; z-index: 1; }
+.elevator-scene { position: relative; isolation: isolate; min-height: 222px; margin-top: 1.5rem; border-block: 1px solid rgba(174,193,199,.58); background: linear-gradient(90deg, rgba(16,19,24,.028) 1px, transparent 1px), linear-gradient(rgba(16,19,24,.024) 1px, transparent 1px); background-size: 54px 100%, 100% 40px; z-index: 1; }
 .elevator-scene::before { content:""; position:absolute; inset: 18px 22px; border: 1px solid rgba(111,141,150,.13); border-radius: 24px; background: radial-gradient(circle at 64% 20%, rgba(255,255,255,.48), transparent 27%), linear-gradient(145deg, rgba(247,251,250,.22), rgba(229,238,239,.12)); pointer-events:none; }
 .elevator-scene::after { content:""; position:absolute; right: 34px; top: 35px; width: 52px; aspect-ratio: 1; border: 1px solid rgba(111,141,150,.20); border-radius: 50%; background: rgba(255,253,248,.26); pointer-events:none; }
 .elevator-scene__label { position: absolute; left: 1rem; z-index: 2; display: inline-flex; align-items: center; min-height: 24px; padding: .28rem .58rem; border: 1px solid rgba(111,141,150,.23); border-radius: 999px; background: rgba(247,251,250,.70); color: rgba(16,24,32,.58); font-size: .61rem; font-weight: 900; letter-spacing: .12em; line-height: 1; text-transform: uppercase; box-shadow: 0 12px 28px rgba(16,19,24,.045); }
@@ -123,9 +123,9 @@ p { color: var(--color-muted); }
 .elevator-indicator circle { fill: var(--color-warm); opacity: .76; }
 .business-person { transform-box: fill-box; transform-origin: center; }
 .business-person__head { fill: var(--color-ink); }
-.business-person__body { fill: none; stroke: var(--color-ink); stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
-.business-person__tag { fill: rgba(247,251,250,.92); stroke: rgba(198,79,53,.46); stroke-width: 1; filter: drop-shadow(0 10px 16px rgba(16,19,24,.08)); }
-.business-person__text { fill: var(--color-ink); font-size: 10px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.business-person__body { fill: none; stroke: var(--color-ink); stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+.business-person__tag { fill: rgba(250,253,252,.96); stroke: rgba(198,79,53,.34); stroke-width: 1; filter: drop-shadow(0 10px 16px rgba(16,19,24,.08)); }
+.business-person__text { fill: var(--color-ink); font-size: 9.2px; font-weight: 900; letter-spacing: .075em; text-transform: uppercase; }
 .elevator-success { opacity: 0; }
 .elevator-success path { stroke: var(--color-warm); stroke-width: 1.5; }
 .elevator-success circle { fill: var(--color-warm); opacity: .78; }
@@ -240,30 +240,35 @@ p { color: var(--color-muted); }
   50% { opacity: 1; filter: saturate(1.35); transform: rotate(-12deg) scaleX(1.025); }
 }
 @keyframes elevator-rise {
-  0%, 26% { transform: translate3d(0, 0, 0); }
-  43%, 100% { transform: translate3d(0, -120px, 0); }
+  0%, 34% { transform: translate3d(0, 0, 0); }
+  48%, 100% { transform: translate3d(0, -120px, 0); }
 }
 @keyframes elevator-door-left {
-  0%, 11%, 55%, 100% { transform: scaleX(.58); opacity: .74; }
-  18%, 45% { transform: scaleX(1); opacity: .96; }
+  0%, 18% { transform: scaleX(.56); opacity: .74; }
+  28%, 55% { transform: scaleX(1); opacity: .96; }
+  67%, 92% { transform: scaleX(.56); opacity: .76; }
+  96%, 100% { transform: scaleX(.56); opacity: 0; }
 }
 @keyframes elevator-door-right {
-  0%, 11%, 55%, 100% { transform: scaleX(.58); opacity: .74; }
-  18%, 45% { transform: scaleX(1); opacity: .96; }
+  0%, 18% { transform: scaleX(.56); opacity: .74; }
+  28%, 55% { transform: scaleX(1); opacity: .96; }
+  67%, 92% { transform: scaleX(.56); opacity: .76; }
+  96%, 100% { transform: scaleX(.56); opacity: 0; }
 }
 @keyframes business-person-route {
-  0% { opacity: 1; transform: translate3d(0, 0, 0); }
-  12%, 45% { opacity: 1; transform: translate3d(78px, 0, 0); }
-  55%, 72% { opacity: 1; transform: translate3d(78px, -120px, 0); }
-  86%, 100% { opacity: 1; transform: translate3d(166px, -120px, 0); }
+  0%, 10% { opacity: 1; transform: translate3d(0, 0, 0); }
+  22%, 36% { opacity: 1; transform: translate3d(46px, 0, 0); }
+  48%, 62% { opacity: 1; transform: translate3d(46px, -120px, 0); }
+  76%, 88% { opacity: 1; transform: translate3d(140px, -120px, 0); }
+  94%, 100% { opacity: 0; transform: translate3d(140px, -120px, 0); }
 }
 @keyframes elevator-arrow-pulse {
-  0%, 22%, 62%, 100% { opacity: .52; transform: translate3d(0, 0, 0); }
-  34%, 48% { opacity: .96; transform: translate3d(0, -5px, 0); }
+  0%, 28%, 64%, 100% { opacity: .42; transform: translate3d(0, 0, 0); }
+  38%, 50% { opacity: .96; transform: translate3d(0, -6px, 0); }
 }
 @keyframes elevator-success-cue {
-  0%, 63% { opacity: 0; transform: translate3d(-6px, 0, 0); }
-  72%, 92% { opacity: 1; transform: translate3d(0, 0, 0); }
+  0%, 62% { opacity: 0; transform: translate3d(-6px, 0, 0); }
+  72%, 90% { opacity: 1; transform: translate3d(0, 0, 0); }
   100% { opacity: 0; transform: translate3d(4px, 0, 0); }
 }
 @keyframes glow-drift {
@@ -287,7 +292,7 @@ p { color: var(--color-muted); }
   html { scroll-behavior: auto; }
   .js .reveal, .js .reveal-group > * { opacity: 1; transform: none; transition: none; }
   .elevator-cabin { transform: translate3d(0, -120px, 0); }
-  .business-person { transform: translate3d(166px, -120px, 0); }
+  .business-person { transform: translate3d(140px, -120px, 0); }
   .elevator-door--left, .elevator-door--right { transform: scaleX(.58); opacity: .74; }
   .elevator-success { opacity: 1; }
 }
