@@ -53,20 +53,20 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 const contactLightScenes = document.querySelectorAll('[data-contact-light]');
 
 if (contactLightScenes.length) {
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    contactLightScenes.forEach((scene) => scene.classList.add('is-lit'));
-  } else {
-    const contactLightObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-lit');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -18% 0px', threshold: 0.28 });
+  contactLightScenes.forEach((scene) => {
+    const toggle = scene.querySelector('[data-contact-light-toggle]');
 
-    contactLightScenes.forEach((scene) => contactLightObserver.observe(scene));
-  }
+    const setContactLight = (isLit) => {
+      scene.classList.toggle('is-lit', isLit);
+      toggle?.setAttribute('aria-pressed', String(isLit));
+    };
+
+    setContactLight(false);
+
+    toggle?.addEventListener('click', () => {
+      setContactLight(!scene.classList.contains('is-lit'));
+    });
+  });
 }
 
 const elevatorWord = document.querySelector('[data-elevator-word]');
