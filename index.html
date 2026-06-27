@@ -188,13 +188,27 @@
     </section>
 
     <section class="section contact section--compact" id="contacto">
-      <div class="container contact__content reveal">
+      <div class="container contact__content reveal" data-contact-light>
         <div class="contact__constellation" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="contact__lamp-scene" aria-hidden="true">
+          <svg class="contact__lamp" viewBox="0 0 120 140" focusable="false">
+            <path class="contact__lamp-cable" d="M60 4v42" />
+            <path class="contact__lamp-shade" d="M38 46h44l13 34H25l13-34Z" />
+            <path class="contact__lamp-rim" d="M29 80h62" />
+            <circle class="contact__lamp-bulb" cx="60" cy="70" r="6" />
+          </svg>
+          <span class="contact__light-cone"></span>
+          <span class="contact__light-pool"></span>
+        </div>
         <div class="contact__copy">
           <p class="eyebrow">Contacto</p>
           <h2>Ordenemos lo digital. Vendamos mejor.</h2>
+          <p>Encendamos claridad sobre el próximo paso: estrategia, ejecución y medición en una conversación simple.</p>
         </div>
-        <a class="button button--light" href="https://wa.me/?text=Hola%20brunito%2C%20quiero%20conversar%20sobre%20un%20proyecto%20digital" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <div class="contact__cta-panel">
+          <span class="contact__cta-kicker">Próximo paso</span>
+          <a class="button button--light" href="https://wa.me/?text=Hola%20brunito%2C%20quiero%20conversar%20sobre%20un%20proyecto%20digital" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
       </div>
     </section>
   </main>

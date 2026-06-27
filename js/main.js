@@ -49,6 +49,26 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
   revealElements.forEach((element) => revealObserver.observe(element));
 }
 
+
+const contactLightScenes = document.querySelectorAll('[data-contact-light]');
+
+if (contactLightScenes.length) {
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    contactLightScenes.forEach((scene) => scene.classList.add('is-lit'));
+  } else {
+    const contactLightObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-lit');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -18% 0px', threshold: 0.28 });
+
+    contactLightScenes.forEach((scene) => contactLightObserver.observe(scene));
+  }
+}
+
 const elevatorWord = document.querySelector('[data-elevator-word]');
 const elevatorScene = document.querySelector('[data-elevator-interaction]');
 const heroPanel = document.querySelector('.hero__panel');
