@@ -48,8 +48,6 @@
           </div>
           <p>Estrategia, ejecución y crecimiento medible.</p>
           <div class="elevator-scene" aria-hidden="true">
-            <div class="elevator-scene__label elevator-scene__label--top">Siguiente nivel</div>
-            <div class="elevator-scene__label elevator-scene__label--bottom">Hoy</div>
             <svg class="elevator-visual" viewBox="0 0 330 235" role="img" focusable="false">
               <defs>
                 <linearGradient id="elevatorCabin" x1="0" x2="1" y1="0" y2="1">
@@ -106,15 +104,16 @@
                   <circle cx="-22" cy="-23" r="2.75" />
                 </g>
                 <g class="elevator-person elevator-person--solo">
-                  <circle class="elevator-person__head" cx="0" cy="0" r="4.8" />
-                  <path class="elevator-person__body" d="M0 6v18M0 14l-10 7M0 14l9 6M0 24l-7 14M0 24l8 14" />
-                  <circle class="elevator-person__warm-detail" cx="9" cy="20" r="2" />
+                  <g class="elevator-person__figure">
+                    <circle class="elevator-person__head" cx="0" cy="0" r="4.8" />
+                    <path class="elevator-person__torso" d="M0 6v18" />
+                    <path class="elevator-person__arm elevator-person__arm--back" d="M0 14l-8 7" />
+                    <path class="elevator-person__arm elevator-person__arm--front" d="M0 14l8 7" />
+                    <path class="elevator-person__leg elevator-person__leg--back" d="M0 24l-7 14" />
+                    <path class="elevator-person__leg elevator-person__leg--front" d="M0 24l8 14" />
+                    <circle class="elevator-person__warm-detail" cx="8" cy="20" r="2" />
+                  </g>
                 </g>
-              </g>
-              <g class="elevator-success">
-                <path d="M241 53h41" />
-                <path d="M270 43l12 10-12 10" />
-                <circle cx="232" cy="53" r="4" />
               </g>
             </svg>
           </div>
