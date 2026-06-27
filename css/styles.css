@@ -478,57 +478,102 @@ p { color: var(--color-muted); }
 @media (prefers-reduced-motion: no-preference) { .experience-orbit { animation: float-orbit 10s ease-in-out infinite; } }
 @media (max-width: 860px) { .experience-orbit { right: 1rem; opacity:.28; } .contact__constellation { display:none; } }
 
+/* Contact lamp ignition scene */
 .contact__lamp-scene {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
 }
-.contact__lamp {
+.contact__lamp,
+.contact-lamp {
   position: absolute;
   right: clamp(2.2rem, 8vw, 8rem);
   top: clamp(.75rem, 2vw, 1.25rem);
   width: clamp(70px, 9vw, 112px);
   overflow: visible;
   filter: drop-shadow(0 18px 24px rgba(0,0,0,.16));
-  opacity: .86;
-  z-index: 2;
+  opacity: .78;
+  z-index: 3;
 }
 .contact__lamp-cable,
 .contact__lamp-shade,
 .contact__lamp-rim {
   fill: none;
-  stroke: rgba(230, 239, 240, .74);
+  stroke: rgba(230, 239, 240, .68);
   stroke-width: 1.35;
   stroke-linecap: round;
   stroke-linejoin: round;
+  transition: stroke 700ms ease, filter 700ms ease;
 }
 .contact__lamp-shade {
-  fill: rgba(247, 250, 249, .045);
-  stroke: rgba(225, 236, 238, .68);
+  fill: rgba(247, 250, 249, .035);
+  stroke: rgba(225, 236, 238, .62);
 }
 .contact__lamp-bulb {
-  fill: rgba(248, 242, 228, .32);
-  stroke: rgba(248, 242, 228, .48);
+  fill: rgba(248, 242, 228, .14);
+  stroke: rgba(248, 242, 228, .28);
   stroke-width: 1;
+  opacity: .54;
   transform-box: fill-box;
   transform-origin: center;
-  transition: fill 900ms ease, filter 900ms ease, opacity 900ms ease, transform 900ms ease;
+  transition: fill 360ms ease 750ms, filter 520ms ease 750ms, opacity 360ms ease 750ms, transform 520ms cubic-bezier(.22,1,.36,1) 750ms;
 }
-.contact__light-cone {
+.contact__cord,
+.contact-cord {
+  position: absolute;
+  right: calc(clamp(2.2rem, 8vw, 8rem) + clamp(70px, 9vw, 112px) * .34);
+  top: clamp(4.9rem, 8.5vw, 7.85rem);
+  width: 1px;
+  height: clamp(48px, 6.2vw, 76px);
+  background: linear-gradient(180deg, rgba(230,239,240,.62), rgba(174,193,199,.24));
+  transform-origin: 50% 0;
+  opacity: .78;
+  z-index: 2;
+}
+.contact__cord span,
+.contact-cord span {
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(230,239,240,.48);
+  border-radius: 999px;
+  background: rgba(247,250,249,.16);
+  box-shadow: 0 6px 14px rgba(0,0,0,.16);
+  transform: translateX(-50%);
+}
+.contact__lamp-scene::before {
+  content: "";
+  position: absolute;
+  right: clamp(1.55rem, 7vw, 7rem);
+  top: clamp(2.85rem, 5.3vw, 5.15rem);
+  width: clamp(94px, 12vw, 148px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,249,233,.22), rgba(111,141,150,.08) 38%, transparent 68%);
+  filter: blur(18px);
+  opacity: 0;
+  transform: scale(.72);
+  transition: opacity 620ms ease 750ms, transform 900ms cubic-bezier(.22,1,.36,1) 750ms;
+  z-index: 1;
+}
+.contact__light-cone,
+.contact-light {
   position: absolute;
   right: clamp(-2rem, 2vw, 1rem);
   top: clamp(4.4rem, 8.4vw, 7.4rem);
   width: min(58vw, 560px);
   height: clamp(230px, 29vw, 360px);
-  background: radial-gradient(ellipse at 50% 0%, rgba(255, 249, 233, .32), rgba(238, 229, 204, .15) 38%, rgba(111, 141, 150, .055) 62%, transparent 78%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 249, 233, .40), rgba(238, 229, 204, .20) 36%, rgba(111, 141, 150, .075) 60%, transparent 80%);
   clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
   filter: blur(18px);
   mix-blend-mode: screen;
   opacity: 0;
-  transform: translate3d(0, -10px, 0) scaleY(.72);
+  transform: translate3d(0, -10px, 0) scaleY(.58);
   transform-origin: 50% 0;
-  transition: opacity 1300ms cubic-bezier(.22,1,.36,1), transform 1300ms cubic-bezier(.22,1,.36,1);
+  transition: opacity 620ms cubic-bezier(.22,1,.36,1) 900ms, transform 860ms cubic-bezier(.22,1,.36,1) 900ms;
 }
 .contact__light-pool {
   position: absolute;
@@ -537,18 +582,19 @@ p { color: var(--color-muted); }
   width: min(48vw, 520px);
   height: clamp(130px, 17vw, 190px);
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(255, 249, 233, .22), rgba(198, 79, 53, .055) 36%, rgba(111, 141, 150, .06) 58%, transparent 74%);
+  background: radial-gradient(ellipse, rgba(255, 249, 233, .26), rgba(198, 79, 53, .045) 36%, rgba(111, 141, 150, .07) 58%, transparent 74%);
   filter: blur(18px);
   opacity: 0;
   transform: scale(.82);
-  transition: opacity 1400ms cubic-bezier(.22,1,.36,1) 180ms, transform 1400ms cubic-bezier(.22,1,.36,1) 180ms;
+  transition: opacity 620ms cubic-bezier(.22,1,.36,1) 1020ms, transform 900ms cubic-bezier(.22,1,.36,1) 1020ms;
 }
 .contact__copy p:not(.eyebrow) {
   max-width: 560px;
   margin: .95rem 0 0;
   color: rgba(226, 235, 237, .72);
 }
-.contact__cta-panel {
+.contact__cta-panel,
+.contact-card {
   position: relative;
   justify-self: end;
   display: grid;
@@ -558,7 +604,7 @@ p { color: var(--color-muted); }
   border-radius: 24px;
   background: linear-gradient(145deg, rgba(247,250,249,.065), rgba(111,141,150,.04));
   box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
-  transition: border-color 1000ms ease, box-shadow 1000ms ease, background 1000ms ease, transform 1000ms ease;
+  transition: border-color 520ms ease 1100ms, box-shadow 620ms ease 1100ms, background 620ms ease 1100ms, transform 620ms cubic-bezier(.22,1,.36,1) 1100ms;
 }
 .contact__cta-kicker {
   color: rgba(226, 235, 237, .48);
@@ -566,45 +612,64 @@ p { color: var(--color-muted); }
   font-weight: 900;
   letter-spacing: .16em;
   text-transform: uppercase;
-  transition: color 1000ms ease;
+  transition: color 520ms ease 1100ms;
+}
+.contact__content.is-lit .contact__lamp-cable,
+.contact__content.is-lit .contact__lamp-shade,
+.contact__content.is-lit .contact__lamp-rim {
+  stroke: rgba(242,248,248,.82);
+  filter: drop-shadow(0 0 9px rgba(255,249,233,.10));
 }
 .contact__content.is-lit .contact__lamp-bulb {
   fill: rgba(255, 249, 233, .92);
   opacity: 1;
-  filter: drop-shadow(0 0 10px rgba(255, 244, 219, .46)) drop-shadow(0 0 22px rgba(198,79,53,.14));
+  filter: drop-shadow(0 0 10px rgba(255, 244, 219, .46)) drop-shadow(0 0 22px rgba(111,141,150,.16));
   transform: scale(1.08);
+}
+.contact__content.is-lit .contact__lamp-scene::before {
+  opacity: .78;
+  transform: scale(1);
 }
 .contact__content.is-lit .contact__light-cone {
   opacity: .78;
   transform: translate3d(0, 0, 0) scaleY(1);
 }
 .contact__content.is-lit .contact__light-pool {
-  opacity: .9;
+  opacity: .88;
   transform: scale(1);
 }
 .contact__content.is-lit .contact__cta-panel {
   border-color: rgba(255, 249, 233, .24);
-  background: linear-gradient(145deg, rgba(247,250,249,.105), rgba(111,141,150,.06));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 24px 60px rgba(0,0,0,.14), 0 0 0 1px rgba(255,249,233,.045);
+  background: linear-gradient(145deg, rgba(247,250,249,.112), rgba(111,141,150,.065));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 24px 60px rgba(0,0,0,.14), 0 0 0 1px rgba(255,249,233,.055), 0 0 34px rgba(255,249,233,.055);
   transform: translateY(-2px);
 }
 .contact__content.is-lit .contact__cta-kicker { color: rgba(255, 249, 233, .68); }
 @media (prefers-reduced-motion: no-preference) {
-  .contact__content.is-lit .contact__lamp-bulb { animation: lamp-warm-settle 1500ms cubic-bezier(.22,1,.36,1) both; }
-  .contact__content.is-lit .contact__light-cone { animation: lamp-cone-on 1450ms cubic-bezier(.22,1,.36,1) both; }
+  .contact__content.is-lit .contact__cord { animation: contact-cord-pull 1220ms cubic-bezier(.22,1,.36,1) both; }
+  .contact__content.is-lit .contact__lamp-bulb { animation: lamp-warm-settle 1280ms cubic-bezier(.22,1,.36,1) both; }
+  .contact__content.is-lit .contact__light-cone { animation: lamp-cone-on 1320ms cubic-bezier(.22,1,.36,1) both; }
+}
+@keyframes contact-cord-pull {
+  0%, 18% { transform: translate3d(0, 0, 0) scaleY(1); }
+  30% { transform: translate3d(0, 16px, 0) scaleY(1.08); }
+  48% { transform: translate3d(0, -3px, 0) scaleY(.98); }
+  60% { transform: translate3d(0, 4px, 0) scaleY(1.02); }
+  74%, 100% { transform: translate3d(0, 0, 0) scaleY(1); }
 }
 @keyframes lamp-warm-settle {
-  0% { opacity: .28; transform: scale(.86); filter: none; }
-  58% { opacity: 1; transform: scale(1.12); }
+  0%, 56% { opacity: .54; transform: scale(.86); filter: none; }
+  62% { opacity: 1; transform: scale(1.16); }
   100% { opacity: 1; transform: scale(1.08); }
 }
 @keyframes lamp-cone-on {
-  0% { opacity: 0; transform: translate3d(0, -10px, 0) scaleY(.72); }
-  72% { opacity: .84; }
+  0%, 66% { opacity: 0; transform: translate3d(0, -10px, 0) scaleY(.58); }
+  78% { opacity: .84; }
   100% { opacity: .78; transform: translate3d(0, 0, 0) scaleY(1); }
 }
 @media (max-width: 860px) {
   .contact__lamp { right: 1.5rem; width: 76px; opacity: .72; }
+  .contact__cord { right: calc(1.5rem + 26px); top: 5rem; height: 54px; }
   .contact__light-cone { right: -5rem; top: 4.7rem; width: 92vw; height: 300px; opacity: 0; }
   .contact__light-pool { right: -3rem; width: 92vw; }
   .contact__cta-panel { justify-self: stretch; width: 100%; }
@@ -612,12 +677,15 @@ p { color: var(--color-muted); }
 @media (max-width: 560px) {
   .contact__content { padding: 2.1rem 1.15rem 1.25rem; }
   .contact__lamp { right: .9rem; top: .45rem; width: 58px; }
+  .contact__cord { right: calc(.9rem + 20px); top: 4.05rem; height: 44px; }
   .contact__light-cone { right: -7rem; top: 3.6rem; height: 270px; filter: blur(20px); }
   .contact__copy { padding-top: 1.7rem; }
   .contact__cta-panel { padding: .82rem; border-radius: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .contact__content .contact__lamp-bulb { fill: rgba(255, 249, 233, .92); opacity: 1; filter: drop-shadow(0 0 10px rgba(255, 244, 219, .38)); }
+  .contact__content .contact__lamp-bulb { fill: rgba(255, 249, 233, .92); opacity: 1; transform: scale(1.08); filter: drop-shadow(0 0 10px rgba(255, 244, 219, .38)); }
+  .contact__content .contact__lamp-scene::before { opacity: .72; transform: none; }
   .contact__content .contact__light-cone { opacity: .72; transform: none; }
   .contact__content .contact__light-pool { opacity: .86; transform: none; }
+  .contact__content .contact__cta-panel { border-color: rgba(255, 249, 233, .22); box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 18px 46px rgba(0,0,0,.12), 0 0 0 1px rgba(255,249,233,.045); }
 }
