@@ -665,21 +665,49 @@ p { color: var(--color-muted); }
   position: relative;
   justify-self: end;
   display: grid;
-  gap: .82rem;
-  padding: 1rem;
-  border: 1px solid rgba(225, 236, 238, .075);
+  gap: .78rem;
+  padding: .96rem;
+  border: 1px solid rgba(226, 238, 241, .045);
   border-radius: 24px;
-  background: linear-gradient(145deg, rgba(247,250,249,.042), rgba(111,141,150,.026));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
-  transition: border-color 460ms ease, box-shadow 520ms ease, background 520ms ease, transform 520ms cubic-bezier(.22,1,.36,1);
+  background: linear-gradient(145deg, rgba(16, 23, 32, .36), rgba(18, 25, 34, .26));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.018);
+  isolation: isolate;
+  overflow: hidden;
+  transition: border-color 520ms ease, box-shadow 560ms ease, background 560ms ease, transform 560ms cubic-bezier(.22,1,.36,1);
+}
+.contact__cta-panel::before,
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse at 55% 0%, rgba(238, 249, 252, .14), transparent 58%),
+    linear-gradient(145deg, rgba(239, 248, 249, .075), rgba(111, 141, 150, .035));
+  opacity: .05;
+  pointer-events: none;
+  transition: opacity 560ms ease;
+  z-index: -1;
+}
+.contact__cta-panel::after,
+.contact-card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: calc(24px - 1px);
+  background: linear-gradient(180deg, rgba(255,255,255,.026), transparent 42%);
+  opacity: .08;
+  pointer-events: none;
+  transition: opacity 560ms ease;
+  z-index: -1;
 }
 .contact__cta-kicker {
-  color: rgba(226, 235, 237, .48);
-  font-size: .68rem;
+  color: rgba(226, 235, 237, .34);
+  font-size: .66rem;
   font-weight: 900;
-  letter-spacing: .16em;
+  letter-spacing: .17em;
   text-transform: uppercase;
-  transition: color 420ms ease;
+  transition: color 460ms ease, text-shadow 520ms ease;
 }
 .contact__content.is-lit .contact__lamp-cable,
 .contact__content.is-lit .contact__lamp-shade,
@@ -697,13 +725,15 @@ p { color: var(--color-muted); }
 .contact__content.is-lit .contact__light-cone { opacity: .78; transform: translate3d(-50%, 0, 0) scaleY(1); filter: blur(18px); }
 .contact__content.is-lit .contact__light-pool { opacity: .72; transform: translateX(-50%) scale(1); }
 .contact__content.is-lit .contact__cta-panel {
-  border-color: rgba(224, 241, 245, .27);
-  background: radial-gradient(ellipse at 58% 0%, rgba(235,248,251,.13), transparent 58%), linear-gradient(145deg, rgba(247,250,249,.13), rgba(111,141,150,.075));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 26px 62px rgba(0,0,0,.16), 0 0 0 1px rgba(221,239,244,.07), 0 0 42px rgba(199,224,230,.08);
+  border-color: rgba(224, 241, 245, .20);
+  background: linear-gradient(145deg, rgba(18, 27, 37, .42), rgba(20, 30, 40, .30));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.105), 0 22px 54px rgba(0,0,0,.14), 0 0 0 1px rgba(221,239,244,.045), 0 0 34px rgba(199,224,230,.06);
   transform: translateY(-2px);
 }
-.contact__content.is-lit .contact__cta-kicker { color: rgba(230, 244, 247, .70); }
-.contact__content.is-lit .button--light { background: #fbfdfb; border-color: rgba(226,240,243,.46); box-shadow: 0 18px 46px rgba(0,0,0,.2), 0 0 28px rgba(199,224,230,.13); }
+.contact__content.is-lit .contact__cta-panel::before { opacity: 1; }
+.contact__content.is-lit .contact__cta-panel::after { opacity: .42; }
+.contact__content.is-lit .contact__cta-kicker { color: rgba(230, 244, 247, .68); text-shadow: 0 0 18px rgba(214,235,240,.14); }
+.contact__content.is-lit .button--light { background: #fbfdfb; border-color: rgba(226,240,243,.42); box-shadow: 0 16px 40px rgba(0,0,0,.18), 0 0 24px rgba(199,224,230,.11); }
 @media (prefers-reduced-motion: no-preference) {
   .contact__content.is-lit .contact__lamp-bulb { animation: lamp-warm-settle 560ms cubic-bezier(.22,1,.36,1) both; }
 }
