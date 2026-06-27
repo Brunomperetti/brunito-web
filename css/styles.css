@@ -105,8 +105,9 @@ p { color: var(--color-muted); }
 .panel-kicker { display: block; color: var(--color-warm); font-size: .68rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
 .panel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-warm); box-shadow: 0 0 0 4px var(--color-warm-soft), 0 0 20px rgba(198,79,53,.16); }
 .hero__panel p { position: relative; max-width: 315px; margin-bottom: 0; color: var(--color-ink); font-size: clamp(1.35rem, 2vw, 1.62rem); font-weight: 850; line-height: 1.06; letter-spacing: -.045em; z-index: 1; }
-.elevator-scene { position: relative; isolation: isolate; min-height: 222px; margin-top: 1.5rem; border-block: 1px solid rgba(174,193,199,.58); border-top-color: rgba(198,79,53,.22); background: linear-gradient(90deg, rgba(16,19,24,.028) 1px, transparent 1px), linear-gradient(rgba(16,19,24,.024) 1px, transparent 1px); background-size: 54px 100%, 100% 40px; z-index: 1; }
+.elevator-scene { position: relative; isolation: isolate; cursor: pointer; touch-action: manipulation; min-height: 222px; margin-top: 1.5rem; border-block: 1px solid rgba(174,193,199,.58); border-top-color: rgba(198,79,53,.22); background: linear-gradient(90deg, rgba(16,19,24,.028) 1px, transparent 1px), linear-gradient(rgba(16,19,24,.024) 1px, transparent 1px); background-size: 54px 100%, 100% 40px; z-index: 1; }
 .elevator-scene::before { content:""; position:absolute; inset: 18px 22px; border: 1px solid rgba(111,141,150,.13); border-radius: 24px; background: radial-gradient(circle at 64% 20%, rgba(255,255,255,.48), transparent 27%), linear-gradient(145deg, rgba(247,251,250,.22), rgba(229,238,239,.12)); pointer-events:none; }
+.elevator-scene:focus-visible { outline: 2px solid rgba(198,79,53,.42); outline-offset: 5px; border-radius: 24px; }
 .elevator-scene::after { content:""; position:absolute; right: 34px; top: 35px; width: 52px; aspect-ratio: 1; border: 1px solid rgba(111,141,150,.20); border-radius: 50%; background: rgba(255,253,248,.26); pointer-events:none; }
 .elevator-visual { position: relative; z-index: 1; display: block; width: 100%; height: 222px; overflow: visible; }
 .elevator-rails path, .elevator-level path, .elevator-arrow path, .elevator-directory path { fill: none; stroke: rgba(16,24,32,.23); stroke-width: 1.2; stroke-linecap: round; }
@@ -126,9 +127,14 @@ p { color: var(--color-muted); }
 .elevator-indicator circle { fill: var(--color-warm); opacity: .76; }
 .elevator-passenger, .elevator-person, .elevator-thought { transform-box: view-box; transform-origin: center; }
 .elevator-passenger { opacity: 1; transform: translate3d(92px, 164px, 0); }
-.elevator-thought { filter: drop-shadow(0 13px 18px rgba(16,19,24,.065)); }
+.elevator-thought { filter: drop-shadow(0 13px 18px rgba(16,19,24,.065)); transition: filter .24s ease, transform .24s ease; }
+.elevator-scene:hover .elevator-thought, .elevator-scene:focus-visible .elevator-thought { filter: drop-shadow(0 16px 22px rgba(16,19,24,.09)); }
 .elevator-thought__shape { fill: rgba(250,253,252,.94); stroke: rgba(198,79,53,.38); stroke-width: .95; }
-.elevator-thought__text { fill: var(--color-ink); font-size: 7.25px; font-weight: 920; letter-spacing: .07em; text-transform: uppercase; }
+.elevator-thought__text { fill: var(--color-ink); font-size: 8.3px; font-weight: 880; letter-spacing: .015em; }
+.elevator-thought__text tspan { dominant-baseline: middle; }
+.elevator-thought__text.is-changing { opacity: 0; transform: translateY(-2px); }
+.elevator-thought__shape { transition: stroke .24s ease, fill .24s ease, filter .24s ease; }
+.elevator-scene.is-cta-ready .elevator-thought__shape { fill: rgba(250,253,252,.98); stroke: rgba(198,79,53,.58); filter: drop-shadow(0 0 14px rgba(198,79,53,.08)); }
 .elevator-thought-bubbles circle { fill: rgba(250,253,252,.94); stroke: rgba(94,125,134,.36); stroke-width: .65; filter: drop-shadow(0 5px 9px rgba(16,19,24,.045)); }
 .elevator-person__head { fill: var(--color-ink); }
 .elevator-person__torso, .elevator-person__arm, .elevator-person__leg { fill: none; stroke: var(--color-ink); stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; transform-box: view-box; }
@@ -220,6 +226,7 @@ p { color: var(--color-muted); }
 .js .reveal-group.is-visible > * { opacity: 1; transform: translateY(0); }
 
 @media (prefers-reduced-motion: no-preference) {
+  .elevator-thought__text { transition: opacity 220ms ease, transform 220ms ease; }
   .hero::before { animation: hero-glow-breathe 9s ease-in-out infinite; }
   .hero__shape--one { animation: float-orbit 8.5s ease-in-out infinite; }
   .hero__grid span { animation: node-breathe 5.8s ease-in-out infinite; animation-delay: calc(var(--item-index, 0) * -1.2s); }
@@ -242,6 +249,18 @@ p { color: var(--color-muted); }
   .panel-level--middle::before { animation: panel-level-dot-middle 10s ease-in-out infinite; }
   .panel-level--top::before { animation: panel-level-dot-top 10s ease-in-out infinite; }
   .contact__content::before { animation: glow-drift 10s ease-in-out infinite; }
+  .elevator-scene.is-paused .elevator-cabin,
+  .elevator-scene.is-paused .elevator-door--left,
+  .elevator-scene.is-paused .elevator-door--right,
+  .elevator-scene.is-paused .elevator-passenger,
+  .elevator-scene.is-paused .elevator-person__figure,
+  .elevator-scene.is-paused .elevator-person__leg--front,
+  .elevator-scene.is-paused .elevator-person__arm--back,
+  .elevator-scene.is-paused .elevator-person__leg--back,
+  .elevator-scene.is-paused .elevator-person__arm--front,
+  .elevator-scene.is-paused .elevator-thought-bubbles circle,
+  .elevator-scene.is-paused .elevator-arrow { animation-play-state: paused; }
+  .elevator-scene.is-paused .elevator-thought__text { animation: none; }
 }
 @keyframes panel-float {
   0%, 100% { transform: translate3d(0, 0, 0); }
@@ -398,6 +417,7 @@ p { color: var(--color-muted); }
   .button--light { justify-self: start; }
 }
 @media (max-width: 560px) {
+  .elevator-thought__text { font-size: 7.7px; }
   .container { width: min(100% - 1.25rem, var(--container)); }
   h1 { font-size: clamp(2.45rem, 12.6vw, 3.8rem); }
   .hero { padding-top: .35rem; }
