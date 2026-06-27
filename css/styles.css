@@ -201,11 +201,12 @@ p { color: var(--color-muted); }
 .case-item:hover::before { opacity: 1; transform: scaleY(1); }
 .case-item span { grid-row: span 2; color: var(--color-warm); font-weight: 900; }
 .case-item p { max-width: 520px; margin-bottom: 0; }
-.about { align-items: center; max-width: 920px; }
-.about__mark { position: relative; display: grid; width: min(100%, 210px); aspect-ratio: 1; place-items: center; border: 1px solid rgba(16,19,24,.14); border-radius: 50%; background: radial-gradient(circle at 64% 36%, rgba(255,255,255,.32) 0 15%, transparent 16%), radial-gradient(circle at 32% 72%, rgba(111,141,150,.12), transparent 28%), linear-gradient(145deg, #fbfefd, #e8f1f2); box-shadow: 0 22px 58px rgba(16,19,24,.075); }
-.about__mark::before { content:""; position:absolute; inset: 16px; border: 1px solid rgba(111,141,150,.24); border-radius: 50%; }
-.about__mark img { width: 82%; height: 82%; object-fit: contain; filter: drop-shadow(0 12px 22px rgba(16,19,24,.10)); }
-.about__mark small { position: absolute; bottom: 1.45rem; color: rgba(16,19,24,.46); font-size: .62rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+.about { align-items: center; max-width: 960px; }
+.about__mark { position: relative; display: grid; width: min(100%, 330px); min-height: 182px; padding: clamp(1.5rem, 3vw, 2rem) clamp(1.15rem, 2.6vw, 1.75rem) clamp(1.9rem, 3vw, 2.35rem); place-items: center; border: 1px solid rgba(16,19,24,.11); border-radius: 30px; background: linear-gradient(145deg, rgba(251,254,253,.96), rgba(232,241,242,.86)); box-shadow: 0 24px 60px rgba(16,19,24,.07); overflow: hidden; }
+.about__mark::before { content:""; position:absolute; inset: 12px; border: 1px solid rgba(111,141,150,.18); border-radius: 22px; pointer-events: none; }
+.about__mark::after { content:""; position:absolute; right: 1.05rem; top: 1.05rem; width: 42px; aspect-ratio: 1; border: 1px solid rgba(198,79,53,.18); border-radius: 50%; background: radial-gradient(circle, rgba(198,79,53,.10) 0 28%, transparent 30%); opacity: .8; pointer-events: none; }
+.about__mark img { position: relative; z-index: 1; width: min(100%, 270px); height: auto; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(16,19,24,.09)); }
+.about__mark small { position: absolute; z-index: 1; left: clamp(1.45rem, 3vw, 1.9rem); bottom: 1rem; color: rgba(16,19,24,.38); font-size: .58rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
 .about p { max-width: 540px; font-size: 1.02rem; }
 .contact__content { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, auto); gap: 1.8rem 3rem; align-items: center; padding: clamp(2.5rem, 5vw, 4.35rem); border: 1px solid rgba(255,255,255,.16); border-radius: calc(var(--radius-xl) + 4px); background: linear-gradient(145deg, #101720, #17212d 62%, #121922); color: #fff; box-shadow: 0 28px 76px rgba(16,19,24,.16); }
 .contact__content::before { content:""; position:absolute; inset:0; background: radial-gradient(ellipse at 18% 16%, rgba(94,125,134,.18), transparent 34%), radial-gradient(circle at 88% 78%, rgba(255,255,255,.08), transparent 26%), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: auto, auto, 64px 64px; pointer-events: none; }
@@ -421,11 +422,17 @@ p { color: var(--color-muted); }
   .experience-metrics div:nth-child(even) { border-right: 0; }
   .experience-metrics div:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.14); }
   .section-heading--sticky { position:static; }
-  .about__mark { width: 172px; }
+  .about__mark { width: min(100%, 300px); min-height: 156px; padding-block: 1.3rem 1.9rem; }
+  .about__mark img { width: min(100%, 244px); }
   .contact__content { grid-template-columns: 1fr; align-items: start; }
   .button--light { justify-self: start; }
 }
 @media (max-width: 560px) {
+  .about__mark { width: 100%; min-height: 138px; padding: 1.2rem 1rem 1.75rem; border-radius: 24px; }
+  .about__mark::before { inset: 10px; border-radius: 18px; }
+  .about__mark::after { width: 32px; right: .9rem; top: .9rem; }
+  .about__mark img { width: min(100%, 232px); }
+  .about__mark small { left: 1.25rem; bottom: .85rem; font-size: .54rem; }
   .elevator-thought__text { font-size: 7.7px; }
   .container { width: min(100% - 1.25rem, var(--container)); }
   h1 { font-size: clamp(2.45rem, 12.6vw, 3.8rem); }
