@@ -59,7 +59,13 @@ const elevatorSequences = [
   ['Tu negocio puede crecer.', 'Con estrategia, datos', 'y ejecución.', 'Escribime'],
 ];
 
-const setElevatorMessage = (message) => {
+const getElevatorMessageLines = (message) => (
+  message.length > 21 && message.includes(' ')
+    ? message.replace(', ', ',|').split('|')
+    : [message]
+);
+
+const setElevatorMessage = (message, { showCursor = false } = {}) => {
   if (!elevatorWord) return;
 
   if (elevatorScene) {
@@ -68,9 +74,7 @@ const setElevatorMessage = (message) => {
   }
 
   elevatorWord.textContent = '';
-  const lines = message.length > 21 && message.includes(' ')
-    ? message.replace(', ', ',|').split('|')
-    : [message];
+  const lines = getElevatorMessageLines(message);
 
   lines.forEach((line, index) => {
     const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
@@ -79,6 +83,49 @@ const setElevatorMessage = (message) => {
     tspan.textContent = line;
     elevatorWord.appendChild(tspan);
   });
+
+  if (showCursor) {
+    const cursor = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+    cursor.classList.add('elevator-thought__cursor');
+    cursor.textContent = '│';
+    elevatorWord.appendChild(cursor);
+  }
+};
+
+const setElevatorTypedMessage = (message, characterCount, { showCursor = true } = {}) => {
+  if (!elevatorWord) return;
+
+  const visibleMessage = message.slice(0, characterCount);
+  const lines = getElevatorMessageLines(message);
+  let remainingCharacters = visibleMessage.length;
+
+  elevatorWord.textContent = '';
+
+  lines.forEach((line, index) => {
+    if (remainingCharacters <= 0 && index > 0) return;
+
+    const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+    const lineText = line.slice(0, Math.max(0, Math.min(line.length, remainingCharacters)));
+
+    tspan.setAttribute('x', '70');
+    tspan.setAttribute('dy', index === 0 ? (lines.length > 1 ? '-0.45em' : '0') : '1.16em');
+    tspan.textContent = lineText;
+    elevatorWord.appendChild(tspan);
+
+    remainingCharacters -= line.length;
+  });
+
+  if (elevatorScene) {
+    elevatorScene.setAttribute('aria-label', `Mensaje del ascensor: ${visibleMessage || message}`);
+    elevatorScene.setAttribute('title', visibleMessage || message);
+  }
+
+  if (showCursor) {
+    const cursor = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+    cursor.classList.add('elevator-thought__cursor');
+    cursor.textContent = '│';
+    elevatorWord.appendChild(cursor);
+  }
 };
 
 if (elevatorWord) {
@@ -97,21 +144,22 @@ if (elevatorWord && elevatorScene) {
     }
   };
 
-  const transitionElevatorMessage = (message) => {
+  const waitElevator = (delay) => new Promise((resolve) => {
+    activeTimeout = window.setTimeout(resolve, delay);
+  });
+
+  const typeElevatorMessage = async (message) => {
     if (reduceMotion) {
       setElevatorMessage(message);
-      return Promise.resolve();
+      return;
     }
 
-    elevatorWord.classList.add('is-changing');
+    setElevatorTypedMessage(message, 0);
 
-    return new Promise((resolve) => {
-      window.setTimeout(() => {
-        setElevatorMessage(message);
-        elevatorWord.classList.remove('is-changing');
-        window.setTimeout(resolve, 260);
-      }, 220);
-    });
+    for (let characterCount = 1; characterCount <= message.length; characterCount += 1) {
+      await waitElevator(34);
+      setElevatorTypedMessage(message, characterCount);
+    }
   };
 
   const playElevatorSequence = async () => {
@@ -129,7 +177,7 @@ if (elevatorWord && elevatorScene) {
     window.clearTimeout(activeTimeout);
 
     if (reduceMotion) {
-      await transitionElevatorMessage('Escribime');
+      setElevatorMessage('Escribime');
       elevatorScene.classList.add('is-cta-ready');
       isCtaReady = true;
       isPlaying = false;
@@ -141,20 +189,18 @@ if (elevatorWord && elevatorScene) {
     sequenceIndex = (sequenceIndex + 1) % elevatorSequences.length;
 
     for (const message of sequence) {
-      await transitionElevatorMessage(message);
+      await typeElevatorMessage(message);
       if (message === 'Escribime') {
         elevatorScene.classList.add('is-cta-ready');
         isCtaReady = true;
       }
-      await new Promise((resolve) => {
-        activeTimeout = window.setTimeout(resolve, message === 'Escribime' ? 1250 : 1050);
-      });
+      await waitElevator(message === 'Escribime' ? 1700 : 760);
     }
 
     isPlaying = false;
     isCtaReady = false;
     elevatorScene.classList.remove('is-paused', 'is-cta-ready');
-    await transitionElevatorMessage('¿Subimos?');
+    setElevatorMessage('¿Subimos?');
   };
 
   elevatorScene.addEventListener('click', playElevatorSequence);
