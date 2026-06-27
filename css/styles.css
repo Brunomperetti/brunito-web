@@ -129,12 +129,17 @@ p { color: var(--color-muted); }
 .elevator-passenger { opacity: 1; transform: translate3d(92px, 164px, 0); }
 .elevator-thought { filter: drop-shadow(0 13px 18px rgba(16,19,24,.065)); transition: filter .24s ease, transform .24s ease; }
 .elevator-scene:hover .elevator-thought, .elevator-scene:focus-visible .elevator-thought { filter: drop-shadow(0 16px 22px rgba(16,19,24,.09)); }
+.elevator-scene.is-cta-ready { cursor: pointer; }
+.elevator-scene.is-cta-ready .elevator-thought { transform: translate3d(0, -1px, 0); }
 .elevator-thought__shape { fill: rgba(250,253,252,.94); stroke: rgba(198,79,53,.38); stroke-width: .95; }
-.elevator-thought__text { fill: var(--color-ink); font-size: 8.3px; font-weight: 880; letter-spacing: .015em; }
+.elevator-thought__text { fill: var(--color-ink); font-size: 8.75px; font-weight: 880; letter-spacing: .008em; transition: fill .22s ease, opacity .22s ease; }
+.elevator-thought__text.is-cta { fill: var(--color-warm); cursor: pointer; text-decoration: underline; text-decoration-thickness: .55px; text-underline-offset: 2px; }
+.elevator-scene.is-cta-ready:hover .elevator-thought__text.is-cta, .elevator-scene.is-cta-ready:focus-visible .elevator-thought__text.is-cta { fill: #a9442f; }
 .elevator-thought__cursor { opacity: .62; font-weight: 650; animation: elevator-cursor-blink 920ms ease-in-out infinite; }
 .elevator-thought__text tspan { dominant-baseline: middle; }
 .elevator-thought__shape { transition: stroke .24s ease, fill .24s ease, filter .24s ease; }
-.elevator-scene.is-cta-ready .elevator-thought__shape { fill: rgba(250,253,252,.98); stroke: rgba(198,79,53,.58); filter: drop-shadow(0 0 14px rgba(198,79,53,.08)); }
+.elevator-scene.is-cta-ready .elevator-thought__shape { fill: rgba(250,253,252,.98); stroke: rgba(198,79,53,.62); filter: drop-shadow(0 0 14px rgba(198,79,53,.08)); }
+.elevator-scene.is-cta-ready:hover .elevator-thought__shape, .elevator-scene.is-cta-ready:focus-visible .elevator-thought__shape { stroke: rgba(198,79,53,.78); filter: drop-shadow(0 0 18px rgba(198,79,53,.13)); }
 .elevator-thought-bubbles circle { fill: rgba(250,253,252,.94); stroke: rgba(94,125,134,.36); stroke-width: .65; filter: drop-shadow(0 5px 9px rgba(16,19,24,.045)); }
 .elevator-person__head { fill: var(--color-ink); }
 .elevator-person__torso, .elevator-person__arm, .elevator-person__leg { fill: none; stroke: var(--color-ink); stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; transform-box: view-box; }
