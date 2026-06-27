@@ -53,10 +53,11 @@ const elevatorWord = document.querySelector('[data-elevator-word]');
 const elevatorScene = document.querySelector('[data-elevator-interaction]');
 const heroPanel = document.querySelector('.hero__panel');
 const whatsappUrl = heroPanel?.dataset.whatsappUrl;
+const elevatorCtaMessage = 'Hacé click acá';
 const elevatorSequences = [
-  ['¿Estás listo?', 'Llevemos tu negocio', 'al siguiente nivel.', 'Escribime'],
-  ['Sigo acá.', 'Esperando tu mensaje.', 'Escribime'],
-  ['Tu negocio puede crecer.', 'Con estrategia, datos', 'y ejecución.', 'Escribime'],
+  ['¿Estás listo?', 'Llevemos tu negocio', 'al siguiente nivel.', elevatorCtaMessage],
+  ['Sigo acá.', 'Esperando tu mensaje.', elevatorCtaMessage],
+  ['Tu negocio puede crecer.', 'Con estrategia, datos', 'y ejecución.', elevatorCtaMessage],
 ];
 
 const getElevatorMessageLines = (message) => (
@@ -74,6 +75,7 @@ const setElevatorMessage = (message, { showCursor = false } = {}) => {
   }
 
   elevatorWord.textContent = '';
+  elevatorWord.classList.toggle('is-cta', message === elevatorCtaMessage);
   const lines = getElevatorMessageLines(message);
 
   lines.forEach((line, index) => {
@@ -100,6 +102,7 @@ const setElevatorTypedMessage = (message, characterCount, { showCursor = true } 
   let remainingCharacters = visibleMessage.length;
 
   elevatorWord.textContent = '';
+  elevatorWord.classList.toggle('is-cta', message === elevatorCtaMessage);
 
   lines.forEach((line, index) => {
     if (remainingCharacters <= 0 && index > 0) return;
@@ -177,7 +180,7 @@ if (elevatorWord && elevatorScene) {
     window.clearTimeout(activeTimeout);
 
     if (reduceMotion) {
-      setElevatorMessage('Escribime');
+      setElevatorMessage(elevatorCtaMessage);
       elevatorScene.classList.add('is-cta-ready');
       isCtaReady = true;
       isPlaying = false;
@@ -190,11 +193,11 @@ if (elevatorWord && elevatorScene) {
 
     for (const message of sequence) {
       await typeElevatorMessage(message);
-      if (message === 'Escribime') {
+      if (message === elevatorCtaMessage) {
         elevatorScene.classList.add('is-cta-ready');
         isCtaReady = true;
       }
-      await waitElevator(message === 'Escribime' ? 1700 : 760);
+      await waitElevator(message === elevatorCtaMessage ? 1700 : 760);
     }
 
     isPlaying = false;
