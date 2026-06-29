@@ -689,48 +689,87 @@ p { color: var(--color-muted); }
   border-color: rgba(235, 246, 249, .30);
   box-shadow: 0 16px 38px rgba(0,0,0,.22), 0 0 0 1px rgba(255,255,255,.08);
 }
-.contact__dancers {
+.contact__conversation {
   position: absolute;
   left: 50%;
-  top: clamp(8.8rem, 12.8vw, 11.7rem);
-  width: clamp(148px, 16vw, 196px);
+  top: clamp(8.15rem, 12vw, 11rem);
+  width: clamp(168px, 18vw, 218px);
   height: auto;
   z-index: 3;
   overflow: visible;
-  opacity: .08;
+  opacity: .055;
   color: rgba(112, 130, 137, .30);
-  filter: blur(.28px);
+  filter: blur(.32px);
   mix-blend-mode: screen;
-  transform: translate3d(-50%, 6px, 0);
+  transform: translate3d(-50%, 8px, 0) scale(.985);
   transition: opacity 620ms ease, color 620ms ease, filter 620ms ease, transform 620ms cubic-bezier(.22,1,.36,1);
 }
-.contact__dancer {
+.contact__person,
+.contact__message {
   transform-box: fill-box;
-  transform-origin: 50% 88%;
+  transform-origin: 50% 90%;
 }
-.contact__dancer-head {
+.contact__person-head,
+.contact__person-line,
+.contact__phone,
+.contact__message-shape {
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.35;
-}
-.contact__dancer-line {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.55;
-  stroke-linecap: round;
-  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
-.contact__dancer-arm,
-.contact__dancer-leg {
-  transform-box: fill-box;
-  transform-origin: 50% 0;
+.contact__person-head {
+  stroke-width: 1.25;
 }
-.contact__content.is-lit .contact__dancers {
-  opacity: .86;
-  color: rgba(218, 235, 239, .58);
+.contact__person-line {
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.contact__person-arm {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.contact__phone {
+  stroke-width: 1.05;
+  stroke-linejoin: round;
+  opacity: .72;
+}
+.contact__message {
+  opacity: .18;
+  transform: translate3d(0, 4px, 0) scale(.96);
+}
+.contact__message-shape {
+  fill: rgba(247,250,249,.035);
+  stroke-width: 1.1;
+  stroke: rgba(229,241,244,.42);
+}
+.contact__message-text {
+  fill: rgba(247,250,249,.78);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 760;
+  letter-spacing: .01em;
+  opacity: 0;
+}
+.contact__message-text--typing {
+  letter-spacing: .09em;
+}
+.contact__message-text--check {
+  fill: rgba(232,244,247,.88);
+  font-size: 17px;
+}
+.contact__content.is-lit .contact__conversation {
+  opacity: .9;
+  color: rgba(218, 235, 239, .62);
   filter: blur(0) drop-shadow(0 0 12px rgba(209,228,233,.10));
-  transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0) scale(1);
+}
+.contact__content.is-lit .contact__message {
+  opacity: 1;
+}
+.contact__content.is-lit .contact__message-shape {
+  stroke: rgba(235,246,249,.54);
+  fill: rgba(247,250,249,.055);
 }
 .contact__content.is-lit .contact__lamp-cable,
 .contact__content.is-lit .contact__lamp-shade,
@@ -751,34 +790,60 @@ p { color: var(--color-muted); }
 .contact__content.is-lit .button--light { background: #fbfdfb; border-color: rgba(226,240,243,.46); box-shadow: 0 18px 44px rgba(0,0,0,.22), 0 0 26px rgba(199,224,230,.16), 0 0 0 1px rgba(255,255,255,.10); }
 @media (prefers-reduced-motion: no-preference) {
   .contact__content.is-lit .contact__lamp-bulb { animation: lamp-warm-settle 560ms cubic-bezier(.22,1,.36,1) both; }
-  .contact__content.is-lit .contact__dancer--one { animation: dancer-sway-one 2.8s ease-in-out infinite; }
-  .contact__content.is-lit .contact__dancer--two { animation: dancer-sway-two 3.05s ease-in-out infinite; }
-  .contact__content.is-lit .contact__dancer--one .contact__dancer-arm--left,
-  .contact__content.is-lit .contact__dancer--two .contact__dancer-arm--right { animation: dancer-arm-lift 2.8s ease-in-out infinite; }
-  .contact__content.is-lit .contact__dancer--one .contact__dancer-leg--right,
-  .contact__content.is-lit .contact__dancer--two .contact__dancer-leg--left { animation: dancer-step 2.8s ease-in-out infinite; }
+  .contact__content.is-lit .contact__person--sender { animation: contact-sender-breathe 5.6s ease-in-out infinite; }
+  .contact__content.is-lit .contact__person--receiver { animation: contact-receiver-breathe 5.6s ease-in-out infinite; }
+  .contact__content.is-lit .contact__person-arm--phone { animation: contact-phone-gesture 5.6s ease-in-out infinite; }
+  .contact__content.is-lit .contact__person-arm--greet { animation: contact-reply-gesture 5.6s ease-in-out infinite; }
+  .contact__content.is-lit .contact__message { animation: contact-message-rise 5.6s ease-in-out infinite; }
+  .contact__content.is-lit .contact__message-text--typing { animation: contact-text-typing 5.6s linear infinite; }
+  .contact__content.is-lit .contact__message-text--hello { animation: contact-text-hello 5.6s linear infinite; }
+  .contact__content.is-lit .contact__message-text--check { animation: contact-text-check 5.6s linear infinite; }
+  .contact__content.is-lit .contact__cta-panel .button--light { animation: contact-cta-confirm 5.6s ease-in-out infinite; }
 }
 @keyframes lamp-warm-settle {
   0% { opacity: .58; transform: scale(.92); filter: none; }
   58% { opacity: 1; transform: scale(1.14); }
   100% { opacity: 1; transform: scale(1.08); }
 }
-
-@keyframes dancer-sway-one {
-  0%, 100% { transform: translate3d(0,0,0) rotate(-1.4deg); }
-  50% { transform: translate3d(3px,-2px,0) rotate(2.2deg); }
+@keyframes contact-sender-breathe {
+  0%, 100% { transform: translate3d(0,0,0) rotate(-.7deg); }
+  36% { transform: translate3d(1.5px,-1px,0) rotate(.7deg); }
+  70% { transform: translate3d(.5px,0,0) rotate(.2deg); }
 }
-@keyframes dancer-sway-two {
-  0%, 100% { transform: translate3d(0,-1px,0) rotate(1.5deg); }
-  50% { transform: translate3d(-3px,1px,0) rotate(-2deg); }
+@keyframes contact-receiver-breathe {
+  0%, 100% { transform: translate3d(0,0,0) rotate(.6deg); }
+  54% { transform: translate3d(-1.5px,-1px,0) rotate(-.6deg); }
 }
-@keyframes dancer-arm-lift {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(7deg); }
+@keyframes contact-phone-gesture {
+  0%, 18%, 100% { transform: rotate(0deg); }
+  28%, 42% { transform: rotate(-5deg); }
 }
-@keyframes dancer-step {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-5deg); }
+@keyframes contact-reply-gesture {
+  0%, 46%, 100% { transform: rotate(0deg); }
+  58%, 72% { transform: rotate(7deg); }
+}
+@keyframes contact-message-rise {
+  0%, 10%, 100% { opacity: .72; transform: translate3d(0,5px,0) scale(.97); }
+  18%, 86% { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+}
+@keyframes contact-text-typing {
+  0%, 24% { opacity: 1; }
+  28%, 100% { opacity: 0; }
+}
+@keyframes contact-text-hello {
+  0%, 28% { opacity: 0; }
+  32%, 56% { opacity: 1; }
+  60%, 100% { opacity: 0; }
+}
+@keyframes contact-text-check {
+  0%, 60% { opacity: 0; }
+  64%, 86% { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+@keyframes contact-cta-confirm {
+  0%, 62%, 100% { box-shadow: 0 18px 44px rgba(0,0,0,.22), 0 0 26px rgba(199,224,230,.16), 0 0 0 1px rgba(255,255,255,.10); transform: translateZ(0) scale(1); }
+  70% { box-shadow: 0 19px 46px rgba(0,0,0,.22), 0 0 31px rgba(199,224,230,.20), 0 0 0 5px rgba(235,246,249,.055); transform: translateZ(0) scale(1.012); }
+  82% { box-shadow: 0 18px 44px rgba(0,0,0,.22), 0 0 26px rgba(199,224,230,.16), 0 0 0 1px rgba(255,255,255,.10); transform: translateZ(0) scale(1); }
 }
 @media (max-width: 860px) {
   .contact__content { grid-template-columns: 1fr; min-height: 430px; padding-bottom: 8.9rem; }
@@ -790,8 +855,8 @@ p { color: var(--color-muted); }
   .contact__light-cone { width: 72vw; clip-path: polygon(47.5% 0, 52.5% 0, 96% 100%, 8% 100%); }
   .contact__light-pool { width: 92vw; }
   .contact__cta-panel { right: auto; left: 1.15rem; bottom: 1.35rem; }
-  .contact__dancers { left: auto; right: clamp(1.1rem, 15vw, 6.2rem); top: auto; bottom: 5.8rem; width: clamp(128px, 34vw, 168px); transform: translate3d(0, 6px, 0); }
-  .contact__content.is-lit .contact__dancers { transform: translate3d(0, 0, 0); }
+  .contact__conversation { left: auto; right: clamp(1.1rem, 15vw, 6.2rem); top: auto; bottom: 5.8rem; width: clamp(128px, 34vw, 168px); transform: translate3d(0, 6px, 0); }
+  .contact__content.is-lit .contact__conversation { transform: translate3d(0, 0, 0); }
 }
 @media (max-width: 560px) {
   .contact__content { padding: 2.35rem 1.15rem 8.4rem; min-height: 455px; }
@@ -801,7 +866,7 @@ p { color: var(--color-muted); }
   .contact__light-cone { width: 82vw; filter: blur(20px); clip-path: polygon(47% 0, 53% 0, 98% 100%, 6% 100%); }
   .contact__copy { padding-top: 1.7rem; }
   .contact__cta-panel { left: 1.15rem; bottom: 1.1rem; }
-  .contact__dancers { right: .9rem; bottom: 5.25rem; width: 126px; opacity: .07; }
+  .contact__conversation { right: .9rem; bottom: 5.25rem; width: 126px; opacity: .07; }
 }
 @media (prefers-reduced-motion: reduce) {
   .contact__lamp-bulb,
@@ -810,8 +875,12 @@ p { color: var(--color-muted); }
   .contact__light-pool,
   .contact__lamp-scene::after,
   .contact__cta-panel,
-  .contact__dancers,
-  .contact__dancer,
+  .contact__conversation,
+  .contact__person,
   .contact__lamp-switch,
-  .contact__lamp-switch-track span { transition-duration: 1ms; animation: none; }
+  .contact__lamp-switch-track span,
+  .contact__message,
+  .contact__message-text,
+  .contact__cta-panel .button--light { transition-duration: 1ms; animation: none; }
+  .contact__content.is-lit .contact__message-text--hello { opacity: 1; }
 }
