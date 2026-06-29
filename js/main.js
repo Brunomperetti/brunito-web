@@ -25,7 +25,7 @@ syncHeader();
 window.addEventListener('scroll', syncHeader, { passive: true });
 
 document.querySelectorAll('.services-grid, .case-list, .reveal-group, .hero__grid, .elevator-thought-bubbles').forEach((group) => {
-  group.querySelectorAll('.reveal, .metric-item, span, circle').forEach((element, index) => {
+  group.querySelectorAll('.reveal, .metric-item, .service-card, span, circle').forEach((element, index) => {
     element.style.setProperty('--item-index', index);
     element.style.setProperty('--bubble-index', index);
   });
@@ -235,6 +235,51 @@ if (elevatorWord && elevatorScene) {
   });
 }
 
+
+const servicesDeck = document.querySelector('[data-services-deck]');
+
+if (servicesDeck) {
+  const trigger = servicesDeck.querySelector('[data-services-trigger]');
+  const cards = Array.from(servicesDeck.querySelectorAll('[data-service-card]'));
+  let servicesRevealed = false;
+  let isShuffling = false;
+
+  const revealServices = () => {
+    if (isShuffling) return;
+
+    if (servicesRevealed) {
+      servicesDeck.classList.add('is-acknowledging');
+      window.setTimeout(() => servicesDeck.classList.remove('is-acknowledging'), 260);
+      return;
+    }
+
+    servicesRevealed = true;
+    trigger.textContent = 'Capacidades reveladas';
+    trigger.setAttribute('aria-label', 'Capacidades reveladas');
+    cards.forEach((card) => card.setAttribute('aria-pressed', 'true'));
+
+    if (reduceMotion) {
+      servicesDeck.classList.add('is-revealed');
+      return;
+    }
+
+    isShuffling = true;
+    servicesDeck.classList.add('is-shuffling');
+
+    window.setTimeout(() => {
+      servicesDeck.classList.remove('is-shuffling');
+      servicesDeck.classList.add('is-revealed');
+      isShuffling = false;
+    }, 760);
+  };
+
+  trigger?.addEventListener('click', revealServices);
+  cards.forEach((card) => {
+    card.setAttribute('aria-pressed', 'false');
+    card.addEventListener('click', revealServices);
+  });
+}
+
 const experienceMachine = document.querySelector('[data-experience-machine]');
 
 if (experienceMachine) {
@@ -250,7 +295,9 @@ if (experienceMachine) {
 
   const setMetricValue = (metric, value) => {
     const number = metric.querySelector('[data-rolling-number]');
+    const accessibleValue = metric.querySelector('[data-metric-accessible]');
     if (number) number.textContent = value;
+    if (accessibleValue) accessibleValue.textContent = value === '—' ? 'valor oculto' : `+${value}`;
   };
 
   const settleMetric = (metric) => {
@@ -263,12 +310,15 @@ if (experienceMachine) {
 
     isRolling = true;
     clearRollingTimers();
-    metrics.forEach((metric) => metric.classList.remove('is-settled'));
+    if (!experienceMachine.classList.contains('is-revealed')) {
+      metrics.forEach((metric) => metric.classList.remove('is-settled'));
+    }
     experienceMachine.classList.add('is-pulling', 'is-rolling');
     lever?.setAttribute('aria-pressed', 'true');
 
     if (reduceMotion) {
       metrics.forEach(settleMetric);
+      experienceMachine.classList.add('is-revealed');
       experienceMachine.classList.remove('is-pulling', 'is-rolling');
       lever?.setAttribute('aria-pressed', 'false');
       isRolling = false;
@@ -294,6 +344,7 @@ if (experienceMachine) {
 
         if (index === metrics.length - 1) {
           experienceMachine.classList.remove('is-rolling');
+          experienceMachine.classList.add('is-revealed');
           isRolling = false;
         }
       }, 980 + (index * 260)));
@@ -301,14 +352,7 @@ if (experienceMachine) {
   };
 
   lever?.setAttribute('aria-pressed', 'false');
-  lever?.addEventListener('pointerdown', (event) => {
-    event.preventDefault();
-    rollExperienceMetrics();
-  });
-
-  lever?.addEventListener('click', (event) => {
-    if (event.detail === 0) rollExperienceMetrics();
-  });
+  lever?.addEventListener('click', rollExperienceMetrics);
 }
 
 const currentYear = document.querySelector('#current-year');
