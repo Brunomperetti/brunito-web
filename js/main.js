@@ -270,7 +270,7 @@ if (servicesDeck) {
       servicesDeck.classList.remove('is-shuffling');
       servicesDeck.classList.add('is-revealed');
       isShuffling = false;
-    }, 760);
+    }, 1040);
   };
 
   trigger?.addEventListener('click', revealServices);
