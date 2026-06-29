@@ -132,8 +132,8 @@ p { color: var(--color-muted); }
 .elevator-scene.is-cta-ready { cursor: pointer; }
 .elevator-scene.is-cta-ready .elevator-thought { transform: translate3d(0, -1px, 0); }
 .elevator-thought__shape { fill: rgba(250,253,252,.94); stroke: rgba(198,79,53,.38); stroke-width: .95; }
-.elevator-thought__text { fill: var(--color-ink); font-size: 8.75px; font-weight: 880; letter-spacing: .008em; transition: fill .22s ease, opacity .22s ease; }
-.elevator-thought__text.is-cta { fill: var(--color-warm); cursor: pointer; text-decoration: underline; text-decoration-thickness: .55px; text-underline-offset: 2px; }
+.elevator-thought__text { fill: var(--color-ink); font-size: 10.65px; font-weight: 920; letter-spacing: .006em; transition: fill .22s ease, opacity .22s ease; }
+.elevator-thought__text.is-cta { fill: var(--color-warm); cursor: pointer; text-decoration: underline; text-decoration-thickness: .62px; text-underline-offset: 2px; }
 .elevator-scene.is-cta-ready:hover .elevator-thought__text.is-cta, .elevator-scene.is-cta-ready:focus-visible .elevator-thought__text.is-cta { fill: #a9442f; }
 .elevator-thought__cursor { opacity: .62; font-weight: 650; animation: elevator-cursor-blink 920ms ease-in-out infinite; }
 .elevator-thought__text tspan { dominant-baseline: middle; }
@@ -759,17 +759,18 @@ p { color: var(--color-muted); }
   font-size: 17px;
 }
 .contact__content.is-lit .contact__conversation {
-  opacity: .9;
-  color: rgba(218, 235, 239, .62);
-  filter: blur(0) drop-shadow(0 0 12px rgba(209,228,233,.10));
+  opacity: .94;
+  color: rgba(224, 239, 242, .70);
+  filter: blur(0) drop-shadow(0 0 13px rgba(209,228,233,.13));
   transform: translate3d(-50%, 0, 0) scale(1);
 }
 .contact__content.is-lit .contact__message {
   opacity: 1;
 }
 .contact__content.is-lit .contact__message-shape {
-  stroke: rgba(235,246,249,.54);
-  fill: rgba(247,250,249,.055);
+  stroke: rgba(235,246,249,.66);
+  fill: rgba(247,250,249,.072);
+  filter: drop-shadow(0 0 7px rgba(209,228,233,.08));
 }
 .contact__content.is-lit .contact__lamp-cable,
 .contact__content.is-lit .contact__lamp-shade,
@@ -787,7 +788,7 @@ p { color: var(--color-muted); }
 .contact__content.is-lit .contact__light-cone { opacity: .78; transform: translate3d(-50%, 0, 0) scaleY(1); filter: blur(18px); }
 .contact__content.is-lit .contact__light-pool { opacity: .66; transform: translateX(-50%) scale(1); }
 .contact__content.is-lit .contact__cta-panel { transform: translateY(-2px); }
-.contact__content.is-lit .button--light { background: #fbfdfb; border-color: rgba(226,240,243,.46); box-shadow: 0 18px 44px rgba(0,0,0,.22), 0 0 26px rgba(199,224,230,.16), 0 0 0 1px rgba(255,255,255,.10); }
+.contact__content.is-lit .button--light { background: #fbfdfb; border-color: rgba(226,240,243,.50); box-shadow: 0 18px 44px rgba(0,0,0,.22), 0 0 26px rgba(199,224,230,.16), 0 0 0 1px rgba(255,255,255,.10); }
 @media (prefers-reduced-motion: no-preference) {
   .contact__content.is-lit .contact__lamp-bulb { animation: lamp-warm-settle 560ms cubic-bezier(.22,1,.36,1) both; }
   .contact__content.is-lit .contact__person--sender { animation: contact-sender-breathe 5.6s ease-in-out infinite; }
@@ -842,7 +843,7 @@ p { color: var(--color-muted); }
 }
 @keyframes contact-cta-confirm {
   0%, 62%, 100% { box-shadow: 0 18px 44px rgba(0,0,0,.22), 0 0 26px rgba(199,224,230,.16), 0 0 0 1px rgba(255,255,255,.10); transform: translateZ(0) scale(1); }
-  70% { box-shadow: 0 19px 46px rgba(0,0,0,.22), 0 0 31px rgba(199,224,230,.20), 0 0 0 5px rgba(235,246,249,.055); transform: translateZ(0) scale(1.012); }
+  70% { box-shadow: 0 19px 46px rgba(0,0,0,.22), 0 0 29px rgba(199,224,230,.18), 0 0 0 4px rgba(235,246,249,.045); transform: translateZ(0) scale(1.008); }
   82% { box-shadow: 0 18px 44px rgba(0,0,0,.22), 0 0 26px rgba(199,224,230,.16), 0 0 0 1px rgba(255,255,255,.10); transform: translateZ(0) scale(1); }
 }
 @media (max-width: 860px) {
