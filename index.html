@@ -133,13 +133,94 @@
           <p class="eyebrow">Servicios</p>
           <h2>Capacidades conectadas, <span>sin ruido.</span></h2>
         </div>
-        <div class="services-grid">
-          <article class="service-card reveal"><span class="service-card__index">01</span><span class="icon icon--strategy" aria-hidden="true"></span><h3>Estrategia</h3><p>Ordenar prioridades y mensajes.</p></article>
-          <article class="service-card reveal reveal-delay-1"><span class="service-card__index">02</span><span class="icon icon--ads" aria-hidden="true"></span><h3>Google & Meta Ads</h3><p>Performance con lectura comercial.</p></article>
-          <article class="service-card reveal reveal-delay-2"><span class="service-card__index">03</span><span class="icon icon--web" aria-hidden="true"></span><h3>Webs y landings</h3><p>Claridad, velocidad y conversión.</p></article>
-          <article class="service-card reveal reveal-delay-1"><span class="service-card__index">04</span><span class="icon icon--data" aria-hidden="true"></span><h3>Datos y dashboards</h3><p>Medir para decidir mejor.</p></article>
-          <article class="service-card reveal reveal-delay-2"><span class="service-card__index">05</span><span class="icon icon--auto" aria-hidden="true"></span><h3>Automatizaciones</h3><p>Menos tareas manuales.</p></article>
-          <article class="service-card reveal reveal-delay-3"><span class="service-card__index">06</span><span class="icon icon--custom" aria-hidden="true"></span><h3>Soluciones digitales</h3><p>Herramientas a medida real.</p></article>
+        <div class="services-deck reveal" data-services-deck aria-label="Cartas de capacidades">
+          <button class="services-deck__trigger" type="button" data-services-trigger aria-label="Revelar capacidades como naipes">Revelar capacidades</button>
+          <div class="services-grid" aria-live="polite">
+            <button class="service-card" type="button" data-service-card aria-label="Revelar servicio Estrategia" style="--card-index: 0;">
+              <span class="service-card__inner">
+                <span class="service-card__face service-card__back" aria-hidden="true">
+                  <span class="service-card__monogram">br</span>
+                  <span class="service-card__backline"></span>
+                </span>
+                <span class="service-card__face service-card__front">
+                  <span class="service-card__index">01</span>
+                  <span class="icon icon--strategy" aria-hidden="true"></span>
+                  <span class="service-card__title">Estrategia</span>
+                  <span class="service-card__text">Ordenar prioridades y mensajes.</span>
+                </span>
+              </span>
+            </button>
+            <button class="service-card" type="button" data-service-card aria-label="Revelar servicio Google & Meta Ads" style="--card-index: 1;">
+              <span class="service-card__inner">
+                <span class="service-card__face service-card__back" aria-hidden="true">
+                  <span class="service-card__monogram">br</span>
+                  <span class="service-card__backline"></span>
+                </span>
+                <span class="service-card__face service-card__front">
+                  <span class="service-card__index">02</span>
+                  <span class="icon icon--ads" aria-hidden="true"></span>
+                  <span class="service-card__title">Google & Meta Ads</span>
+                  <span class="service-card__text">Performance con lectura comercial.</span>
+                </span>
+              </span>
+            </button>
+            <button class="service-card" type="button" data-service-card aria-label="Revelar servicio Webs y landings" style="--card-index: 2;">
+              <span class="service-card__inner">
+                <span class="service-card__face service-card__back" aria-hidden="true">
+                  <span class="service-card__monogram">br</span>
+                  <span class="service-card__backline"></span>
+                </span>
+                <span class="service-card__face service-card__front">
+                  <span class="service-card__index">03</span>
+                  <span class="icon icon--web" aria-hidden="true"></span>
+                  <span class="service-card__title">Webs y landings</span>
+                  <span class="service-card__text">Claridad, velocidad y conversión.</span>
+                </span>
+              </span>
+            </button>
+            <button class="service-card" type="button" data-service-card aria-label="Revelar servicio Datos y dashboards" style="--card-index: 3;">
+              <span class="service-card__inner">
+                <span class="service-card__face service-card__back" aria-hidden="true">
+                  <span class="service-card__monogram">br</span>
+                  <span class="service-card__backline"></span>
+                </span>
+                <span class="service-card__face service-card__front">
+                  <span class="service-card__index">04</span>
+                  <span class="icon icon--data" aria-hidden="true"></span>
+                  <span class="service-card__title">Datos y dashboards</span>
+                  <span class="service-card__text">Medir para decidir mejor.</span>
+                </span>
+              </span>
+            </button>
+            <button class="service-card" type="button" data-service-card aria-label="Revelar servicio Automatizaciones" style="--card-index: 4;">
+              <span class="service-card__inner">
+                <span class="service-card__face service-card__back" aria-hidden="true">
+                  <span class="service-card__monogram">br</span>
+                  <span class="service-card__backline"></span>
+                </span>
+                <span class="service-card__face service-card__front">
+                  <span class="service-card__index">05</span>
+                  <span class="icon icon--auto" aria-hidden="true"></span>
+                  <span class="service-card__title">Automatizaciones</span>
+                  <span class="service-card__text">Menos tareas manuales.</span>
+                </span>
+              </span>
+            </button>
+            <button class="service-card" type="button" data-service-card aria-label="Revelar servicio Soluciones digitales" style="--card-index: 5;">
+              <span class="service-card__inner">
+                <span class="service-card__face service-card__back" aria-hidden="true">
+                  <span class="service-card__monogram">br</span>
+                  <span class="service-card__backline"></span>
+                </span>
+                <span class="service-card__face service-card__front">
+                  <span class="service-card__index">06</span>
+                  <span class="icon icon--custom" aria-hidden="true"></span>
+                  <span class="service-card__title">Soluciones digitales</span>
+                  <span class="service-card__text">Herramientas a medida real.</span>
+                </span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -158,15 +239,15 @@
           </div>
           <div class="experience-metrics" aria-live="polite">
             <div class="metric-item" data-final-value="20">
-              <strong><span class="metric-prefix">+</span><span class="metric-value" data-rolling-number>20</span></strong>
+              <strong><span class="metric-prefix">+</span><span class="metric-value" data-rolling-number aria-hidden="true">—</span><span class="sr-only" data-metric-accessible>valor oculto</span></strong>
               <span>años publicidad</span>
             </div>
             <div class="metric-item" data-final-value="10">
-              <strong><span class="metric-prefix">+</span><span class="metric-value" data-rolling-number>10</span></strong>
+              <strong><span class="metric-prefix">+</span><span class="metric-value" data-rolling-number aria-hidden="true">—</span><span class="sr-only" data-metric-accessible>valor oculto</span></strong>
               <span>años paid media</span>
             </div>
             <div class="metric-item" data-final-value="3">
-              <strong><span class="metric-prefix">+</span><span class="metric-value" data-rolling-number>3</span></strong>
+              <strong><span class="metric-prefix">+</span><span class="metric-value" data-rolling-number aria-hidden="true">—</span><span class="sr-only" data-metric-accessible>valor oculto</span></strong>
               <span>años data science</span>
             </div>
           </div>
