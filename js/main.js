@@ -235,6 +235,82 @@ if (elevatorWord && elevatorScene) {
   });
 }
 
+const experienceMachine = document.querySelector('[data-experience-machine]');
+
+if (experienceMachine) {
+  const lever = experienceMachine.querySelector('[data-experience-lever]');
+  const metrics = Array.from(experienceMachine.querySelectorAll('[data-final-value]'));
+  let isRolling = false;
+  let rollingTimers = [];
+
+  const clearRollingTimers = () => {
+    rollingTimers.forEach((timer) => window.clearTimeout(timer));
+    rollingTimers = [];
+  };
+
+  const setMetricValue = (metric, value) => {
+    const number = metric.querySelector('[data-rolling-number]');
+    if (number) number.textContent = value;
+  };
+
+  const settleMetric = (metric) => {
+    setMetricValue(metric, metric.dataset.finalValue);
+    metric.classList.add('is-settled');
+  };
+
+  const rollExperienceMetrics = () => {
+    if (isRolling) return;
+
+    isRolling = true;
+    clearRollingTimers();
+    metrics.forEach((metric) => metric.classList.remove('is-settled'));
+    experienceMachine.classList.add('is-pulling', 'is-rolling');
+    lever?.setAttribute('aria-pressed', 'true');
+
+    if (reduceMotion) {
+      metrics.forEach(settleMetric);
+      experienceMachine.classList.remove('is-pulling', 'is-rolling');
+      lever?.setAttribute('aria-pressed', 'false');
+      isRolling = false;
+      return;
+    }
+
+    const spinIntervals = metrics.map((metric, metricIndex) => window.setInterval(() => {
+      const finalValue = Number(metric.dataset.finalValue || 0);
+      const ceiling = Math.max(finalValue + 9, 24);
+      const value = (Math.floor(Math.random() * ceiling) + metricIndex) % ceiling;
+      setMetricValue(metric, value);
+    }, 70));
+
+    rollingTimers.push(window.setTimeout(() => {
+      experienceMachine.classList.remove('is-pulling');
+      lever?.setAttribute('aria-pressed', 'false');
+    }, 520));
+
+    metrics.forEach((metric, index) => {
+      rollingTimers.push(window.setTimeout(() => {
+        window.clearInterval(spinIntervals[index]);
+        settleMetric(metric);
+
+        if (index === metrics.length - 1) {
+          experienceMachine.classList.remove('is-rolling');
+          isRolling = false;
+        }
+      }, 980 + (index * 260)));
+    });
+  };
+
+  lever?.setAttribute('aria-pressed', 'false');
+  lever?.addEventListener('pointerdown', (event) => {
+    event.preventDefault();
+    rollExperienceMetrics();
+  });
+
+  lever?.addEventListener('click', (event) => {
+    if (event.detail === 0) rollExperienceMetrics();
+  });
+}
+
 const currentYear = document.querySelector('#current-year');
 
 if (currentYear) {

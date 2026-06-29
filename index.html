@@ -96,7 +96,7 @@
               </g>
               <g class="elevator-passenger" aria-hidden="true">
                 <g class="elevator-thought" transform="translate(-70 -58)">
-                  <rect class="elevator-thought__shape" x="-22" y="1" width="184" height="38" rx="19" />
+                  <rect class="elevator-thought__shape" x="-26" y="-1" width="192" height="42" rx="21" />
                   <text class="elevator-thought__text" data-elevator-word x="70" y="21" text-anchor="middle">¿Subimos?</text>
                 </g>
                 <g class="elevator-thought-bubbles">
@@ -151,11 +151,29 @@
           <p class="eyebrow">Experiencia</p>
           <h2>Oficio publicitario, mirada de datos y ejecución digital.</h2>
         </div>
-        <div class="experience-metrics reveal-group" aria-label="Experiencia destacada">
-          <div class="metric-item"><strong>+20</strong><span>años publicidad</span></div>
-          <div class="metric-item"><strong>+10</strong><span>años paid media</span></div>
-          <div class="metric-item"><strong>+3</strong><span>años data science</span></div>
-          <div class="metric-item"><strong>1</strong><span>dirección integral</span></div>
+        <div class="experience-machine reveal-group" data-experience-machine aria-label="Experiencia destacada">
+          <div class="experience-machine__header">
+            <span>Trayectoria en años</span>
+            <small>activar</small>
+          </div>
+          <div class="experience-metrics" aria-live="polite">
+            <div class="metric-item" data-final-value="20">
+              <strong><span class="metric-prefix">+</span><span class="metric-value" data-rolling-number>20</span></strong>
+              <span>años publicidad</span>
+            </div>
+            <div class="metric-item" data-final-value="10">
+              <strong><span class="metric-prefix">+</span><span class="metric-value" data-rolling-number>10</span></strong>
+              <span>años paid media</span>
+            </div>
+            <div class="metric-item" data-final-value="3">
+              <strong><span class="metric-prefix">+</span><span class="metric-value" data-rolling-number>3</span></strong>
+              <span>años data science</span>
+            </div>
+          </div>
+          <button class="experience-lever" type="button" data-experience-lever aria-label="Activar animación de experiencia">
+            <span class="experience-lever__rail" aria-hidden="true"></span>
+            <span class="experience-lever__arm" aria-hidden="true"><span></span></span>
+          </button>
         </div>
       </div>
     </section>
