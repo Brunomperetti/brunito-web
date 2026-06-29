@@ -660,10 +660,29 @@ p { color: var(--color-muted); }
   margin: .95rem 0 0;
   color: rgba(226, 235, 237, .72);
 }
-.contact__cta-panel,
-.contact-card {
+.contact__cta-panel {
   position: relative;
   justify-self: end;
+  align-self: end;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+  margin-top: clamp(4.5rem, 10vw, 7.5rem);
+  background: none;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+  isolation: isolate;
+  transition: transform 520ms cubic-bezier(.22,1,.36,1);
+}
+.contact__cta-panel .button--light {
+  padding-inline: clamp(1.15rem, 2vw, 1.55rem);
+  min-height: 48px;
+  border-color: rgba(235, 246, 249, .30);
+  box-shadow: 0 18px 44px rgba(0,0,0,.24), 0 0 0 1px rgba(255,255,255,.08);
+}
+.contact-card {
+  position: relative;
   display: grid;
   gap: .78rem;
   padding: .96rem;
@@ -673,41 +692,49 @@ p { color: var(--color-muted); }
   box-shadow: inset 0 1px 0 rgba(255,255,255,.018);
   isolation: isolate;
   overflow: hidden;
-  transition: border-color 520ms ease, box-shadow 560ms ease, background 560ms ease, transform 560ms cubic-bezier(.22,1,.36,1);
 }
-.contact__cta-panel::before,
-.contact-card::before {
-  content: "";
+.contact__dancers {
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background:
-    radial-gradient(ellipse at 55% 0%, rgba(238, 249, 252, .14), transparent 58%),
-    linear-gradient(145deg, rgba(239, 248, 249, .075), rgba(111, 141, 150, .035));
-  opacity: .05;
-  pointer-events: none;
-  transition: opacity 560ms ease;
-  z-index: -1;
+  right: clamp(1.2rem, 8vw, 7.1rem);
+  bottom: clamp(1.1rem, 3.2vw, 2.6rem);
+  width: clamp(128px, 18vw, 190px);
+  height: auto;
+  z-index: 1;
+  overflow: visible;
+  opacity: .18;
+  color: rgba(31, 43, 55, .84);
+  filter: blur(.18px);
+  mix-blend-mode: screen;
+  transform: translate3d(0, 4px, 0);
+  transition: opacity 620ms ease, color 620ms ease, filter 620ms ease, transform 620ms cubic-bezier(.22,1,.36,1);
 }
-.contact__cta-panel::after,
-.contact-card::after {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  border-radius: calc(24px - 1px);
-  background: linear-gradient(180deg, rgba(255,255,255,.026), transparent 42%);
-  opacity: .08;
-  pointer-events: none;
-  transition: opacity 560ms ease;
-  z-index: -1;
+.contact__dancer {
+  transform-box: fill-box;
+  transform-origin: 50% 88%;
 }
-.contact__cta-kicker {
-  color: rgba(226, 235, 237, .34);
-  font-size: .66rem;
-  font-weight: 900;
-  letter-spacing: .17em;
-  text-transform: uppercase;
-  transition: color 460ms ease, text-shadow 520ms ease;
+.contact__dancer-head {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+}
+.contact__dancer-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.contact__dancer-arm,
+.contact__dancer-leg {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+.contact__content.is-lit .contact__dancers {
+  opacity: .72;
+  color: rgba(218, 235, 239, .50);
+  filter: blur(0) drop-shadow(0 0 12px rgba(209,228,233,.10));
+  transform: translate3d(0, 0, 0);
 }
 .contact__content.is-lit .contact__lamp-cable,
 .contact__content.is-lit .contact__lamp-shade,
@@ -724,23 +751,38 @@ p { color: var(--color-muted); }
 .contact__content.is-lit .contact__lamp-fixture::before { opacity: .72; transform: translateX(-50%) scale(1); }
 .contact__content.is-lit .contact__light-cone { opacity: .78; transform: translate3d(-50%, 0, 0) scaleY(1); filter: blur(18px); }
 .contact__content.is-lit .contact__light-pool { opacity: .72; transform: translateX(-50%) scale(1); }
-.contact__content.is-lit .contact__cta-panel {
-  border-color: rgba(224, 241, 245, .20);
-  background: linear-gradient(145deg, rgba(18, 27, 37, .42), rgba(20, 30, 40, .30));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.105), 0 22px 54px rgba(0,0,0,.14), 0 0 0 1px rgba(221,239,244,.045), 0 0 34px rgba(199,224,230,.06);
-  transform: translateY(-2px);
-}
-.contact__content.is-lit .contact__cta-panel::before { opacity: 1; }
-.contact__content.is-lit .contact__cta-panel::after { opacity: .42; }
-.contact__content.is-lit .contact__cta-kicker { color: rgba(230, 244, 247, .68); text-shadow: 0 0 18px rgba(214,235,240,.14); }
-.contact__content.is-lit .button--light { background: #fbfdfb; border-color: rgba(226,240,243,.42); box-shadow: 0 16px 40px rgba(0,0,0,.18), 0 0 24px rgba(199,224,230,.11); }
+.contact__content.is-lit .contact__cta-panel { transform: translateY(-2px); }
+.contact__content.is-lit .button--light { background: #fbfdfb; border-color: rgba(226,240,243,.46); box-shadow: 0 18px 44px rgba(0,0,0,.22), 0 0 26px rgba(199,224,230,.16), 0 0 0 1px rgba(255,255,255,.10); }
 @media (prefers-reduced-motion: no-preference) {
   .contact__content.is-lit .contact__lamp-bulb { animation: lamp-warm-settle 560ms cubic-bezier(.22,1,.36,1) both; }
+  .contact__content.is-lit .contact__dancer--one { animation: dancer-sway-one 2.8s ease-in-out infinite; }
+  .contact__content.is-lit .contact__dancer--two { animation: dancer-sway-two 3.05s ease-in-out infinite; }
+  .contact__content.is-lit .contact__dancer--one .contact__dancer-arm--left,
+  .contact__content.is-lit .contact__dancer--two .contact__dancer-arm--right { animation: dancer-arm-lift 2.8s ease-in-out infinite; }
+  .contact__content.is-lit .contact__dancer--one .contact__dancer-leg--right,
+  .contact__content.is-lit .contact__dancer--two .contact__dancer-leg--left { animation: dancer-step 2.8s ease-in-out infinite; }
 }
 @keyframes lamp-warm-settle {
   0% { opacity: .58; transform: scale(.92); filter: none; }
   58% { opacity: 1; transform: scale(1.14); }
   100% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes dancer-sway-one {
+  0%, 100% { transform: translate3d(0,0,0) rotate(-1.4deg); }
+  50% { transform: translate3d(3px,-2px,0) rotate(2.2deg); }
+}
+@keyframes dancer-sway-two {
+  0%, 100% { transform: translate3d(0,-1px,0) rotate(1.5deg); }
+  50% { transform: translate3d(-3px,1px,0) rotate(-2deg); }
+}
+@keyframes dancer-arm-lift {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(7deg); }
+}
+@keyframes dancer-step {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-5deg); }
 }
 @media (max-width: 860px) {
   .contact__lamp-fixture { --lamp-size: 76px; --beam-length: 300px; right: 1.45rem; top: .7rem; }
@@ -749,7 +791,8 @@ p { color: var(--color-muted); }
   .contact__lamp-scene::after { left: 34%; }
   .contact__light-cone { width: 72vw; clip-path: polygon(47.5% 0, 52.5% 0, 96% 100%, 8% 100%); }
   .contact__light-pool { width: 92vw; }
-  .contact__cta-panel { justify-self: stretch; width: 100%; }
+  .contact__cta-panel { justify-self: start; align-self: start; width: auto; margin-top: 1.35rem; }
+  .contact__dancers { right: clamp(1rem, 14vw, 6rem); bottom: 1.4rem; width: clamp(120px, 34vw, 164px); }
 }
 @media (max-width: 560px) {
   .contact__content { padding: 2.35rem 1.15rem 1.25rem; }
@@ -758,7 +801,8 @@ p { color: var(--color-muted); }
   .contact__lamp-switch-label { font-size: .56rem; }
   .contact__light-cone { width: 82vw; filter: blur(20px); clip-path: polygon(47% 0, 53% 0, 98% 100%, 6% 100%); }
   .contact__copy { padding-top: 1.7rem; }
-  .contact__cta-panel { padding: .82rem; border-radius: 20px; }
+  .contact__cta-panel { margin-top: 1.1rem; }
+  .contact__dancers { right: .9rem; bottom: .8rem; width: 118px; opacity: .12; }
 }
 @media (prefers-reduced-motion: reduce) {
   .contact__lamp-bulb,
@@ -767,6 +811,8 @@ p { color: var(--color-muted); }
   .contact__light-pool,
   .contact__lamp-scene::after,
   .contact__cta-panel,
+  .contact__dancers,
+  .contact__dancer,
   .contact__lamp-switch,
   .contact__lamp-switch-track span { transition-duration: 1ms; animation: none; }
 }
