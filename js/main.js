@@ -395,16 +395,18 @@ if (aboutTarget && prizeModal) {
     const y = Math.min(Math.max(clientY - rect.top, 0), rect.height);
     aboutTarget.style.setProperty('--aim-x', `${(x / rect.width) * 100}%`);
     aboutTarget.style.setProperty('--aim-y', `${(y / rect.height) * 100}%`);
+    aboutTarget.style.setProperty('--align-x', `${((x / rect.width) - 0.5) * 8}px`);
+    aboutTarget.style.setProperty('--align-y', `${((y / rect.height) - 0.5) * 8}px`);
     return { x, y, rect };
   };
 
   const openPrizeModal = (alreadyWon = false) => {
     lastFocusedElement = document.activeElement;
     if (prizeTitle && prizeDescription) {
-      prizeTitle.textContent = alreadyWon ? 'Ya desbloqueaste tu beneficio' : 'Ganaste un 5% de descuento';
+      prizeTitle.textContent = alreadyWon ? 'Ya desbloqueaste tu beneficio' : 'Objetivo logrado';
       prizeDescription.textContent = alreadyWon
-        ? `Volvé a usar el 5% de descuento presentando el código “${prizeCode}”.`
-        : `Presentá el código “${prizeCode}” y obtené un 5% de descuento en todos los servicios.`;
+        ? `Tu beneficio sigue activo: 5% de descuento en todos los servicios con el código “${prizeCode}”.`
+        : `Desbloqueaste un 5% de descuento en todos los servicios. Usá el código “${prizeCode}”.`;
     }
     prizeModal.hidden = false;
     document.body.style.overflow = 'hidden';
@@ -458,7 +460,9 @@ if (aboutTarget && prizeModal) {
     if (isBullseye || forcePrize) {
       const alreadyWon = hasAlreadyWonPrize();
       rememberPrizeWon();
-      openPrizeModal(alreadyWon);
+      aboutTarget.classList.add('is-unlocked');
+      window.setTimeout(() => aboutTarget.classList.remove('is-unlocked'), 1150);
+      window.setTimeout(() => openPrizeModal(alreadyWon), reduceMotion ? 120 : 760);
     }
   };
 
