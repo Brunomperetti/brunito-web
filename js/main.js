@@ -366,8 +366,9 @@ const prizeModal = document.querySelector('[data-prize-modal]');
 const prizeCloseButtons = document.querySelectorAll('[data-prize-close]');
 const copyCodeButton = document.querySelector('[data-copy-code]');
 const copyFeedback = document.querySelector('[data-copy-feedback]');
+const prizeTitle = document.querySelector('[data-prize-title]');
+const prizeDescription = document.querySelector('[data-prize-description]');
 const prizeCode = 'brunito007';
-// Dev/testing: run window.resetBrunitoPrize() in the console to clear this localStorage key.
 const prizeStorageKey = 'brunitoPrizeWon';
 let lastFocusedElement = null;
 
@@ -381,8 +382,14 @@ if (aboutTarget && prizeModal) {
     return { x, y, rect };
   };
 
-  const openPrizeModal = () => {
+  const openPrizeModal = (alreadyWon = false) => {
     lastFocusedElement = document.activeElement;
+    if (prizeTitle && prizeDescription) {
+      prizeTitle.textContent = alreadyWon ? 'Ya desbloqueaste tu beneficio' : '¡Le diste al centro!';
+      prizeDescription.textContent = alreadyWon
+        ? `Volvé a usar el 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`
+        : `Ganaste un 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`;
+    }
     prizeModal.hidden = false;
     document.body.style.overflow = 'hidden';
     prizeModal.querySelector('[data-copy-code]')?.focus();
@@ -426,9 +433,10 @@ if (aboutTarget && prizeModal) {
     aboutTarget.classList.toggle('is-bullseye', isBullseye);
     window.setTimeout(() => aboutTarget.classList.remove('is-bullseye'), 700);
 
-    if (isBullseye && (forcePrize || localStorage.getItem(prizeStorageKey) !== 'true')) {
+    if (isBullseye || forcePrize) {
+      const alreadyWon = localStorage.getItem(prizeStorageKey) === 'true';
       localStorage.setItem(prizeStorageKey, 'true');
-      openPrizeModal();
+      openPrizeModal(alreadyWon);
     }
   };
 

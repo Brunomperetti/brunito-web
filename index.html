@@ -276,13 +276,17 @@
 
     <section class="section section--soft section--compact" id="sobre-mi">
       <div class="container about reveal">
-        <button class="about__mark about-target" type="button" aria-label="Blanco interactivo brunito: hacé click para probar tu puntería" data-about-target>
-          <span class="about-target__seal" aria-hidden="true">target digital</span>
+        <button class="about__mark about-target" type="button" aria-label="Blanco interactivo brunito: apuntá al centro para desbloquear el descuento" data-about-target>
+          <span class="about-target__seal" aria-hidden="true">juego de marca</span>
           <span class="about-target__rings" aria-hidden="true"></span>
-          <span class="about-target__center" aria-hidden="true"><span>BR</span></span>
-          <span class="about-target__signature" aria-hidden="true">brunito</span>
+          <span class="about-target__brand" aria-hidden="true">
+            <span class="about-target__orbit"></span>
+            <span class="about-target__center"><span>brunito</span></span>
+            <span class="about-target__brand-note">centro ganador</span>
+          </span>
+          <span class="about-target__signature" aria-hidden="true">si acertás, ganás</span>
           <span class="about-target__crosshair" aria-hidden="true" data-about-crosshair></span>
-          <small>acertá al centro</small>
+          <small><strong>Dale al centro</strong><span>desbloqueá tu beneficio</span></small>
         </button>
         <div>
           <p class="eyebrow">Sobre brunito</p>
@@ -352,8 +356,8 @@
     <div class="prize-modal__panel" role="document">
       <button class="prize-modal__close" type="button" aria-label="Cerrar premio" data-prize-close>×</button>
       <p class="eyebrow">Premio brunito</p>
-      <h2 id="prize-modal-title">¡Le diste al centro!</h2>
-      <p id="prize-modal-description">Ganaste un 5% de descuento en todos los servicios presentando el código “brunito007”.</p>
+      <h2 id="prize-modal-title" data-prize-title>¡Le diste al centro!</h2>
+      <p id="prize-modal-description" data-prize-description>Ganaste un 5% de descuento en todos los servicios presentando el código “brunito007”.</p>
       <div class="prize-modal__code" aria-label="Código de descuento brunito007">brunito007</div>
       <p class="prize-modal__feedback" aria-live="polite" data-copy-feedback></p>
       <div class="prize-modal__actions">
