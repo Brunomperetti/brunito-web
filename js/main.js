@@ -399,13 +399,9 @@ if (aboutTarget && prizeModal) {
     aboutTarget.style.setProperty('--align-y', `${((y / rect.height) - 0.5) * 8}px`);
 
     const centerDistance = Math.hypot(x - rect.width / 2, y - rect.height * 0.45);
-    const appleDistance = Math.hypot(x - rect.width / 2, y - rect.height * 0.61);
     const centerProximity = Math.max(0, 1 - centerDistance / (rect.width * 0.24));
-    const appleProximity = Math.max(0, 1 - appleDistance / (rect.width * 0.16));
     aboutTarget.style.setProperty('--center-proximity', centerProximity.toFixed(3));
-    aboutTarget.style.setProperty('--apple-proximity', appleProximity.toFixed(3));
     aboutTarget.classList.toggle('is-near-center', centerProximity > 0.45);
-    aboutTarget.classList.toggle('is-near-apple', appleProximity > 0.45);
 
     return { x, y, rect };
   };
@@ -413,10 +409,10 @@ if (aboutTarget && prizeModal) {
   const openPrizeModal = (alreadyWon = false) => {
     lastFocusedElement = document.activeElement;
     if (prizeTitle && prizeDescription) {
-      prizeTitle.textContent = 'Ya desbloqueaste tu beneficio';
+      prizeTitle.textContent = alreadyWon ? 'Tu beneficio sigue activo' : 'Ganaste un beneficio';
       prizeDescription.textContent = alreadyWon
-        ? `Tu beneficio sigue activo: ganaste un 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`
-        : `Ganaste un 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`;
+        ? `Podés usar tu 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`
+        : `Obtuviste un 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`;
     }
     prizeModal.hidden = false;
     document.body.style.overflow = 'hidden';
@@ -459,24 +455,17 @@ if (aboutTarget && prizeModal) {
     const { x, y, rect } = updateAim(clientX, clientY);
     const centerX = rect.width / 2;
     const centerY = rect.height * 0.45;
-    const appleX = rect.width / 2;
-    const appleY = rect.height * 0.61;
     const centerDistance = Math.hypot(x - centerX, y - centerY);
-    const appleDistance = Math.hypot(x - appleX, y - appleY);
     const bullseyeRadius = Math.max(30, rect.width * 0.105);
-    const appleRadius = Math.max(18, rect.width * 0.065);
     const isBullseye = centerDistance <= bullseyeRadius;
-    const isAppleHit = appleDistance <= appleRadius;
 
-    addImpact(x, y, isBullseye || isAppleHit);
+    addImpact(x, y, isBullseye);
     aboutTarget.classList.toggle('is-bullseye', isBullseye);
-    aboutTarget.classList.toggle('is-apple-hit', isAppleHit);
     window.setTimeout(() => {
       aboutTarget.classList.remove('is-bullseye');
-      aboutTarget.classList.remove('is-apple-hit');
     }, 700);
 
-    if (isBullseye || isAppleHit || forcePrize) {
+    if (isBullseye || forcePrize) {
       const alreadyWon = hasAlreadyWonPrize();
       rememberPrizeWon();
       aboutTarget.classList.add('is-unlocked');
