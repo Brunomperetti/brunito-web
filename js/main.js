@@ -360,3 +360,116 @@ const currentYear = document.querySelector('#current-year');
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
 }
+
+const aboutTarget = document.querySelector('[data-about-target]');
+const prizeModal = document.querySelector('[data-prize-modal]');
+const prizeCloseButtons = document.querySelectorAll('[data-prize-close]');
+const copyCodeButton = document.querySelector('[data-copy-code]');
+const copyFeedback = document.querySelector('[data-copy-feedback]');
+const prizeCode = 'brunito007';
+let lastFocusedElement = null;
+
+if (aboutTarget && prizeModal) {
+  const updateAim = (clientX, clientY) => {
+    const rect = aboutTarget.getBoundingClientRect();
+    const x = Math.min(Math.max(clientX - rect.left, 0), rect.width);
+    const y = Math.min(Math.max(clientY - rect.top, 0), rect.height);
+    aboutTarget.style.setProperty('--aim-x', `${(x / rect.width) * 100}%`);
+    aboutTarget.style.setProperty('--aim-y', `${(y / rect.height) * 100}%`);
+    return { x, y, rect };
+  };
+
+  const openPrizeModal = () => {
+    lastFocusedElement = document.activeElement;
+    prizeModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    prizeModal.querySelector('[data-copy-code]')?.focus();
+  };
+
+  const closePrizeModal = () => {
+    prizeModal.hidden = true;
+    document.body.style.overflow = '';
+    copyFeedback.textContent = '';
+    lastFocusedElement?.focus?.();
+  };
+
+  const addImpact = (x, y, isBullseye) => {
+    aboutTarget.querySelectorAll('.about-target__impact').forEach((impact, index, impacts) => {
+      if (index < impacts.length - 1) impact.remove();
+    });
+
+    const impact = document.createElement('span');
+    impact.className = 'about-target__impact';
+    impact.style.left = `${x}px`;
+    impact.style.top = `${y}px`;
+    impact.setAttribute('aria-hidden', 'true');
+    aboutTarget.appendChild(impact);
+
+    if (!reduceMotion) {
+      window.setTimeout(() => impact.remove(), isBullseye ? 2400 : 1800);
+    }
+  };
+
+  const fireAt = (clientX, clientY) => {
+    const { x, y, rect } = updateAim(clientX, clientY);
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const distance = Math.hypot(x - centerX, y - centerY);
+    const bullseyeRadius = Math.max(28, rect.width * 0.115);
+    const isBullseye = distance <= bullseyeRadius;
+
+    addImpact(x, y, isBullseye);
+    aboutTarget.classList.toggle('is-bullseye', isBullseye);
+    window.setTimeout(() => aboutTarget.classList.remove('is-bullseye'), 700);
+
+    if (isBullseye && localStorage.getItem('brunitoPrizeWon') !== 'true') {
+      localStorage.setItem('brunitoPrizeWon', 'true');
+      openPrizeModal();
+    }
+  };
+
+  aboutTarget.addEventListener('pointerenter', () => aboutTarget.classList.add('is-aiming'));
+  aboutTarget.addEventListener('pointerleave', () => aboutTarget.classList.remove('is-aiming'));
+  aboutTarget.addEventListener('pointermove', (event) => updateAim(event.clientX, event.clientY));
+  aboutTarget.addEventListener('click', (event) => fireAt(event.clientX, event.clientY));
+  aboutTarget.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      const rect = aboutTarget.getBoundingClientRect();
+      fireAt(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    }
+  });
+
+  prizeCloseButtons.forEach((button) => button.addEventListener('click', closePrizeModal));
+  document.addEventListener('keydown', (event) => {
+    if (prizeModal.hidden) return;
+
+    if (event.key === 'Escape') {
+      closePrizeModal();
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      const focusableElements = Array.from(prizeModal.querySelectorAll('a[href], button:not([disabled])'));
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement?.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement?.focus();
+      }
+    }
+  });
+
+  copyCodeButton?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(prizeCode);
+      copyFeedback.textContent = 'Código copiado';
+    } catch (error) {
+      copyFeedback.textContent = `Código: ${prizeCode}`;
+    }
+  });
+}
