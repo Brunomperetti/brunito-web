@@ -367,6 +367,8 @@ const prizeCloseButtons = document.querySelectorAll('[data-prize-close]');
 const copyCodeButton = document.querySelector('[data-copy-code]');
 const copyFeedback = document.querySelector('[data-copy-feedback]');
 const prizeCode = 'brunito007';
+// Dev/testing: run window.resetBrunitoPrize() in the console to clear this localStorage key.
+const prizeStorageKey = 'brunitoPrizeWon';
 let lastFocusedElement = null;
 
 if (aboutTarget && prizeModal) {
@@ -410,7 +412,9 @@ if (aboutTarget && prizeModal) {
     }
   };
 
-  const fireAt = (clientX, clientY) => {
+  window.resetBrunitoPrize = () => localStorage.removeItem(prizeStorageKey);
+
+  const fireAt = (clientX, clientY, forcePrize = false) => {
     const { x, y, rect } = updateAim(clientX, clientY);
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
@@ -422,8 +426,8 @@ if (aboutTarget && prizeModal) {
     aboutTarget.classList.toggle('is-bullseye', isBullseye);
     window.setTimeout(() => aboutTarget.classList.remove('is-bullseye'), 700);
 
-    if (isBullseye && localStorage.getItem('brunitoPrizeWon') !== 'true') {
-      localStorage.setItem('brunitoPrizeWon', 'true');
+    if (isBullseye && (forcePrize || localStorage.getItem(prizeStorageKey) !== 'true')) {
+      localStorage.setItem(prizeStorageKey, 'true');
       openPrizeModal();
     }
   };
@@ -431,7 +435,7 @@ if (aboutTarget && prizeModal) {
   aboutTarget.addEventListener('pointerenter', () => aboutTarget.classList.add('is-aiming'));
   aboutTarget.addEventListener('pointerleave', () => aboutTarget.classList.remove('is-aiming'));
   aboutTarget.addEventListener('pointermove', (event) => updateAim(event.clientX, event.clientY));
-  aboutTarget.addEventListener('click', (event) => fireAt(event.clientX, event.clientY));
+  aboutTarget.addEventListener('click', (event) => fireAt(event.clientX, event.clientY, event.shiftKey));
   aboutTarget.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
