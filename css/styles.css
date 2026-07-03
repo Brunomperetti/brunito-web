@@ -948,3 +948,130 @@ p { color: var(--color-muted); }
   .contact__cta-panel .button--light { transition-duration: 1ms; animation: none; }
   .contact__content.is-lit .contact__message-text--hello { opacity: 1; }
 }
+
+/* Sobre brunito: blanco de tiro editorial */
+.about__mark.about-target {
+  --aim-x: 50%;
+  --aim-y: 50%;
+  appearance: none;
+  cursor: crosshair;
+  isolation: isolate;
+  min-height: 330px;
+  aspect-ratio: 1;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(198,79,53,.12) 0 7%, transparent 7.5% 15%, rgba(16,24,32,.055) 15.5% 16%, transparent 16.5% 29%, rgba(111,141,150,.12) 29.5% 30%, transparent 30.5% 43%, rgba(16,24,32,.07) 43.5% 44%, transparent 44.5% 58%, rgba(198,79,53,.12) 58.5% 59%, transparent 59.5%),
+    radial-gradient(circle at 48% 42%, rgba(255,255,255,.96), rgba(238,244,244,.93) 58%, rgba(221,231,232,.9));
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease, filter .28s ease;
+}
+.about__mark.about-target::before {
+  inset: 7.5%;
+  border-radius: 50%;
+  border-color: rgba(111,141,150,.23);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.62), inset 0 0 42px rgba(16,24,32,.035);
+}
+.about__mark.about-target::after {
+  left: 50%;
+  right: auto;
+  top: 50%;
+  width: 18%;
+  transform: translate(-50%, -50%);
+  border-color: rgba(198,79,53,.34);
+  background: radial-gradient(circle, rgba(198,79,53,.30) 0 18%, rgba(247,250,249,.95) 19% 42%, rgba(198,79,53,.18) 43% 44%, transparent 45%);
+  opacity: 1;
+}
+.about-target:hover,
+.about-target:focus-visible,
+.about-target.is-aiming {
+  transform: translateY(-2px);
+  border-color: rgba(198,79,53,.22);
+  box-shadow: 0 30px 72px rgba(16,19,24,.095), 0 0 0 6px rgba(198,79,53,.045);
+  filter: saturate(1.03);
+}
+.about-target:focus-visible { outline: 3px solid rgba(198,79,53,.34); outline-offset: 6px; }
+.about-target__rings {
+  position: absolute;
+  inset: 13.5%;
+  z-index: -1;
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent calc(50% - .5px), rgba(16,24,32,.12) 50%, transparent calc(50% + .5px)),
+    linear-gradient(0deg, transparent calc(50% - .5px), rgba(16,24,32,.12) 50%, transparent calc(50% + .5px));
+  opacity: .44;
+}
+.about__mark.about-target img {
+  z-index: 2;
+  width: min(68%, 220px);
+  padding: .45rem .7rem;
+  border-radius: 999px;
+  background: rgba(247,250,249,.70);
+  backdrop-filter: blur(6px);
+}
+.about-target__center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-warm);
+  box-shadow: 0 0 0 5px rgba(198,79,53,.10);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.about-target__crosshair {
+  position: absolute;
+  left: var(--aim-x);
+  top: var(--aim-y);
+  z-index: 5;
+  width: 24px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(198,79,53,.78);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.82);
+  pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease;
+}
+.about-target__crosshair::before,
+.about-target__crosshair::after { content:""; position:absolute; background: rgba(198,79,53,.72); }
+.about-target__crosshair::before { left: 50%; top: -5px; bottom: -5px; width: 1px; transform: translateX(-50%); }
+.about-target__crosshair::after { top: 50%; left: -5px; right: -5px; height: 1px; transform: translateY(-50%); }
+.about-target:hover .about-target__crosshair,
+.about-target:focus-visible .about-target__crosshair,
+.about-target.is-aiming .about-target__crosshair { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.about__mark.about-target small {
+  left: 50%;
+  bottom: 11%;
+  transform: translateX(-50%);
+  color: rgba(16,24,32,.48);
+  white-space: nowrap;
+}
+.about-target__impact {
+  position: absolute;
+  z-index: 6;
+  width: 13px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #8f2e22 0 22%, var(--color-warm) 24% 44%, transparent 46%);
+  box-shadow: 0 0 0 5px rgba(198,79,53,.08);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.about-target.is-bullseye .about-target__center { animation: bullseye-pulse 620ms ease-out; }
+
+.prize-modal[hidden] { display: none; }
+.prize-modal { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 1rem; }
+.prize-modal__backdrop { position: absolute; inset: 0; background: rgba(12,20,27,.42); backdrop-filter: blur(8px); }
+.prize-modal__panel { position: relative; width: min(100%, 520px); padding: clamp(1.35rem, 4vw, 2.25rem); border: 1px solid rgba(255,255,255,.58); border-radius: 30px; background: linear-gradient(145deg, rgba(251,254,253,.98), rgba(232,241,242,.96)); box-shadow: 0 30px 90px rgba(16,19,24,.24); }
+.prize-modal__close { position: absolute; right: 1rem; top: 1rem; width: 38px; height: 38px; border: 1px solid rgba(111,141,150,.22); border-radius: 50%; background: rgba(255,255,255,.58); color: var(--color-ink); font-size: 1.35rem; cursor: pointer; }
+.prize-modal__code { display: inline-flex; margin: .35rem 0 .75rem; padding: .62rem .9rem; border: 1px dashed rgba(198,79,53,.44); border-radius: 999px; color: var(--color-warm); background: rgba(198,79,53,.07); font-weight: 900; letter-spacing: .08em; }
+.prize-modal__feedback { min-height: 1.2em; margin-bottom: .7rem; color: var(--color-accent-cool); font-size: .9rem; font-weight: 800; }
+.prize-modal__actions { display: flex; flex-wrap: wrap; gap: .65rem; }
+.button--ghost { border-color: rgba(111,141,150,.28); color: var(--color-ink); background: rgba(255,255,255,.42); }
+@keyframes bullseye-pulse { 0% { box-shadow: 0 0 0 5px rgba(198,79,53,.12); } 65% { box-shadow: 0 0 0 28px rgba(198,79,53,0); } 100% { box-shadow: 0 0 0 5px rgba(198,79,53,.10); } }
+@media (max-width: 860px) { .about__mark.about-target { width: min(100%, 300px); min-height: 300px; } }
+@media (max-width: 560px) { .about__mark.about-target { min-height: auto; width: min(100%, 310px); margin-inline: auto; padding: 1.2rem; } .prize-modal__actions .button { width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .about__mark.about-target, .about-target__crosshair { transition: none; } .about-target.is-bullseye .about-target__center { animation: none; } }

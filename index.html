@@ -276,7 +276,13 @@
 
     <section class="section section--soft section--compact" id="sobre-mi">
       <div class="container about reveal">
-        <div class="about__mark" aria-hidden="true"><img src="images/logo_transp_horizontal.svg" alt=""><small>firma digital</small></div>
+        <button class="about__mark about-target" type="button" aria-label="Blanco interactivo brunito: hacé click para probar tu puntería" data-about-target>
+          <span class="about-target__rings" aria-hidden="true"></span>
+          <img src="images/logo_transp_horizontal.svg" alt="brunito">
+          <span class="about-target__center" aria-hidden="true"></span>
+          <span class="about-target__crosshair" aria-hidden="true" data-about-crosshair></span>
+          <small>Probá tu puntería</small>
+        </button>
         <div>
           <p class="eyebrow">Sobre brunito</p>
           <h2>No es una agencia grande.</h2>
@@ -340,6 +346,23 @@
         </div>
       </div>
     </section>
+  <div class="prize-modal" role="dialog" aria-modal="true" aria-labelledby="prize-modal-title" aria-describedby="prize-modal-description" hidden data-prize-modal>
+    <div class="prize-modal__backdrop" data-prize-close></div>
+    <div class="prize-modal__panel" role="document">
+      <button class="prize-modal__close" type="button" aria-label="Cerrar premio" data-prize-close>×</button>
+      <p class="eyebrow">Premio brunito</p>
+      <h2 id="prize-modal-title">¡Le diste al centro!</h2>
+      <p id="prize-modal-description">Ganaste un 5% de descuento en todos los servicios presentando el código “brunito007”.</p>
+      <div class="prize-modal__code" aria-label="Código de descuento brunito007">brunito007</div>
+      <p class="prize-modal__feedback" aria-live="polite" data-copy-feedback></p>
+      <div class="prize-modal__actions">
+        <button class="button button--primary" type="button" data-copy-code>Copiar código</button>
+        <a class="button button--secondary" href="https://wa.me/?text=Hola%20brunito%2C%20quiero%20usar%20el%20c%C3%B3digo%20brunito007" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+        <button class="button button--ghost" type="button" data-prize-close>Cerrar</button>
+      </div>
+    </div>
+  </div>
+
   </main>
 
   <footer class="site-footer">
