@@ -369,10 +369,26 @@ const copyFeedback = document.querySelector('[data-copy-feedback]');
 const prizeTitle = document.querySelector('[data-prize-title]');
 const prizeDescription = document.querySelector('[data-prize-description]');
 const prizeCode = 'brunito007';
-const prizeStorageKey = 'brunitoPrizeWon';
+const prizeStorageKey = 'alreadyWonDiscount';
 let lastFocusedElement = null;
 
 if (aboutTarget && prizeModal) {
+  const hasAlreadyWonPrize = () => {
+    try {
+      return localStorage.getItem(prizeStorageKey) === 'true';
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const rememberPrizeWon = () => {
+    try {
+      localStorage.setItem(prizeStorageKey, 'true');
+    } catch (error) {
+      // Storage can be unavailable in some privacy modes; the prize should still open.
+    }
+  };
+
   const updateAim = (clientX, clientY) => {
     const rect = aboutTarget.getBoundingClientRect();
     const x = Math.min(Math.max(clientX - rect.left, 0), rect.width);
@@ -385,10 +401,10 @@ if (aboutTarget && prizeModal) {
   const openPrizeModal = (alreadyWon = false) => {
     lastFocusedElement = document.activeElement;
     if (prizeTitle && prizeDescription) {
-      prizeTitle.textContent = alreadyWon ? 'Ya desbloqueaste tu beneficio' : '¡Le diste al centro!';
+      prizeTitle.textContent = alreadyWon ? 'Ya desbloqueaste tu beneficio' : 'Ganaste un 5% de descuento';
       prizeDescription.textContent = alreadyWon
-        ? `Volvé a usar el 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`
-        : `Ganaste un 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`;
+        ? `Volvé a usar el 5% de descuento presentando el código “${prizeCode}”.`
+        : `Presentá el código “${prizeCode}” y obtené un 5% de descuento en todos los servicios.`;
     }
     prizeModal.hidden = false;
     document.body.style.overflow = 'hidden';
@@ -419,7 +435,13 @@ if (aboutTarget && prizeModal) {
     }
   };
 
-  window.resetBrunitoPrize = () => localStorage.removeItem(prizeStorageKey);
+  window.resetBrunitoPrize = () => {
+    try {
+      localStorage.removeItem(prizeStorageKey);
+    } catch (error) {
+      // No-op: this helper is only for manual QA.
+    }
+  };
 
   const fireAt = (clientX, clientY, forcePrize = false) => {
     const { x, y, rect } = updateAim(clientX, clientY);
@@ -434,8 +456,8 @@ if (aboutTarget && prizeModal) {
     window.setTimeout(() => aboutTarget.classList.remove('is-bullseye'), 700);
 
     if (isBullseye || forcePrize) {
-      const alreadyWon = localStorage.getItem(prizeStorageKey) === 'true';
-      localStorage.setItem(prizeStorageKey, 'true');
+      const alreadyWon = hasAlreadyWonPrize();
+      rememberPrizeWon();
       openPrizeModal(alreadyWon);
     }
   };
