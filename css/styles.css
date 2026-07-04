@@ -2330,7 +2330,7 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
 .hero__grid span:nth-child(1) { left: 68% !important; }
 .hero__grid span:nth-child(3) { right: 10% !important; }
 .elevator-scene { margin-inline: auto; width: 100%; }
-.elevator-visual { max-width: 340px; margin-inline: auto; }
+.elevator-visual { max-width: 340px; margin-inline: auto; transform: translateX(10px); }
 
 .cases-section { position: relative; overflow: hidden; }
 .cases-section::after { content: ""; position: absolute; inset: 0 max(1rem, calc((100% - var(--container)) / 2)); z-index: 0; pointer-events: none; background: linear-gradient(90deg, transparent 0 49.95%, rgba(255,255,255,.045) 49.95% 50.05%, transparent 50.05% 100%); opacity: .38; }
@@ -2569,11 +2569,11 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
   left: var(--aim-x, 50%);
   top: var(--aim-y, 47%);
   z-index: 7;
-  width: 52px;
+  width: 38px;
   aspect-ratio: 1;
-  transform: translate(-50%, -50%) scale(.94);
+  transform: translate(-50%, -50%) scale(.96);
   background: transparent !important;
-  border: 1.5px solid var(--red) !important;
+  border: 1px solid var(--red) !important;
   border-radius: 50%;
   box-shadow: none !important;
   opacity: 0;
@@ -2587,31 +2587,31 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
   position: absolute;
   background: var(--red) !important;
   border: 0 !important;
-  opacity: .86;
+  opacity: .64;
 }
 
 #sobre-mi .about-target__crosshair::before {
   left: 50%;
-  top: 5px;
+  top: 4px;
   width: 1px;
-  height: 9px;
+  height: 6px;
   transform: translateX(-50%);
-  box-shadow: 0 33px 0 var(--red);
+  box-shadow: 0 24px 0 var(--red);
 }
 
 #sobre-mi .about-target__crosshair::after {
   top: 50%;
-  left: 5px;
-  width: 9px;
+  left: 4px;
+  width: 6px;
   height: 1px;
   transform: translateY(-50%);
-  box-shadow: 33px 0 0 var(--red);
+  box-shadow: 24px 0 0 var(--red);
 }
 
 #sobre-mi .about-target:hover .about-target__crosshair,
 #sobre-mi .about-target:focus-visible .about-target__crosshair,
 #sobre-mi .about-target.is-aiming .about-target__crosshair {
-  opacity: .78;
+  opacity: .58;
   transform: translate(-50%, -50%) scale(1);
 }
 
