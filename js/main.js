@@ -373,7 +373,7 @@ const shotStatus = document.querySelector('[data-shot-status]');
 const shotFeedback = document.querySelector('[data-shot-feedback]');
 const aboutBoard = aboutTarget?.querySelector('.about-target__board');
 const prizeCode = 'brunito007';
-const maxShots = 2;
+const maxShots = 1;
 let lastFocusedElement = null;
 
 if (aboutTarget && prizeModal) {
@@ -415,8 +415,7 @@ if (aboutTarget && prizeModal) {
   };
 
   const updateShotCopy = () => {
-    const nextShot = Math.min(shots.length + 1, maxShots);
-    if (shotStatus) shotStatus.textContent = shots.length >= maxShots ? 'Beneficio definido' : `Tiro ${nextShot} de ${maxShots}`;
+    if (shotStatus) shotStatus.textContent = shots.length >= maxShots ? 'Beneficio definido' : 'Intento único';
   };
 
   const openPrizeModal = (discount) => {
@@ -451,7 +450,7 @@ if (aboutTarget && prizeModal) {
     const bestShot = shots.reduce((best, shot) => (shot.discount > best.discount ? shot : best), shots[0]);
     bestShot.impact.classList.add('is-best');
     aboutTarget.classList.add('is-complete');
-    if (shotFeedback) shotFeedback.textContent = `Beneficio final: ${bestShot.discount}% off`;
+    if (shotFeedback) shotFeedback.textContent = `Beneficio definido: ${bestShot.discount}% off`;
     window.setTimeout(() => openPrizeModal(bestShot.discount), reduceMotion ? 80 : 520);
   };
 
@@ -459,7 +458,7 @@ if (aboutTarget && prizeModal) {
     shots.splice(0, shots.length);
     aboutTarget.querySelectorAll('.about-target__impact').forEach((impact) => impact.remove());
     aboutTarget.classList.remove('is-complete');
-    if (shotFeedback) shotFeedback.textContent = 'Elegí tu primer tiro';
+    if (shotFeedback) shotFeedback.textContent = 'Elegí tu tiro';
     updateShotCopy();
   };
 
@@ -481,7 +480,7 @@ if (aboutTarget && prizeModal) {
     const discount = getDiscountFromDistance(distance, radius);
     const impact = addImpact(x, y, discount);
     shots.push({ discount, impact });
-    if (shotFeedback) shotFeedback.textContent = `Tiro ${shots.length}: +${discount}%`;
+    if (shotFeedback) shotFeedback.textContent = `Beneficio: ${discount}% off`;
     updateShotCopy();
 
     if (shots.length === maxShots) completeGame();
