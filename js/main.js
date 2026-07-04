@@ -381,12 +381,21 @@ if (aboutTarget && prizeModal) {
 
   const updateAim = (clientX, clientY) => {
     const rect = aboutTarget.getBoundingClientRect();
+    const boardRect = aboutBoard?.getBoundingClientRect();
     const x = Math.min(Math.max(clientX - rect.left, 0), rect.width);
     const y = Math.min(Math.max(clientY - rect.top, 0), rect.height);
-    aboutTarget.style.setProperty('--aim-x', `${(x / rect.width) * 100}%`);
-    aboutTarget.style.setProperty('--aim-y', `${(y / rect.height) * 100}%`);
-    aboutTarget.style.setProperty('--align-x', `${((x / rect.width) - 0.5) * 8}px`);
-    aboutTarget.style.setProperty('--align-y', `${((y / rect.height) - 0.5) * 8}px`);
+    const aimBounds = boardRect ? {
+      left: boardRect.left - rect.left,
+      top: boardRect.top - rect.top,
+      width: boardRect.width,
+      height: boardRect.height,
+    } : { left: 0, top: 0, width: rect.width, height: rect.height };
+    const aimX = Math.min(Math.max(x, aimBounds.left), aimBounds.left + aimBounds.width);
+    const aimY = Math.min(Math.max(y, aimBounds.top), aimBounds.top + aimBounds.height);
+    aboutTarget.style.setProperty('--aim-x', `${(aimX / rect.width) * 100}%`);
+    aboutTarget.style.setProperty('--aim-y', `${(aimY / rect.height) * 100}%`);
+    aboutTarget.style.setProperty('--align-x', `${((aimX / rect.width) - 0.5) * 6}px`);
+    aboutTarget.style.setProperty('--align-y', `${((aimY / rect.height) - 0.5) * 6}px`);
     return { x, y, rect };
   };
 
@@ -438,7 +447,8 @@ if (aboutTarget && prizeModal) {
   const addImpact = (x, y, discount) => {
     const impact = document.createElement('span');
     impact.className = 'about-target__impact';
-    impact.dataset.discount = `+${discount}%`;
+    aboutTarget.querySelectorAll('.about-target__impact').forEach((previousImpact) => previousImpact.remove());
+    impact.dataset.discount = `${discount}% OFF`;
     impact.style.left = `${x}px`;
     impact.style.top = `${y}px`;
     impact.setAttribute('aria-hidden', 'true');
@@ -450,7 +460,7 @@ if (aboutTarget && prizeModal) {
     const bestShot = shots.reduce((best, shot) => (shot.discount > best.discount ? shot : best), shots[0]);
     bestShot.impact.classList.add('is-best');
     aboutTarget.classList.add('is-complete');
-    if (shotFeedback) shotFeedback.textContent = `Beneficio definido: ${bestShot.discount}% off`;
+    if (shotFeedback) shotFeedback.innerHTML = `Beneficio definido: <strong>${bestShot.discount}% OFF</strong>`;
     window.setTimeout(() => openPrizeModal(bestShot.discount), reduceMotion ? 80 : 520);
   };
 
@@ -458,7 +468,7 @@ if (aboutTarget && prizeModal) {
     shots.splice(0, shots.length);
     aboutTarget.querySelectorAll('.about-target__impact').forEach((impact) => impact.remove());
     aboutTarget.classList.remove('is-complete');
-    if (shotFeedback) shotFeedback.textContent = 'Elegí tu tiro';
+    if (shotFeedback) shotFeedback.textContent = 'Beneficio por definir';
     updateShotCopy();
   };
 
@@ -480,7 +490,7 @@ if (aboutTarget && prizeModal) {
     const discount = getDiscountFromDistance(distance, radius);
     const impact = addImpact(x, y, discount);
     shots.push({ discount, impact });
-    if (shotFeedback) shotFeedback.textContent = `Beneficio: ${discount}% off`;
+    if (shotFeedback) shotFeedback.innerHTML = `Beneficio definido: <strong>${discount}% OFF</strong>`;
     updateShotCopy();
 
     if (shots.length === maxShots) completeGame();

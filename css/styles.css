@@ -2358,3 +2358,335 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
   .case-item { grid-template-columns: 1fr; gap: .45rem; padding: 1.25rem 0 1.35rem !important; }
   .case-item span { grid-row: auto; }
 }
+
+/* Surgical refinement: Sobre brunito target card */
+#sobre-mi.section--soft {
+  background: var(--black) !important;
+  color: var(--white) !important;
+}
+
+#sobre-mi .about {
+  align-items: center !important;
+}
+
+#sobre-mi .about .eyebrow {
+  color: var(--red) !important;
+}
+
+#sobre-mi .about h2 {
+  color: var(--white) !important;
+}
+
+#sobre-mi .about p:not(.eyebrow) {
+  color: #D8D8D8 !important;
+}
+
+#sobre-mi .about__mark.about-target {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 390px);
+  min-height: 520px;
+  padding: 1.45rem 1.35rem 1.25rem;
+  overflow: hidden;
+  background: var(--white) !important;
+  color: var(--black) !important;
+  border: 1px solid rgba(0, 0, 0, .10) !important;
+  border-radius: 34px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .18) !important;
+  cursor: crosshair;
+}
+
+#sobre-mi .about__mark.about-target::before,
+#sobre-mi .about__mark.about-target::after,
+#sobre-mi .about-target__grain,
+#sobre-mi .about-target__segments {
+  content: none !important;
+  display: none !important;
+}
+
+#sobre-mi .about-target__intro {
+  position: static;
+  display: grid;
+  gap: .42rem;
+  width: 100%;
+  max-width: none;
+  transform: none;
+  text-align: left;
+  padding-right: 8rem;
+  pointer-events: none;
+}
+
+#sobre-mi .about-target__intro strong {
+  color: var(--red) !important;
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .22em;
+  line-height: 1.25;
+}
+
+#sobre-mi .about-target__intro em {
+  color: #3A3A3A !important;
+  font-size: .78rem;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+#sobre-mi .about-target__status {
+  position: absolute;
+  top: 1.35rem;
+  right: 1.35rem;
+  z-index: 8;
+  padding: .38rem .64rem;
+  background: var(--white) !important;
+  color: var(--black) !important;
+  border: 1px solid rgba(0, 0, 0, .14) !important;
+  border-radius: 999px;
+  font-size: .56rem;
+  font-weight: 900;
+  letter-spacing: .13em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+#sobre-mi .about-target__board {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  z-index: 2;
+  width: min(74%, 286px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) translate(calc(var(--align-x) * -.12), calc(var(--align-y) * -.12));
+  background: var(--red) !important;
+  border: 1px solid var(--black) !important;
+  border-radius: 50%;
+  box-shadow:
+    0 20px 42px rgba(0, 0, 0, .13),
+    inset 0 0 0 28px var(--black),
+    inset 0 0 0 58px var(--white),
+    inset 0 0 0 88px var(--black),
+    inset 0 0 0 118px var(--white) !important;
+}
+
+#sobre-mi .about-target__rings {
+  position: absolute;
+  inset: 0;
+  border: 0 !important;
+  border-radius: 50%;
+  background: transparent !important;
+}
+
+#sobre-mi .about-target__center-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 18%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: var(--red) !important;
+  border: 2px solid var(--white) !important;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--black) !important;
+}
+
+#sobre-mi .about-target__labels span {
+  position: absolute;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  aspect-ratio: 1;
+  background: transparent !important;
+  border: 0;
+  border-radius: 50%;
+  font-size: .68rem;
+  font-weight: 950 !important;
+  line-height: 1;
+  text-shadow: none !important;
+}
+
+#sobre-mi .about-target__labels span:nth-child(1) { left: 50%; top: 50%; transform: translate(-50%, -50%); color: var(--white) !important; }
+#sobre-mi .about-target__labels span:nth-child(2) { left: 50%; top: 35%; transform: translate(-50%, -50%); color: var(--black) !important; }
+#sobre-mi .about-target__labels span:nth-child(3) { left: 69%; top: 50%; transform: translate(-50%, -50%); color: var(--white) !important; }
+#sobre-mi .about-target__labels span:nth-child(4) { left: 32%; top: 66%; transform: translate(-50%, -50%); color: var(--black) !important; }
+#sobre-mi .about-target__labels span:nth-child(5) { left: 79%; top: 77%; transform: translate(-50%, -50%); color: var(--white) !important; }
+
+#sobre-mi .about-target__feedback {
+  position: absolute;
+  left: 50%;
+  bottom: 4.75rem;
+  z-index: 5;
+  min-width: 220px;
+  padding: .56rem .86rem;
+  transform: translateX(-50%);
+  background: var(--white) !important;
+  color: var(--black) !important;
+  border: 1px solid rgba(0, 0, 0, .12) !important;
+  border-radius: 999px;
+  font-size: .64rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+#sobre-mi .about-target__feedback strong {
+  color: var(--red);
+}
+
+#sobre-mi .about-target__signature {
+  position: absolute;
+  left: 50%;
+  bottom: 1.2rem;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  gap: .22rem;
+  padding: 0;
+  transform: translateX(-50%);
+  background: transparent !important;
+  border: 0 !important;
+  pointer-events: none;
+}
+
+#sobre-mi .about-target__signature img {
+  width: 132px;
+  filter: none !important;
+}
+
+#sobre-mi .about-target__signature em {
+  color: #3A3A3A !important;
+  font-size: .72rem;
+  font-style: normal;
+  letter-spacing: .02em;
+}
+
+#sobre-mi .about-target__crosshair {
+  position: absolute;
+  left: var(--aim-x, 50%);
+  top: var(--aim-y, 47%);
+  z-index: 7;
+  width: 52px;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) scale(.94);
+  background: transparent !important;
+  border: 1.5px solid var(--red) !important;
+  border-radius: 50%;
+  box-shadow: none !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .14s ease, transform .14s ease;
+}
+
+#sobre-mi .about-target__crosshair::before,
+#sobre-mi .about-target__crosshair::after {
+  content: "";
+  position: absolute;
+  background: var(--red) !important;
+  border: 0 !important;
+  opacity: .86;
+}
+
+#sobre-mi .about-target__crosshair::before {
+  left: 50%;
+  top: 5px;
+  width: 1px;
+  height: 9px;
+  transform: translateX(-50%);
+  box-shadow: 0 33px 0 var(--red);
+}
+
+#sobre-mi .about-target__crosshair::after {
+  top: 50%;
+  left: 5px;
+  width: 9px;
+  height: 1px;
+  transform: translateY(-50%);
+  box-shadow: 33px 0 0 var(--red);
+}
+
+#sobre-mi .about-target:hover .about-target__crosshair,
+#sobre-mi .about-target:focus-visible .about-target__crosshair,
+#sobre-mi .about-target.is-aiming .about-target__crosshair {
+  opacity: .78;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#sobre-mi .about-target.is-complete .about-target__crosshair {
+  opacity: 0;
+}
+
+#sobre-mi .about-target__impact,
+#sobre-mi .about-target__impact.is-best {
+  position: absolute;
+  z-index: 6;
+  width: 18px;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: transparent !important;
+  border: 1.5px solid var(--red) !important;
+  border-radius: 50%;
+  box-shadow: none !important;
+  pointer-events: none;
+}
+
+#sobre-mi .about-target__impact::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: var(--red);
+  border: 0;
+  border-radius: 50%;
+  animation: none;
+}
+
+#sobre-mi .about-target__impact::after {
+  content: attr(data-discount);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  padding: .24rem .42rem;
+  transform: translateX(-50%);
+  background: var(--white) !important;
+  color: var(--red) !important;
+  border: 1px solid rgba(0, 0, 0, .12) !important;
+  border-radius: 999px;
+  font-size: .56rem;
+  font-weight: 950;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  #sobre-mi .about__mark.about-target {
+    width: min(100%, 340px);
+    min-height: 470px;
+    padding: 1.25rem 1rem 1.15rem;
+  }
+
+  #sobre-mi .about-target__intro {
+    padding-right: 7rem;
+  }
+
+  #sobre-mi .about-target__board {
+    width: 76%;
+    top: 47%;
+  }
+
+  #sobre-mi .about-target__feedback {
+    bottom: 4.45rem;
+    min-width: 200px;
+    font-size: .58rem;
+  }
+
+  #sobre-mi .about-target__crosshair {
+    display: none;
+  }
+}
