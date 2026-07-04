@@ -2118,3 +2118,175 @@ p, .hero__text, .about p, .case-item p { color: #3A3A3A !important; }
 @media (max-width: 860px) {
   .nav-menu { background: var(--white) !important; border-color: var(--line) !important; }
 }
+
+/* Dirección visual estricta: negro dominante, piezas blancas y acento rojo. */
+:root {
+  --black: #000000;
+  --ink: #050505;
+  --ink-2: #0B0B0B;
+  --surface-dark: #111111;
+  --surface-dark-2: #0B0B0B;
+  --white: #FFFFFF;
+  --paper: #F7F7F7;
+  --gray-soft: #D8D8D8;
+  --gray: #D8D8D8;
+  --gray-muted: #3A3A3A;
+  --red: #C61E1E;
+  --red-deep: #9F1717;
+  --red-soft: rgba(198, 30, 30, .18);
+  --line: rgba(0, 0, 0, .14);
+  --line-soft: rgba(0, 0, 0, .10);
+  --line-dark: rgba(255, 255, 255, .22);
+  --line-dark-soft: rgba(255, 255, 255, .12);
+  --color-bg: var(--black);
+  --color-text: var(--white);
+  --color-ink: var(--white);
+  --color-ink-soft: var(--gray-soft);
+  --color-muted: var(--gray-soft);
+  --color-line: var(--line-dark);
+  --color-warm: var(--red);
+  --color-warm-soft: var(--red-soft);
+  --color-lavender: var(--red);
+  --color-lavender-soft: var(--surface-dark);
+  --color-mint: var(--gray-soft);
+  --color-mint-soft: var(--surface-dark);
+  --bg-page: var(--black);
+  --bg-secondary: var(--surface-dark);
+  --bg-soft: var(--black);
+  --bg-dark: var(--black);
+}
+
+html, body { background: var(--black) !important; color: var(--white) !important; }
+body::before, .hero::before, .hero__shape, .hero__shape--one, .button::after, .hero__copy::after, .hero h1::after, .services-deck::before, .experience-band::after, .contact__content::before, .contact__content::after, .about-target__grain, .about-target__segments { content: none !important; display: none !important; background: none !important; }
+.section, .services-section, .cases-section, .experience-band, .contact { background: var(--black) !important; color: var(--white) !important; border-color: var(--line-dark-soft) !important; }
+.section--soft { background: var(--black) !important; }
+h1, h2, h3, .hero h1, .section-heading h2, .cases-section h2, .experience-panel h2, .contact__content h2 { color: var(--white) !important; text-shadow: none !important; }
+p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebrow), .case-item p, .contact__copy p:not(.eyebrow), .panel-level, .panel-message { color: var(--gray-soft) !important; }
+.eyebrow, .panel-kicker, .experience-machine__header small { color: var(--red) !important; }
+.eyebrow::before, .panel-dot { background: var(--red) !important; box-shadow: 0 0 0 4px var(--red-soft) !important; }
+
+.site-header, .site-header.is-scrolled { background: rgba(0,0,0,.96) !important; border-bottom-color: var(--line-dark-soft) !important; box-shadow: 0 12px 32px rgba(0,0,0,.34) !important; }
+.logo img { filter: brightness(0) invert(1) !important; }
+.nav-menu { background: var(--surface-dark) !important; border-color: var(--line-dark) !important; box-shadow: none !important; }
+.nav-menu a { color: var(--white) !important; }
+.nav-menu a:hover, .nav-menu a:focus-visible { background: var(--black) !important; color: var(--white) !important; }
+.nav-menu a::after, .nav-menu li:nth-child(2n) a::after { background: var(--red) !important; }
+.nav-toggle { background: var(--surface-dark) !important; border-color: var(--line-dark) !important; }
+.nav-toggle__line { background: var(--white) !important; }
+
+.button--primary, .hero__copy--intro .button--primary { background: var(--white) !important; color: var(--black) !important; border-color: var(--white) !important; box-shadow: none !important; }
+.button--primary:hover, .button--primary:focus-visible { background: var(--red) !important; color: var(--white) !important; border-color: var(--red) !important; box-shadow: 0 0 0 4px var(--red-soft) !important; }
+.button--secondary, .hero__copy--intro .button--secondary, .button--ghost { background: transparent !important; color: var(--white) !important; border-color: rgba(255,255,255,.56) !important; box-shadow: none !important; }
+.button--secondary:hover, .button--secondary:focus-visible, .button--ghost:hover, .button--ghost:focus-visible { background: var(--surface-dark) !important; color: var(--white) !important; border-color: var(--red) !important; box-shadow: 0 0 0 4px var(--red-soft) !important; }
+
+.hero { background: var(--black) !important; border-bottom: 1px solid var(--line-dark-soft) !important; }
+.hero__grid { background: transparent !important; border-color: var(--line-dark-soft) !important; opacity: 1 !important; }
+.hero__grid::before, .hero__grid::after { background: var(--line-dark-soft) !important; }
+.hero__grid span, .hero__grid span:nth-child(n) { background: var(--red) !important; box-shadow: none !important; }
+.hero__copy--intro { background: transparent !important; border: 0 !important; box-shadow: none !important; }
+.hero__copy--intro h1, .hero__copy--intro .hero__text { color: inherit !important; }
+.hero__copy--intro .hero__text { color: var(--gray-soft) !important; }
+.hero__panel { background: var(--surface-dark) !important; border-color: var(--line-dark) !important; color: var(--white) !important; box-shadow: 0 28px 70px rgba(0,0,0,.42) !important; }
+.hero__panel::before { border-color: var(--line-dark-soft) !important; border-top-color: var(--red) !important; }
+.hero__panel::after { background: transparent !important; border-color: var(--line-dark) !important; }
+.hero__panel p, .panel-message, .panel-level strong, .panel-level { color: var(--white) !important; }
+.elevator-scene { background: var(--black) !important; border-block-color: var(--line-dark) !important; }
+.elevator-scene::before, .elevator-scene::after { background: transparent !important; border-color: var(--line-dark-soft) !important; }
+.elevator-rails path, .elevator-level path, .elevator-directory path, .elevator-directory circle, .elevator-arrow path { stroke: var(--gray-soft) !important; opacity: .85 !important; }
+.elevator-cabin__back, .elevator-door { fill: var(--surface-dark) !important; stroke: var(--line-dark) !important; }
+.elevator-cabin__shine, .elevator-cabin__split, .elevator-indicator path { stroke: var(--white) !important; opacity: .75 !important; }
+.elevator-level circle, .elevator-indicator circle, .elevator-person__warm-detail { fill: var(--red) !important; }
+.elevator-person__head { fill: var(--white) !important; }
+.elevator-person__torso, .elevator-person__arm, .elevator-person__leg { stroke: var(--white) !important; }
+.elevator-thought__shape { fill: var(--white) !important; stroke: var(--red) !important; }
+.elevator-thought__text { fill: var(--black) !important; }
+.elevator-thought__text.is-cta { fill: var(--red) !important; }
+.elevator-thought-bubbles circle { fill: var(--white) !important; }
+.panel-footer { background: var(--black) !important; border-color: var(--line-dark) !important; color: var(--gray-soft) !important; }
+.panel-levels::before, .panel-level::before { background: var(--red) !important; border-color: var(--red) !important; box-shadow: none !important; }
+
+.services-section .section-heading h2, .services-section .section-heading span { color: var(--white) !important; }
+.services-deck__trigger { background: var(--surface-dark) !important; color: var(--white) !important; border-color: var(--red) !important; box-shadow: none !important; }
+.services-deck__trigger::before { background: var(--red) !important; box-shadow: 0 0 0 4px var(--red-soft) !important; }
+.service-card:nth-child(n) { --card-bg: var(--black) !important; --front-bg: var(--surface-dark) !important; --suit: var(--red) !important; }
+.service-card__back, .service-card__front { background: var(--surface-dark) !important; color: var(--white) !important; border-color: var(--line-dark) !important; box-shadow: none !important; }
+.service-card__back::before { background: none !important; border-color: var(--red) !important; }
+.service-card__back::after, .service-card__backline { border-color: var(--red) !important; background: var(--red) !important; }
+.service-card__title, .service-card__text, .service-card__monogram { color: var(--white) !important; }
+.service-card__text { color: var(--gray-soft) !important; }
+.service-card__index { color: var(--red) !important; }
+.icon { background: var(--black) !important; border-color: var(--line-dark) !important; }
+
+.experience-panel { align-items: center !important; }
+.experience-panel h2 { color: var(--white) !important; }
+.experience-machine { background: var(--surface-dark) !important; border-color: var(--line-dark) !important; box-shadow: 0 28px 70px rgba(0,0,0,.38) !important; }
+.experience-machine__header { color: var(--gray-soft) !important; border-bottom-color: var(--line-dark) !important; }
+.experience-metrics .metric-item { background: var(--black) !important; border-color: var(--line-dark-soft) !important; }
+.experience-metrics .metric-item::before { background: var(--red) !important; box-shadow: none !important; }
+.experience-metrics strong, .metric-prefix, .metric-value { color: var(--white) !important; }
+.experience-metrics span:not(.metric-prefix):not(.metric-value) { color: var(--gray-soft) !important; }
+.experience-metrics .metric-item.is-settled { background: #111111 !important; border-color: rgba(198,30,30,.7) !important; }
+.experience-lever { background: var(--black) !important; border-color: var(--line-dark) !important; }
+.experience-lever__rail { background: var(--gray-muted) !important; }
+.experience-lever__arm { background: var(--red) !important; }
+.experience-lever__arm span { background: var(--white) !important; border-color: var(--white) !important; }
+.experience-orbit { border-color: var(--line-dark-soft) !important; }
+.experience-orbit span { background: var(--red) !important; box-shadow: none !important; }
+
+.case-list { border-top-color: var(--line-dark) !important; }
+.case-item { border-bottom-color: var(--line-dark) !important; color: var(--white) !important; }
+.case-item:hover { background: var(--surface-dark) !important; border-color: var(--line-dark) !important; }
+.case-item::before, .case-item h3::after { background: var(--red) !important; }
+.case-item span, .case-item:nth-child(n) span { color: var(--red) !important; }
+.case-item h3 { color: var(--white) !important; }
+.case-item p { color: var(--gray-soft) !important; }
+
+.about { align-items: center !important; color: var(--white) !important; }
+.about h2 { color: var(--white) !important; }
+.about p:not(.eyebrow) { color: var(--gray-soft) !important; }
+.about__mark.about-target { background: var(--white) !important; color: var(--black) !important; border-color: var(--white) !important; box-shadow: 0 28px 70px rgba(0,0,0,.35) !important; }
+.about__mark.about-target::after { content: none !important; display: none !important; }
+.about-target__intro strong { color: var(--red) !important; }
+.about-target__intro em { color: var(--gray-muted) !important; }
+.about-target__status, .about-target__feedback { background: var(--white) !important; color: var(--black) !important; border-color: var(--line) !important; }
+.about-target__board { background: var(--red) !important; border: 1px solid var(--black) !important; box-shadow: 0 22px 44px rgba(0,0,0,.16), inset 0 0 0 30px var(--black), inset 0 0 0 60px var(--white), inset 0 0 0 90px var(--black), inset 0 0 0 120px var(--white) !important; }
+.about-target__rings { border-color: transparent !important; }
+.about-target__center-dot, .about-target__impact, .about-target__impact.is-best { background: var(--red) !important; border-color: var(--red-deep) !important; }
+.about-target__labels span { color: var(--black) !important; text-shadow: none !important; font-weight: 950 !important; }
+.about-target__labels span:nth-child(1), .about-target__labels span:nth-child(3), .about-target__labels span:nth-child(5) { color: var(--white) !important; }
+.about-target__labels span:nth-child(2), .about-target__labels span:nth-child(4) { color: var(--black) !important; }
+.about-target__signature { background: var(--paper) !important; border-color: var(--line) !important; }
+.about-target__signature img { filter: none !important; }
+.about-target__signature em { color: var(--gray-muted) !important; }
+.about-target__crosshair, .about-target__crosshair::before, .about-target__crosshair::after { border-color: var(--red) !important; background: var(--red) !important; }
+.about-target__impact::after { background: var(--white) !important; color: var(--red) !important; border-color: var(--line) !important; }
+
+.contact__content { background: var(--surface-dark) !important; border-color: var(--line-dark) !important; color: var(--white) !important; box-shadow: 0 28px 70px rgba(0,0,0,.38) !important; }
+.contact__content h2 { color: var(--white) !important; }
+.contact__copy p:not(.eyebrow) { color: var(--gray-soft) !important; }
+.button--light, .contact__content.is-lit .button--light { background: var(--white) !important; color: var(--black) !important; border-color: var(--white) !important; box-shadow: none !important; }
+.button--light:hover, .button--light:focus-visible { background: var(--red) !important; color: var(--white) !important; border-color: var(--red) !important; box-shadow: 0 0 0 4px var(--red-soft) !important; }
+.contact__lamp-cable, .contact__lamp-shade, .contact__lamp-rim, .contact__person-line, .contact__phone { stroke: var(--white) !important; }
+.contact__lamp-bulb, .contact__message-shape { fill: var(--white) !important; stroke: var(--red) !important; }
+.contact__message-text { fill: var(--black) !important; }
+.contact__light-cone, .contact__light-cone::after { background: rgba(255,255,255,.16) !important; }
+.contact__lamp-fixture::before, .contact__light-pool { background: var(--white) !important; }
+.contact__constellation::before, .contact__constellation span, .contact__constellation span:nth-child(n) { background: var(--red) !important; box-shadow: none !important; }
+.contact__lamp-switch { background: var(--black) !important; color: var(--white) !important; border-color: var(--line-dark) !important; }
+.contact__lamp-switch-label { color: var(--white) !important; }
+.contact__lamp-switch-track { background: var(--surface-dark) !important; border-color: var(--line-dark) !important; }
+.contact__lamp-switch-track span, .contact__lamp-switch[aria-pressed="true"] .contact__lamp-switch-track span { background: var(--red) !important; }
+
+.prize-modal__panel { background: var(--white) !important; color: var(--black) !important; border-color: var(--line) !important; }
+.prize-modal__panel h2, .prize-modal__panel p:not(.eyebrow) { color: var(--black) !important; }
+.prize-modal__discount { color: var(--red) !important; }
+.prize-modal__code { background: var(--paper) !important; color: var(--black) !important; border-color: var(--red) !important; }
+.prize-modal__actions .button--secondary, .prize-modal__actions .button--ghost { color: var(--black) !important; border-color: var(--black) !important; }
+
+.site-footer { background: var(--black) !important; border-top-color: var(--line-dark-soft) !important; }
+.footer__content p { color: var(--gray-soft) !important; }
+.footer__content a { color: var(--red) !important; }
+
+@media (max-width: 860px) {
+  .nav-menu { background: var(--surface-dark) !important; border-color: var(--line-dark) !important; }
+}
