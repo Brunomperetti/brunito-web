@@ -474,7 +474,7 @@ if (aboutTarget && prizeModal) {
 
   const fireAt = (clientX, clientY) => {
     if (shots.length >= maxShots) {
-      if (shotFeedback) shotFeedback.textContent = 'Beneficio definido';
+      if (shotFeedback) shotFeedback.textContent = 'Beneficio ya definido';
       return;
     }
 
