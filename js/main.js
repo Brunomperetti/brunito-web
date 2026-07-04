@@ -368,26 +368,16 @@ const copyCodeButton = document.querySelector('[data-copy-code]');
 const copyFeedback = document.querySelector('[data-copy-feedback]');
 const prizeTitle = document.querySelector('[data-prize-title]');
 const prizeDescription = document.querySelector('[data-prize-description]');
+const prizeDiscount = document.querySelector('[data-prize-discount]');
+const shotStatus = document.querySelector('[data-shot-status]');
+const shotFeedback = document.querySelector('[data-shot-feedback]');
+const aboutBoard = aboutTarget?.querySelector('.about-target__board');
 const prizeCode = 'brunito007';
-const prizeStorageKey = 'alreadyWonDiscount';
+const maxShots = 2;
 let lastFocusedElement = null;
 
 if (aboutTarget && prizeModal) {
-  const hasAlreadyWonPrize = () => {
-    try {
-      return localStorage.getItem(prizeStorageKey) === 'true';
-    } catch (error) {
-      return false;
-    }
-  };
-
-  const rememberPrizeWon = () => {
-    try {
-      localStorage.setItem(prizeStorageKey, 'true');
-    } catch (error) {
-      // Storage can be unavailable in some privacy modes; the prize should still open.
-    }
-  };
+  const shots = [];
 
   const updateAim = (clientX, clientY) => {
     const rect = aboutTarget.getBoundingClientRect();
@@ -397,23 +387,43 @@ if (aboutTarget && prizeModal) {
     aboutTarget.style.setProperty('--aim-y', `${(y / rect.height) * 100}%`);
     aboutTarget.style.setProperty('--align-x', `${((x / rect.width) - 0.5) * 8}px`);
     aboutTarget.style.setProperty('--align-y', `${((y / rect.height) - 0.5) * 8}px`);
-
-    const centerDistance = Math.hypot(x - rect.width / 2, y - rect.height * 0.45);
-    const centerProximity = Math.max(0, 1 - centerDistance / (rect.width * 0.24));
-    aboutTarget.style.setProperty('--center-proximity', centerProximity.toFixed(3));
-    aboutTarget.classList.toggle('is-near-center', centerProximity > 0.45);
-
     return { x, y, rect };
   };
 
-  const openPrizeModal = (alreadyWon = false) => {
-    lastFocusedElement = document.activeElement;
-    if (prizeTitle && prizeDescription) {
-      prizeTitle.textContent = alreadyWon ? 'Tu beneficio sigue activo' : 'Ganaste un beneficio';
-      prizeDescription.textContent = alreadyWon
-        ? `Podés usar tu 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`
-        : `Obtuviste un 5% de descuento en todos los servicios presentando el código “${prizeCode}”.`;
+  const getBoardMetrics = (rect) => {
+    const boardRect = aboutBoard?.getBoundingClientRect();
+
+    if (!boardRect) {
+      const boardSize = rect.width * 0.72;
+      return { centerX: rect.width / 2, centerY: rect.height * 0.43, radius: boardSize / 2 };
     }
+
+    return {
+      centerX: boardRect.left - rect.left + boardRect.width / 2,
+      centerY: boardRect.top - rect.top + boardRect.height / 2,
+      radius: boardRect.width / 2,
+    };
+  };
+
+  const getDiscountFromDistance = (distance, radius) => {
+    const ratio = distance / radius;
+    if (ratio <= 0.13) return 10;
+    if (ratio <= 0.33) return 7;
+    if (ratio <= 0.56) return 5;
+    if (ratio <= 0.80) return 3;
+    return 1;
+  };
+
+  const updateShotCopy = () => {
+    const nextShot = Math.min(shots.length + 1, maxShots);
+    if (shotStatus) shotStatus.textContent = shots.length >= maxShots ? 'Beneficio definido' : `Tiro ${nextShot} de ${maxShots}`;
+  };
+
+  const openPrizeModal = (discount) => {
+    lastFocusedElement = document.activeElement;
+    if (prizeTitle) prizeTitle.textContent = 'Beneficio desbloqueado';
+    if (prizeDiscount) prizeDiscount.textContent = `${discount}% OFF`;
+    if (prizeDescription) prizeDescription.textContent = `Ganaste un ${discount}% de descuento en todos los servicios.`;
     prizeModal.hidden = false;
     document.body.style.overflow = 'hidden';
     prizeModal.querySelector('[data-copy-code]')?.focus();
@@ -426,80 +436,81 @@ if (aboutTarget && prizeModal) {
     lastFocusedElement?.focus?.();
   };
 
-  const addImpact = (x, y, isBullseye) => {
-    aboutTarget.querySelectorAll('.about-target__impact').forEach((impact, index, impacts) => {
-      if (index < impacts.length - 1) impact.remove();
-    });
-
+  const addImpact = (x, y, discount) => {
     const impact = document.createElement('span');
     impact.className = 'about-target__impact';
+    impact.dataset.discount = `+${discount}%`;
     impact.style.left = `${x}px`;
     impact.style.top = `${y}px`;
     impact.setAttribute('aria-hidden', 'true');
     aboutTarget.appendChild(impact);
+    return impact;
+  };
 
-    if (!reduceMotion) {
-      window.setTimeout(() => impact.remove(), isBullseye ? 2400 : 1800);
-    }
+  const completeGame = () => {
+    const bestShot = shots.reduce((best, shot) => (shot.discount > best.discount ? shot : best), shots[0]);
+    bestShot.impact.classList.add('is-best');
+    aboutTarget.classList.add('is-complete');
+    if (shotFeedback) shotFeedback.textContent = `Beneficio final: ${bestShot.discount}% off`;
+    window.setTimeout(() => openPrizeModal(bestShot.discount), reduceMotion ? 80 : 520);
   };
 
   window.resetBrunitoPrize = () => {
-    try {
-      localStorage.removeItem(prizeStorageKey);
-    } catch (error) {
-      // No-op: this helper is only for manual QA.
-    }
+    shots.splice(0, shots.length);
+    aboutTarget.querySelectorAll('.about-target__impact').forEach((impact) => impact.remove());
+    aboutTarget.classList.remove('is-complete');
+    if (shotFeedback) shotFeedback.textContent = 'Elegí tu primer tiro';
+    updateShotCopy();
   };
 
-  const fireAt = (clientX, clientY, forcePrize = false) => {
+  const fireAt = (clientX, clientY) => {
+    if (shots.length >= maxShots) {
+      if (shotFeedback) shotFeedback.textContent = 'Beneficio definido';
+      return;
+    }
+
     const { x, y, rect } = updateAim(clientX, clientY);
-    const centerX = rect.width / 2;
-    const centerY = rect.height * 0.45;
-    const centerDistance = Math.hypot(x - centerX, y - centerY);
-    const bullseyeRadius = Math.max(30, rect.width * 0.105);
-    const isBullseye = centerDistance <= bullseyeRadius;
+    const { centerX, centerY, radius } = getBoardMetrics(rect);
+    const distance = Math.hypot(x - centerX, y - centerY);
 
-    addImpact(x, y, isBullseye);
-    aboutTarget.classList.toggle('is-bullseye', isBullseye);
-    window.setTimeout(() => {
-      aboutTarget.classList.remove('is-bullseye');
-    }, 700);
-
-    if (isBullseye || forcePrize) {
-      const alreadyWon = hasAlreadyWonPrize();
-      rememberPrizeWon();
-      aboutTarget.classList.add('is-unlocked');
-      window.setTimeout(() => aboutTarget.classList.remove('is-unlocked'), 1150);
-      window.setTimeout(() => openPrizeModal(alreadyWon), reduceMotion ? 120 : 760);
+    if (distance > radius) {
+      if (shotFeedback) shotFeedback.textContent = 'Apuntá dentro del tablero';
+      return;
     }
+
+    const discount = getDiscountFromDistance(distance, radius);
+    const impact = addImpact(x, y, discount);
+    shots.push({ discount, impact });
+    if (shotFeedback) shotFeedback.textContent = `Tiro ${shots.length}: +${discount}%`;
+    updateShotCopy();
+
+    if (shots.length === maxShots) completeGame();
   };
 
+  updateShotCopy();
   aboutTarget.addEventListener('pointerenter', () => aboutTarget.classList.add('is-aiming'));
   aboutTarget.addEventListener('pointerleave', () => aboutTarget.classList.remove('is-aiming'));
   aboutTarget.addEventListener('pointermove', (event) => updateAim(event.clientX, event.clientY));
-  aboutTarget.addEventListener('click', (event) => fireAt(event.clientX, event.clientY, event.shiftKey));
+  aboutTarget.addEventListener('click', (event) => fireAt(event.clientX, event.clientY));
   aboutTarget.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       const rect = aboutTarget.getBoundingClientRect();
-      fireAt(rect.left + rect.width / 2, rect.top + rect.height * 0.45);
+      fireAt(rect.left + rect.width / 2, rect.top + rect.height * 0.43);
     }
   });
 
   prizeCloseButtons.forEach((button) => button.addEventListener('click', closePrizeModal));
   document.addEventListener('keydown', (event) => {
     if (prizeModal.hidden) return;
-
     if (event.key === 'Escape') {
       closePrizeModal();
       return;
     }
-
     if (event.key === 'Tab') {
       const focusableElements = Array.from(prizeModal.querySelectorAll('a[href], button:not([disabled])'));
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
-
       if (event.shiftKey && document.activeElement === firstElement) {
         event.preventDefault();
         lastElement?.focus();
