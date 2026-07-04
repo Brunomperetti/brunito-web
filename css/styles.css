@@ -2161,7 +2161,7 @@ body::before, .hero::before, .hero__shape, .hero__shape--one, .button::after, .h
 .section, .services-section, .cases-section, .experience-band, .contact { background: var(--black) !important; color: var(--white) !important; border-color: var(--line-dark-soft) !important; }
 .section--soft { background: var(--black) !important; }
 h1, h2, h3, .hero h1, .section-heading h2, .cases-section h2, .experience-panel h2, .contact__content h2 { color: var(--white) !important; text-shadow: none !important; }
-p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebrow), .case-item p, .contact__copy p:not(.eyebrow), .panel-level, .panel-message { color: var(--gray-soft) !important; }
+p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebrow), .case-item p, .contact__copy p:not(.eyebrow), .panel-message { color: var(--gray-soft) !important; }
 .eyebrow, .panel-kicker, .experience-machine__header small { color: var(--red) !important; }
 .eyebrow::before, .panel-dot { background: var(--red) !important; box-shadow: 0 0 0 4px var(--red-soft) !important; }
 
@@ -2181,15 +2181,17 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
 
 .hero { background: var(--black) !important; border-bottom: 1px solid var(--line-dark-soft) !important; }
 .hero__grid { background: transparent !important; border-color: var(--line-dark-soft) !important; opacity: 1 !important; }
-.hero__grid::before, .hero__grid::after { background: var(--line-dark-soft) !important; }
+.hero__grid::before { background: var(--line-dark-soft) !important; }
+.hero__grid::after { content: none !important; display: none !important; }
 .hero__grid span, .hero__grid span:nth-child(n) { background: var(--red) !important; box-shadow: none !important; }
 .hero__copy--intro { background: transparent !important; border: 0 !important; box-shadow: none !important; }
 .hero__copy--intro h1, .hero__copy--intro .hero__text { color: inherit !important; }
 .hero__copy--intro .hero__text { color: var(--gray-soft) !important; }
 .hero__panel { background: var(--surface-dark) !important; border-color: var(--line-dark) !important; color: var(--white) !important; box-shadow: 0 28px 70px rgba(0,0,0,.42) !important; }
+.hero__panel--intro { justify-self: center; width: min(100%, 410px); }
 .hero__panel::before { border-color: var(--line-dark-soft) !important; border-top-color: var(--red) !important; }
 .hero__panel::after { background: transparent !important; border-color: var(--line-dark) !important; }
-.hero__panel p, .panel-message, .panel-level strong, .panel-level { color: var(--white) !important; }
+.hero__panel p, .panel-message { color: var(--white) !important; }
 .elevator-scene { background: var(--black) !important; border-block-color: var(--line-dark) !important; }
 .elevator-scene::before, .elevator-scene::after { background: transparent !important; border-color: var(--line-dark-soft) !important; }
 .elevator-rails path, .elevator-level path, .elevator-directory path, .elevator-directory circle, .elevator-arrow path { stroke: var(--gray-soft) !important; opacity: .85 !important; }
@@ -2203,7 +2205,35 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
 .elevator-thought__text.is-cta { fill: var(--red) !important; }
 .elevator-thought-bubbles circle { fill: var(--white) !important; }
 .panel-footer { background: var(--black) !important; border-color: var(--line-dark) !important; color: var(--gray-soft) !important; }
-.panel-levels::before, .panel-level::before { background: var(--red) !important; border-color: var(--red) !important; box-shadow: none !important; }
+.panel-levels { gap: .58rem; padding-left: 1.12rem; }
+.panel-levels::before { background: rgba(255,255,255,.22) !important; }
+.panel-level { color: var(--gray-soft); align-items: center; gap: .74rem; letter-spacing: .055em; }
+.panel-level strong { color: inherit; min-width: 5.15rem; }
+.panel-level::before { background: var(--gray-muted); border-color: rgba(255,255,255,.36); box-shadow: none; }
+@keyframes panel-level-base {
+  0%, 34%, 96%, 100% { color: var(--red); transform: translate3d(2px, 0, 0); }
+  42%, 92% { color: var(--gray-soft); transform: translate3d(0, 0, 0); }
+}
+@keyframes panel-level-middle {
+  0%, 34%, 62%, 100% { color: var(--gray-soft); transform: translate3d(0, 0, 0); }
+  42%, 56% { color: var(--red); transform: translate3d(2px, 0, 0); }
+}
+@keyframes panel-level-top {
+  0%, 58%, 96%, 100% { color: var(--gray-soft); transform: translate3d(0, 0, 0); }
+  68%, 90% { color: var(--red); transform: translate3d(2px, 0, 0); }
+}
+@keyframes panel-level-dot-base {
+  0%, 34%, 96%, 100% { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 4px var(--red-soft); transform: translate(-50%, -50%) scale(1.16); }
+  42%, 92% { background: var(--gray-muted); border-color: rgba(255,255,255,.36); box-shadow: none; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes panel-level-dot-middle {
+  0%, 34%, 62%, 100% { background: var(--gray-muted); border-color: rgba(255,255,255,.36); box-shadow: none; transform: translate(-50%, -50%) scale(1); }
+  42%, 56% { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 4px var(--red-soft); transform: translate(-50%, -50%) scale(1.16); }
+}
+@keyframes panel-level-dot-top {
+  0%, 58%, 96%, 100% { background: var(--gray-muted); border-color: rgba(255,255,255,.36); box-shadow: none; transform: translate(-50%, -50%) scale(1); }
+  68%, 90% { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 4px var(--red-soft); transform: translate(-50%, -50%) scale(1.16); }
+}
 
 .services-section .section-heading h2, .services-section .section-heading span { color: var(--white) !important; }
 .services-deck__trigger { background: var(--surface-dark) !important; color: var(--white) !important; border-color: var(--red) !important; box-shadow: none !important; }
