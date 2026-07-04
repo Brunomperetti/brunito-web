@@ -306,7 +306,7 @@ if (experienceMachine) {
   };
 
   const rollExperienceMetrics = () => {
-    if (isRolling) return;
+    if (isRolling || experienceMachine.classList.contains('is-revealed')) return;
 
     isRolling = true;
     clearRollingTimers();
