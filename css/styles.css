@@ -2904,3 +2904,147 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
     line-height: 1.25;
   }
 }
+
+/* Surgical design refinements: hero continuity, prize card cleanup, services modular grid. */
+.hero__grid::before,
+.hero__grid::after {
+  content: none !important;
+  display: none !important;
+}
+
+.hero__grid span:nth-child(1) {
+  opacity: 0 !important;
+}
+
+.hero__panel--intro {
+  isolation: isolate;
+}
+
+.elevator-scene {
+  border-block-color: transparent !important;
+}
+
+.elevator-scene::before {
+  border-color: rgba(255,255,255,.055) !important;
+}
+
+#sobre-mi .about__mark.about-target {
+  grid-template-rows: auto 1fr auto auto;
+  row-gap: 1.05rem;
+  padding-top: 1.45rem !important;
+}
+
+#sobre-mi .about-target__intro {
+  display: none !important;
+}
+
+#sobre-mi .about-target__status {
+  position: relative !important;
+  inset: auto !important;
+  justify-self: center;
+  grid-row: 1;
+  width: fit-content;
+  margin: 0 auto .1rem;
+  padding: .42rem .76rem !important;
+  letter-spacing: .14em;
+}
+
+#sobre-mi .about-target__board {
+  grid-row: 2;
+  margin-top: .15rem;
+  margin-bottom: .45rem;
+}
+
+#sobre-mi .about-target__feedback {
+  grid-row: 3;
+}
+
+#sobre-mi .about-target__signature {
+  grid-row: 4;
+}
+
+#sobre-mi .about-target__crosshair {
+  width: 28px !important;
+  border-color: rgba(179,38,30,.5) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#sobre-mi .about-target__crosshair::before,
+#sobre-mi .about-target__crosshair::after {
+  background: rgba(179,38,30,.46) !important;
+}
+
+#sobre-mi .about-target:hover .about-target__crosshair,
+#sobre-mi .about-target:focus-visible .about-target__crosshair,
+#sobre-mi .about-target.is-aiming .about-target__crosshair {
+  opacity: .62 !important;
+}
+
+.services-grid {
+  --card-h: clamp(252px, 24vw, 286px);
+  gap: clamp(1rem, 1.65vw, 1.25rem) !important;
+  align-items: stretch;
+}
+
+.service-card {
+  height: var(--card-h);
+  min-height: var(--card-h);
+}
+
+.service-card__front {
+  justify-content: flex-start !important;
+  padding: clamp(1.18rem, 1.75vw, 1.42rem) !important;
+}
+
+.service-card__front::after {
+  left: clamp(1.18rem, 1.75vw, 1.42rem) !important;
+  right: clamp(1.18rem, 1.75vw, 1.42rem) !important;
+  bottom: clamp(1rem, 1.5vw, 1.16rem) !important;
+  height: 1px !important;
+  background: var(--red) !important;
+  opacity: .62 !important;
+}
+
+.service-card__index {
+  min-height: 2.1rem;
+  margin-bottom: clamp(1.45rem, 2.4vw, 2.05rem);
+}
+
+.service-card__index::after {
+  width: 34px !important;
+  height: 2px !important;
+  margin-top: .62rem !important;
+  background: var(--red) !important;
+  opacity: .9;
+}
+
+.service-card__title {
+  min-height: 3.45em;
+  max-width: 12.5rem !important;
+  margin: 0 0 .78rem !important;
+  display: flex !important;
+  align-items: flex-end;
+  color: var(--white) !important;
+}
+
+.service-card__text {
+  max-width: 14.25rem !important;
+  margin-top: 0;
+  color: rgba(255,255,255,.72) !important;
+}
+
+.icon {
+  top: 1.18rem !important;
+  right: 1.18rem !important;
+}
+
+@media (max-width: 560px) {
+  .service-card__title {
+    min-height: auto;
+  }
+
+  #sobre-mi .about__mark.about-target {
+    grid-template-rows: auto 1fr auto auto;
+  }
+}
