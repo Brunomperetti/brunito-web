@@ -62,9 +62,14 @@ if (contactLightScenes.length) {
     const focusableModalSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
     let lastFocusedElement = null;
 
+    if (modal && modal.parentElement !== document.body) {
+      document.body.appendChild(modal);
+    }
+
     const setModalOpen = (isOpen) => {
       scene.classList.toggle('is-voucher-open', isOpen);
       modal?.toggleAttribute('hidden', !isOpen);
+      document.body.classList.toggle('is-contact-modal-open', isOpen);
       voucherTrigger?.setAttribute('aria-expanded', String(isOpen));
 
       if (isOpen) {

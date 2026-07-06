@@ -4777,3 +4777,155 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
   .contact__voucher-trigger,
   .contact__gift-image { transition-duration: 1ms !important; animation: none !important; }
 }
+
+/* Contact benefit modal: viewport-level premium overlay correction */
+body.is-contact-modal-open {
+  overflow: hidden;
+}
+.contact__benefit-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100vw !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  padding: 24px !important;
+  background: rgba(0,0,0,.72) !important;
+  backdrop-filter: blur(8px) !important;
+  overflow: hidden !important;
+}
+.contact__benefit-modal[hidden] {
+  display: none !important;
+}
+.contact__benefit-dialog {
+  position: relative !important;
+  display: grid !important;
+  gap: clamp(.78rem, 1.5vw, 1rem) !important;
+  width: min(92vw, 680px) !important;
+  max-height: min(86vh, 760px) !important;
+  max-height: min(86svh, 760px) !important;
+  padding: clamp(1.65rem, 4vw, 2.7rem) !important;
+  padding-top: clamp(2.15rem, 4vw, 3rem) !important;
+  border: 1px solid rgba(5,5,5,.10) !important;
+  border-radius: 30px !important;
+  background: #fff !important;
+  color: #050505 !important;
+  box-shadow: 0 34px 110px rgba(0,0,0,.38) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain !important;
+}
+.contact__benefit-dialog::before {
+  left: clamp(1.65rem, 4vw, 2.7rem) !important;
+  right: clamp(1.65rem, 4vw, 2.7rem) !important;
+  top: clamp(1.15rem, 2.4vw, 1.55rem) !important;
+  height: 2px !important;
+  background: var(--red) !important;
+}
+.contact__benefit-x {
+  position: absolute;
+  top: .85rem;
+  right: .85rem;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0,0,0,.14);
+  border-radius: 999px;
+  background: #fff;
+  color: #050505;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.contact__benefit-eyebrow {
+  color: var(--red) !important;
+  font-size: .72rem !important;
+  font-weight: 950 !important;
+  letter-spacing: .22em !important;
+  text-transform: uppercase !important;
+}
+.contact__benefit-dialog h3 {
+  max-width: 12ch !important;
+  margin: .12rem 0 .05rem !important;
+  color: #050505 !important;
+  font-size: clamp(2.25rem, 6vw, 4.65rem) !important;
+  line-height: .92 !important;
+  letter-spacing: -.075em !important;
+}
+.contact__benefit-dialog p {
+  max-width: 54ch !important;
+  color: rgba(0,0,0,.76) !important;
+  font-size: clamp(1rem, 1.6vw, 1.08rem) !important;
+}
+.contact__benefit-code {
+  justify-self: start !important;
+  margin-top: .15rem !important;
+  padding: .7rem .95rem !important;
+  border: 1px solid rgba(227,31,38,.36) !important;
+  border-radius: 999px !important;
+  background: #f7f7f7 !important;
+  color: #050505 !important;
+  font-size: .84rem !important;
+  font-weight: 950 !important;
+  letter-spacing: .16em !important;
+}
+.contact__benefit-dialog small {
+  color: rgba(0,0,0,.62) !important;
+  font-size: .82rem !important;
+}
+.contact__benefit-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: .72rem !important;
+  margin-top: .45rem !important;
+}
+.contact__benefit-actions .button {
+  min-height: 46px !important;
+  white-space: normal !important;
+}
+.contact__benefit-copy,
+.contact__benefit-close {
+  background: transparent !important;
+  color: #050505 !important;
+  border: 1px solid rgba(0,0,0,.18) !important;
+  box-shadow: none !important;
+}
+.contact__benefit-x:focus-visible,
+.contact__benefit-copy:focus-visible,
+.contact__benefit-close:focus-visible,
+.contact__benefit-whatsapp:focus-visible {
+  outline: 2px solid var(--red) !important;
+  outline-offset: 3px !important;
+}
+@media (max-width: 560px) {
+  .contact__benefit-modal {
+    padding: 16px !important;
+  }
+  .contact__benefit-dialog {
+    width: calc(100vw - 32px) !important;
+    max-height: calc(100vh - 32px) !important;
+    max-height: calc(100svh - 32px) !important;
+    padding: 1.45rem !important;
+    padding-top: 2.4rem !important;
+    border-radius: 24px !important;
+  }
+  .contact__benefit-dialog::before {
+    left: 1.45rem !important;
+    right: 1.45rem !important;
+  }
+  .contact__benefit-dialog h3 {
+    max-width: 11ch !important;
+    font-size: clamp(2.05rem, 14vw, 3.25rem) !important;
+  }
+  .contact__benefit-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+  .contact__benefit-actions .button {
+    width: 100% !important;
+  }
+}
