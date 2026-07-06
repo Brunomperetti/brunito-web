@@ -55,16 +55,32 @@ const contactLightScenes = document.querySelectorAll('[data-contact-light]');
 if (contactLightScenes.length) {
   contactLightScenes.forEach((scene) => {
     const toggle = scene.querySelector('[data-contact-light-toggle]');
+    const gift = scene.querySelector('[data-contact-gift]');
 
     const setContactLight = (isLit) => {
       scene.classList.toggle('is-lit', isLit);
       toggle?.setAttribute('aria-pressed', String(isLit));
+
+      if (!isLit) {
+        scene.classList.remove('is-voucher-open');
+        gift?.setAttribute('aria-expanded', 'false');
+      }
     };
 
     setContactLight(false);
 
     toggle?.addEventListener('click', () => {
       setContactLight(!scene.classList.contains('is-lit'));
+    });
+
+    gift?.addEventListener('click', () => {
+      if (!scene.classList.contains('is-lit')) {
+        setContactLight(true);
+      }
+
+      const isOpen = !scene.classList.contains('is-voucher-open');
+      scene.classList.toggle('is-voucher-open', isOpen);
+      gift.setAttribute('aria-expanded', String(isOpen));
     });
   });
 }
