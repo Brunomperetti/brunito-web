@@ -4059,3 +4059,172 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
   .contact__benefit-card,
   .contact__benefit-card::before { transition-duration: 1ms !important; }
 }
+
+/* Contact premium envelope voucher reveal */
+.contact__reveal-envelope {
+  position: absolute;
+  left: 48%;
+  top: clamp(9.2rem, 13vw, 11.6rem);
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  width: min(84%, 380px);
+  min-height: 228px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+  opacity: .16;
+  filter: saturate(.55) brightness(.42);
+  transform: translate3d(-50%, 10px, 0);
+  transition: opacity 520ms ease, filter 520ms ease, transform 620ms cubic-bezier(.22,1,.36,1);
+}
+.contact__reveal-envelope:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 8px;
+  border-radius: 24px;
+}
+.contact__envelope-shell {
+  position: absolute;
+  inset: auto 7% 0;
+  height: 154px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 22px;
+  background: linear-gradient(145deg, #080808, #141414 58%, #0B0B0B);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 22px 46px rgba(0,0,0,.35);
+  overflow: hidden;
+  transition: border-color 520ms ease, box-shadow 520ms ease, transform 520ms ease;
+}
+.contact__envelope-flap,
+.contact__envelope-front,
+.contact__envelope-seal { position: absolute; pointer-events: none; }
+.contact__envelope-flap {
+  inset: 0 0 auto;
+  height: 88px;
+  background: linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.012));
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: 50% 0;
+  transition: transform 520ms cubic-bezier(.22,1,.36,1), opacity 360ms ease;
+}
+.contact__envelope-front {
+  inset: auto 0 0;
+  height: 92px;
+  background:
+    linear-gradient(32deg, transparent 49.4%, rgba(255,255,255,.09) 50%, transparent 50.6%),
+    linear-gradient(-32deg, transparent 49.4%, rgba(255,255,255,.09) 50%, transparent 50.6%),
+    linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.05));
+}
+.contact__envelope-seal {
+  left: 50%;
+  top: 73px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 8px rgba(198,30,30,.10);
+  transform: translateX(-50%);
+}
+.contact__voucher {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: .62rem;
+  width: min(100%, 340px);
+  padding: clamp(1rem, 1.85vw, 1.28rem);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(18,18,18,.98), rgba(6,6,6,.98));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 20px 42px rgba(0,0,0,.38);
+  text-align: left;
+  opacity: 0;
+  transform: translate3d(0, 34px, 0) scale(.965);
+  transition: opacity 430ms ease, transform 560ms cubic-bezier(.22,1,.36,1), border-color 430ms ease;
+}
+.contact__voucher::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  top: .8rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--red);
+}
+.contact__voucher strong {
+  margin-top: .32rem;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(1.42rem, 2vw, 1.82rem);
+  line-height: .98;
+  letter-spacing: -.055em;
+}
+.contact__voucher span:not(.contact__benefit-eyebrow):not(.contact__voucher-code) {
+  color: rgba(255,255,255,.76);
+  font-size: .93rem;
+  line-height: 1.42;
+}
+.contact__voucher-code {
+  justify-self: start;
+  padding: .48rem .66rem .44rem;
+  border: 1px solid rgba(198,30,30,.58);
+  border-radius: 999px;
+  background: rgba(198,30,30,.14);
+  color: var(--white);
+  font-size: .74rem;
+  font-weight: 950;
+  letter-spacing: .14em;
+}
+.contact__voucher small {
+  color: rgba(255,255,255,.58);
+  font-size: .72rem;
+  font-weight: 800;
+}
+.contact__content.is-lit .contact__reveal-envelope {
+  opacity: 1;
+  filter: saturate(1) brightness(1);
+  transform: translate3d(-50%, 0, 0);
+}
+.contact__content.is-lit .contact__envelope-shell {
+  border-color: rgba(255,255,255,.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 26px 58px rgba(0,0,0,.42), 0 0 36px rgba(255,255,255,.06);
+}
+.contact__content.is-voucher-open .contact__envelope-shell { transform: translateY(28px) scale(.98); }
+.contact__content.is-voucher-open .contact__envelope-flap { transform: rotateX(72deg); opacity: .55; }
+.contact__content.is-voucher-open .contact__envelope-seal { opacity: .32; }
+.contact__content.is-voucher-open .contact__voucher {
+  opacity: 1;
+  transform: translate3d(0, -22px, 0) scale(1);
+  border-color: rgba(255,255,255,.22);
+}
+.contact__content.is-voucher-open .contact__light-pool { opacity: .26 !important; }
+
+@media (max-width: 860px) {
+  .contact__reveal-envelope {
+    left: auto;
+    right: clamp(1.15rem, 15vw, 6.2rem);
+    top: auto;
+    bottom: 5.95rem;
+    width: min(78vw, 350px);
+    transform: translate3d(0, 10px, 0);
+  }
+  .contact__content.is-lit .contact__reveal-envelope { transform: translate3d(0, 0, 0); }
+}
+@media (max-width: 560px) {
+  .contact__content { padding-bottom: 21.5rem !important; min-height: 660px !important; }
+  .contact__reveal-envelope {
+    left: 1.15rem;
+    right: 1.15rem;
+    bottom: 5.85rem;
+    width: auto;
+    min-height: 244px;
+  }
+  .contact__envelope-shell { inset-inline: 4%; }
+  .contact__voucher { width: min(100%, 318px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact__reveal-envelope,
+  .contact__envelope-shell,
+  .contact__envelope-flap,
+  .contact__voucher { transition-duration: 1ms !important; }
+}
