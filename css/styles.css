@@ -4929,3 +4929,8 @@ body.is-contact-modal-open {
     width: 100% !important;
   }
 }
+
+/* Contact: keep only the outer canvas white while preserving the dark internal card. */
+.contact {
+  background: var(--white) !important;
+}
