@@ -347,28 +347,32 @@
             <span class="contact__light-pool"></span>
           </div>
           <div class="contact__gift-stage">
-            <button class="contact__gift" type="button" aria-expanded="false" aria-controls="contact-voucher" aria-label="Abrir voucher de diagnóstico sin cargo" data-contact-gift>
-              <svg class="contact__gift-icon" viewBox="0 0 220 220" role="img" aria-labelledby="contact-gift-title">
-                <title id="contact-gift-title">Regalo minimalista con voucher</title>
+            <button class="contact__gift" type="button" aria-expanded="false" aria-controls="contact-voucher" aria-label="Revelar beneficio de diagnóstico sin cargo" data-contact-gift>
+              <svg class="contact__gift-icon" viewBox="0 0 160 160" role="img" aria-labelledby="contact-gift-title">
+                <title id="contact-gift-title">Regalo minimalista</title>
                 <g class="contact__gift-lid">
-                  <path class="contact__gift-bow" d="M110 58c-15-24-48-20-48 4 0 17 29 18 48 4 19 14 48 13 48-4 0-24-33-28-48-4Z" />
-                  <path class="contact__gift-knot" d="M96 58h28v24H96z" />
-                  <path class="contact__gift-top" d="M48 82h124v34H48z" />
+                  <path class="contact__gift-bow contact__gift-bow--left" d="M79 48c-11-13-27-17-34-8-7 9 4 20 34 8Z" />
+                  <path class="contact__gift-bow contact__gift-bow--right" d="M81 48c11-13 27-17 34-8 7 9-4 20-34 8Z" />
+                  <path class="contact__gift-knot" d="M72 43h16v14H72z" />
+                  <path class="contact__gift-top" d="M44 57h72v22H44z" />
                 </g>
-                <path class="contact__gift-box" d="M58 116h104v72H58z" />
-                <path class="contact__gift-ribbon contact__gift-ribbon--vertical" d="M98 82h24v106H98z" />
-                <path class="contact__gift-ribbon contact__gift-ribbon--horizontal" d="M58 136h104v18H58z" />
-                <circle class="contact__gift-accent" cx="110" cy="145" r="5" />
+                <path class="contact__gift-box" d="M52 79h56v50H52z" />
+                <path class="contact__gift-ribbon contact__gift-ribbon--vertical" d="M73 57h14v72H73z" />
+                <path class="contact__gift-ribbon contact__gift-ribbon--horizontal" d="M52 96h56v11H52z" />
+                <path class="contact__gift-accent" d="M78 41h4v88h-4z" />
               </svg>
-              <span class="contact__gift-hint">Abrir beneficio</span>
             </button>
-            <div class="contact__voucher" id="contact-voucher" aria-live="polite">
+            <div class="contact__voucher" id="contact-voucher" role="dialog" aria-modal="false" aria-labelledby="contact-voucher-title" aria-live="polite">
+              <button class="contact__voucher-close" type="button" aria-label="Cerrar beneficio" data-contact-voucher-close>×</button>
               <span class="contact__benefit-eyebrow">BENEFICIO DESBLOQUEADO</span>
-              <strong>Diagnóstico de marca sin cargo</strong>
-              <span>Revisamos tu comunicación, campañas, web o datos y definimos el próximo paso.</span>
+              <strong id="contact-voucher-title">Diagnóstico de marca sin cargo</strong>
               <span class="contact__voucher-code">BRUNITO-DIAG</span>
+              <span>Revisamos tu comunicación, campañas, web o datos y definimos el próximo paso.</span>
               <small>Presentá este código al escribir.</small>
-              <a class="button button--light contact__voucher-cta" href="https://wa.me/?text=Hola%20brunito%2C%20quiero%20usar%20el%20c%C3%B3digo%20BRUNITO-DIAG%20para%20solicitar%20el%20diagn%C3%B3stico%20de%20marca%20sin%20cargo." target="_blank" rel="noopener" data-contact-cta>Escribir por WhatsApp</a>
+              <div class="contact__voucher-actions">
+                <a class="button button--light contact__voucher-cta" href="https://wa.me/?text=Hola%20brunito%2C%20quiero%20usar%20el%20c%C3%B3digo%20BRUNITO-DIAG%20para%20solicitar%20el%20diagn%C3%B3stico%20de%20marca%20sin%20cargo." target="_blank" rel="noopener" data-contact-cta>Escribir por WhatsApp</a>
+                <button class="button contact__voucher-copy" type="button" data-contact-copy="BRUNITO-DIAG">Copiar código</button>
+              </div>
             </div>
           </div>
         </div>
