@@ -4685,3 +4685,95 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
   .contact__voucher-trigger,
   .contact__benefit-modal { transition-duration: 1ms !important; }
 }
+
+/* Contact final correction: real premium gift revealed only by the lamp */
+.contact__voucher-stage {
+  position: absolute !important;
+  left: 50% !important;
+  top: clamp(8.7rem, 12.4vw, 11.4rem) !important;
+  z-index: 3 !important;
+  width: min(58vw, 300px) !important;
+  min-height: 250px !important;
+  transform: translateX(-50%) !important;
+  display: grid !important;
+  place-items: start center !important;
+  pointer-events: none !important;
+}
+.contact__voucher-trigger {
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  width: clamp(160px, 17vw, 220px) !important;
+  min-height: clamp(150px, 16vw, 205px) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 28px !important;
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  opacity: .055 !important;
+  filter: brightness(.16) contrast(1.1) grayscale(1) blur(.15px) !important;
+  cursor: pointer !important;
+  transform: translateY(10px) scale(.98) !important;
+  transition: opacity 420ms ease, filter 420ms ease, transform 520ms cubic-bezier(.22,1,.36,1) !important;
+  pointer-events: none !important;
+}
+.contact__voucher-trigger::before,
+.contact__scene-eyebrow,
+.contact__voucher-trigger strong,
+.contact__scene-code,
+.contact__voucher-trigger small { display: none !important; }
+.contact__gift-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+.contact__content.is-lit .contact__voucher-trigger {
+  opacity: 1 !important;
+  filter: brightness(1.08) contrast(1.04) grayscale(0) drop-shadow(0 20px 28px rgba(0,0,0,.38)) drop-shadow(0 0 18px rgba(255,255,255,.18)) !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: auto !important;
+}
+.contact__voucher-trigger:hover,
+.contact__voucher-trigger:focus-visible {
+  outline: 2px solid var(--red) !important;
+  outline-offset: 8px !important;
+  filter: brightness(1.12) contrast(1.04) grayscale(0) drop-shadow(0 22px 30px rgba(0,0,0,.42)) drop-shadow(0 0 22px rgba(255,255,255,.2)) !important;
+}
+.contact__content.is-lit .contact__light-cone {
+  opacity: .62 !important;
+  width: min(28vw, 320px) !important;
+  filter: blur(10px) !important;
+  clip-path: polygon(49% 0, 51% 0, 76% 100%, 24% 100%) !important;
+}
+.contact__content.is-lit .contact__light-pool {
+  opacity: .18 !important;
+  width: min(29vw, 320px) !important;
+}
+.contact__benefit-modal { position: fixed !important; }
+.contact__benefit-dialog { color: #050505 !important; background: #fff !important; }
+.contact__benefit-eyebrow { color: var(--red) !important; }
+.contact__benefit-dialog h3 { color: #050505 !important; }
+.contact__benefit-dialog p { color: rgba(0,0,0,.76) !important; }
+.contact__benefit-code { color: #050505 !important; border-color: rgba(227,31,38,.35) !important; background: linear-gradient(135deg, #fff, #f4f4f4) !important; }
+.contact__benefit-dialog small { color: rgba(0,0,0,.62) !important; }
+@media (max-width: 860px) {
+  .contact__voucher-stage { left: auto !important; right: clamp(1.4rem, 13vw, 5.6rem) !important; top: 8.8rem !important; width: min(52vw, 285px) !important; transform: none !important; }
+  .contact__voucher-trigger { width: clamp(150px, 28vw, 200px) !important; }
+  .contact__content.is-lit .contact__light-cone { width: min(44vw, 310px) !important; }
+}
+@media (max-width: 560px) {
+  .contact__content { padding-bottom: 16.8rem !important; min-height: 610px !important; }
+  .contact__voucher-stage { left: 50% !important; right: auto !important; top: auto !important; bottom: 3.7rem !important; width: min(78vw, 280px) !important; min-height: 190px !important; transform: translateX(-50%) !important; }
+  .contact__voucher-trigger { width: clamp(155px, 48vw, 190px) !important; min-height: 150px !important; }
+  .contact__content.is-lit .contact__light-cone { width: 62vw !important; }
+  .contact__benefit-dialog { max-height: calc(100svh - 2rem); overflow: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact__voucher-trigger,
+  .contact__gift-image { transition-duration: 1ms !important; animation: none !important; }
+}
