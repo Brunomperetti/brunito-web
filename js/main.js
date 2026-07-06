@@ -117,6 +117,27 @@ if (contactLightScenes.length) {
       }
     });
 
+    modal?.addEventListener('keydown', (event) => {
+      if (event.key !== 'Tab') return;
+
+      const focusableElements = Array.from(modal.querySelectorAll(focusableModalSelector))
+        .filter((element) => element instanceof HTMLElement && !element.hasAttribute('disabled'));
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements.at(-1);
+
+      if (!firstElement || !lastElement) return;
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      }
+
+      if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    });
+
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && scene.classList.contains('is-voucher-open')) {
         setModalOpen(false);
