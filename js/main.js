@@ -540,3 +540,118 @@ if (aboutTarget && prizeModal) {
     }
   });
 }
+
+const trajectoryItems = [
+  { name: 'Betos San Carlos', category: 'Gastronomía local', work: 'Campañas Google Ads orientadas a llamadas, búsquedas locales y visibilidad en Google Maps.', services: 'Google Ads · Optimización local · Seguimiento de términos de búsqueda', closing: 'Estrategia aplicada a un objetivo concreto: generar más contacto local.' },
+  { name: 'Pizza R', category: 'Gastronomía local', work: 'Campañas hiperlocales para llamadas, pedidos y presencia en Google Maps.', services: 'Google Ads · Estrategia local · Optimización de campañas', closing: 'Performance local pensada para convertir búsquedas cercanas en pedidos reales.' },
+  { name: 'Rostock Autopartes', category: 'Autopartes B2B', work: 'Campañas para distribuidores y casas de repuestos, con enfoque en generación de prospectos comerciales.', services: 'Meta Ads · Google Ads · Estrategia B2B', closing: 'Pauta y segmentación con lectura comercial para conversaciones de valor.' },
+  { name: 'Millex', category: 'Mayorista de productos para mascotas', work: 'Comunicación comercial, segmentación, catálogo, automatizaciones y soporte a acciones B2B.', services: 'Estrategia · Datos · Automatización · Catálogo digital', closing: 'Orden digital para acompañar ventas mayoristas con más precisión.' },
+  { name: 'Newrban', category: 'Tecnología / notebooks', work: 'Campañas digitales para productos tecnológicos y acciones comerciales.', services: 'Meta Ads · Performance · Comunicación promocional', closing: 'Comunicación directa para mover productos tecnológicos en momentos comerciales.' },
+  { name: 'Kiki', category: 'Listas de precios / gestión comercial', work: 'Herramientas internas para gestión de precios, listas mayoristas/minoristas y exportaciones.', services: 'Desarrollo digital · Automatización · Datos', closing: 'Soluciones internas para reducir fricción operativa y ordenar información crítica.' },
+  { name: 'Vicapa Campus', category: 'Educación digital', work: 'Desarrollo de campus virtual con roles, cursos, clases, alumnos y gestión administrativa.', services: 'Desarrollo web · Plataforma · UX · Backend', closing: 'Producto educativo estructurado para administrar contenidos, usuarios y operación.' },
+  { name: 'Vocacion360', category: 'Educación / orientación vocacional', work: 'Test vocacional online con resultados personalizados, dashboard admin y generación de informes.', services: 'Desarrollo web · Datos · Producto digital', closing: 'Una herramienta digital con lógica de datos para entregar resultados personalizados.' },
+  { name: 'Hoyo 5', category: 'Inmobiliario / loteo', work: 'Estrategia de campaña, segmentación y anuncios orientados a consultas por WhatsApp.', services: 'Meta Ads · Estrategia · Pauta', closing: 'Campañas enfocadas en iniciar conversaciones calificadas sobre una oportunidad concreta.' },
+  { name: 'Eco Coaching', category: 'Formación / desarrollo personal', work: 'Estrategia de comunicación, segmentación y guiones para campaña.', services: 'Estrategia · Comunicación · Contenido', closing: 'Mensajes y segmentación alineados para presentar una propuesta formativa con claridad.' },
+  { name: 'Azul Import', category: 'Importación / accesorios para autos', work: 'Campañas Meta Ads para alfombras 3D orientadas a ventas por WhatsApp.', services: 'Meta Ads · Ecommerce social · Estrategia comercial', closing: 'Ecommerce social orientado a contacto directo y cierre por conversación.' },
+  { name: 'MarcaData / brunito', category: 'Estudio digital propio', work: 'Sistema de posicionamiento, comunicación, web, automatizaciones y soluciones digitales.', services: 'Branding · Estrategia · Desarrollo · Datos', closing: 'La misma mirada integral aplicada al posicionamiento y la operación del estudio.' },
+];
+
+const trajectoryWheel = document.querySelector('[data-trajectory-wheel]');
+const trajectorySpin = document.querySelector('[data-trajectory-spin]');
+const trajectoryCard = document.querySelector('[data-trajectory-card]');
+
+if (trajectoryWheel && trajectorySpin && trajectoryCard) {
+  const fields = {
+    name: trajectoryCard.querySelector('[data-trajectory-name]'),
+    category: trajectoryCard.querySelector('[data-trajectory-category]'),
+    work: trajectoryCard.querySelector('[data-trajectory-work]'),
+    services: trajectoryCard.querySelector('[data-trajectory-services]'),
+    closing: trajectoryCard.querySelector('[data-trajectory-closing]'),
+  };
+  const segmentAngle = 360 / trajectoryItems.length;
+  let selectedIndex = -1;
+  let currentRotation = 0;
+  let isSpinning = false;
+
+  const polarPoint = (radius, angle) => {
+    const radians = (angle - 90) * Math.PI / 180;
+    return [200 + radius * Math.cos(radians), 200 + radius * Math.sin(radians)];
+  };
+
+  const segmentPath = (startAngle, endAngle) => {
+    const [x1, y1] = polarPoint(186, startAngle);
+    const [x2, y2] = polarPoint(186, endAngle);
+    const [x3, y3] = polarPoint(74, endAngle);
+    const [x4, y4] = polarPoint(74, startAngle);
+    return `M ${x1} ${y1} A 186 186 0 0 1 ${x2} ${y2} L ${x3} ${y3} A 74 74 0 0 0 ${x4} ${y4} Z`;
+  };
+
+  const drawTrajectoryWheel = () => {
+    const segments = trajectoryItems.map((item, index) => {
+      const start = index * segmentAngle;
+      const end = start + segmentAngle;
+      const middle = start + segmentAngle / 2;
+      const [textX, textY] = polarPoint(132, middle);
+      const [lineX1, lineY1] = polarPoint(190, start);
+      const [lineX2, lineY2] = polarPoint(68, start);
+      const lightSegment = index % 4 === 2;
+      const segmentClass = lightSegment ? 'trajectory-segment--light' : (index % 2 ? 'trajectory-segment--mid' : 'trajectory-segment--dark');
+      const labelClass = lightSegment ? 'trajectory-label--light' : 'trajectory-label--dark';
+      const labelRotation = middle > 90 && middle < 270 ? middle + 180 : middle;
+
+      return `<path class="trajectory-segment ${segmentClass}" d="${segmentPath(start, end)}" />
+        <line class="trajectory-dial-line" x1="${lineX1}" y1="${lineY1}" x2="${lineX2}" y2="${lineY2}" />
+        <text class="trajectory-label ${labelClass}" x="${textX}" y="${textY}" text-anchor="middle" transform="rotate(${labelRotation} ${textX} ${textY})">${item.name}</text>`;
+    }).join('');
+
+    trajectoryWheel.innerHTML = `<svg viewBox="0 0 400 400" role="img" aria-label="Rueda de trayectoria con clientes y proyectos" focusable="false">
+      <circle class="trajectory-outer-ring" cx="200" cy="200" r="190" />
+      ${segments}
+      <circle class="trajectory-inner-ring" cx="200" cy="200" r="74" />
+    </svg>`;
+  };
+
+  const updateTrajectoryCard = (item) => {
+    fields.name.textContent = item.name;
+    fields.category.textContent = item.category;
+    fields.work.textContent = item.work;
+    fields.services.textContent = item.services;
+    fields.closing.textContent = item.closing;
+    trajectoryCard.classList.remove('is-updating');
+    void trajectoryCard.offsetWidth;
+    trajectoryCard.classList.add('is-updating');
+  };
+
+  const getNextIndex = () => {
+    if (trajectoryItems.length < 2) return 0;
+    let nextIndex = selectedIndex;
+    while (nextIndex === selectedIndex) {
+      nextIndex = Math.floor(Math.random() * trajectoryItems.length);
+    }
+    return nextIndex;
+  };
+
+  const spinTrajectory = () => {
+    if (isSpinning) return;
+    isSpinning = true;
+    trajectorySpin.disabled = true;
+    trajectorySpin.textContent = 'Girando...';
+
+    const nextIndex = getNextIndex();
+    const targetMiddle = nextIndex * segmentAngle + segmentAngle / 2;
+    const baseTurns = reduceMotion ? 0 : 4;
+    currentRotation += (baseTurns * 360) + (360 - ((currentRotation + targetMiddle) % 360));
+    trajectoryWheel.style.setProperty('--trajectory-rotation', `${currentRotation}deg`);
+
+    window.setTimeout(() => {
+      selectedIndex = nextIndex;
+      updateTrajectoryCard(trajectoryItems[selectedIndex]);
+      trajectorySpin.disabled = false;
+      trajectorySpin.textContent = 'Ver otro trabajo';
+      isSpinning = false;
+    }, reduceMotion ? 80 : 2450);
+  };
+
+  drawTrajectoryWheel();
+  trajectorySpin.addEventListener('click', spinTrajectory);
+}
