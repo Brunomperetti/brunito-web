@@ -346,34 +346,13 @@
             <span class="contact__light-cone contact-light"></span>
             <span class="contact__light-pool"></span>
           </div>
-          <div class="contact__gift-stage">
-            <button class="contact__gift" type="button" aria-expanded="false" aria-controls="contact-voucher" aria-label="Revelar beneficio de diagnóstico sin cargo" data-contact-gift>
-              <svg class="contact__gift-icon" viewBox="0 0 160 160" role="img" aria-labelledby="contact-gift-title">
-                <title id="contact-gift-title">Regalo minimalista</title>
-                <g class="contact__gift-lid">
-                  <path class="contact__gift-bow contact__gift-bow--left" d="M79 48c-11-13-27-17-34-8-7 9 4 20 34 8Z" />
-                  <path class="contact__gift-bow contact__gift-bow--right" d="M81 48c11-13 27-17 34-8 7 9-4 20-34 8Z" />
-                  <path class="contact__gift-knot" d="M72 43h16v14H72z" />
-                  <path class="contact__gift-top" d="M44 57h72v22H44z" />
-                </g>
-                <path class="contact__gift-box" d="M52 79h56v50H52z" />
-                <path class="contact__gift-ribbon contact__gift-ribbon--vertical" d="M73 57h14v72H73z" />
-                <path class="contact__gift-ribbon contact__gift-ribbon--horizontal" d="M52 96h56v11H52z" />
-                <path class="contact__gift-accent" d="M78 41h4v88h-4z" />
-              </svg>
+          <div class="contact__voucher-stage">
+            <button class="contact__voucher-trigger" type="button" aria-haspopup="dialog" aria-controls="contact-benefit-modal" aria-label="Desbloquear diagnóstico de marca sin cargo" data-contact-voucher-trigger>
+              <span class="contact__scene-eyebrow">BENEFICIO OCULTO</span>
+              <strong>Diagnóstico de marca</strong>
+              <span class="contact__scene-code">BRUNITO-DIAG</span>
+              <small>Click para desbloquear</small>
             </button>
-            <div class="contact__voucher" id="contact-voucher" role="dialog" aria-modal="false" aria-labelledby="contact-voucher-title" aria-live="polite">
-              <button class="contact__voucher-close" type="button" aria-label="Cerrar beneficio" data-contact-voucher-close>×</button>
-              <span class="contact__benefit-eyebrow">BENEFICIO DESBLOQUEADO</span>
-              <strong id="contact-voucher-title">Diagnóstico de marca sin cargo</strong>
-              <span class="contact__voucher-code">BRUNITO-DIAG</span>
-              <span>Revisamos tu comunicación, campañas, web o datos y definimos el próximo paso.</span>
-              <small>Presentá este código al escribir.</small>
-              <div class="contact__voucher-actions">
-                <a class="button button--light contact__voucher-cta" href="https://wa.me/?text=Hola%20brunito%2C%20quiero%20usar%20el%20c%C3%B3digo%20BRUNITO-DIAG%20para%20solicitar%20el%20diagn%C3%B3stico%20de%20marca%20sin%20cargo." target="_blank" rel="noopener" data-contact-cta>Escribir por WhatsApp</a>
-                <button class="button contact__voucher-copy" type="button" data-contact-copy="BRUNITO-DIAG">Copiar código</button>
-              </div>
-            </div>
           </div>
         </div>
         <button class="contact__lamp-switch" type="button" aria-pressed="false" data-contact-light-toggle>
@@ -384,6 +363,20 @@
           <p class="eyebrow">Contacto</p>
           <h2>Ordenemos lo digital. Vendamos mejor.</h2>
           <p>Encendamos claridad sobre el próximo paso: estrategia, ejecución y medición en una conversación simple.</p>
+        </div>
+        <div class="contact__benefit-modal" id="contact-benefit-modal" role="dialog" aria-modal="true" aria-labelledby="contact-benefit-title" aria-describedby="contact-benefit-description" hidden data-contact-benefit-modal>
+          <div class="contact__benefit-dialog" role="document">
+            <span class="contact__benefit-eyebrow">BENEFICIO DESBLOQUEADO</span>
+            <h3 id="contact-benefit-title">Diagnóstico de marca sin cargo</h3>
+            <p id="contact-benefit-description">Revisamos tu comunicación, campañas, web o datos y definimos el próximo paso.</p>
+            <div class="contact__benefit-code" aria-label="Código BRUNITO-DIAG">BRUNITO-DIAG</div>
+            <small>Presentá este código al escribir.</small>
+            <div class="contact__benefit-actions">
+              <button class="button contact__benefit-copy" type="button" data-contact-copy="BRUNITO-DIAG">Copiar código</button>
+              <a class="button button--primary contact__benefit-whatsapp" href="https://wa.me/?text=Hola%20brunito%2C%20quiero%20usar%20el%20c%C3%B3digo%20BRUNITO-DIAG%20para%20solicitar%20el%20diagn%C3%B3stico%20de%20marca%20sin%20cargo." target="_blank" rel="noopener" data-contact-cta>Escribir por WhatsApp</a>
+              <button class="button contact__benefit-close" type="button" data-contact-benefit-close>Cerrar</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
