@@ -256,6 +256,7 @@ if (servicesDeck) {
     servicesRevealed = true;
     trigger.textContent = 'Capacidades reveladas';
     trigger.setAttribute('aria-label', 'Capacidades reveladas');
+    trigger.setAttribute('aria-expanded', 'true');
     cards.forEach((card) => card.setAttribute('aria-pressed', 'true'));
 
     if (reduceMotion) {
