@@ -4007,9 +4007,11 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
 .trajectory-segment--dark { fill: #080808; }
 .trajectory-segment--mid { fill: #171717; }
 .trajectory-segment--light { fill: #f4f4f4; }
-.trajectory-label { font-size: 8.7px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; dominant-baseline: middle; pointer-events: none; }
-.trajectory-label--light { fill: var(--black); }
-.trajectory-label--dark { fill: var(--white); }
+.trajectory-label-object { pointer-events: none; overflow: visible; }
+.trajectory-label { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; font-size: 8.2px; font-weight: 950; line-height: 1.02; letter-spacing: .075em; text-align: center; text-transform: uppercase; }
+.trajectory-label span { display: block; white-space: nowrap; }
+.trajectory-label--light { color: var(--black); }
+.trajectory-label--dark { color: var(--white); text-shadow: 0 1px 2px rgba(0,0,0,.45); }
 .trajectory-dial-line { stroke: rgba(255,255,255,.32); stroke-width: .55; }
 .trajectory-outer-ring, .trajectory-inner-ring { fill: none; stroke: rgba(255,255,255,.62); stroke-width: .8; }
 .trajectory-inner-ring { stroke: rgba(179,38,30,.78); stroke-width: 1; }
@@ -4028,12 +4030,12 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
 .trajectory-card__eyebrow, .trajectory-card__meta span, .trajectory-card__block span { margin: 0; color: var(--red); font-size: .68rem; font-weight: 950; letter-spacing: .18em; text-transform: uppercase; }
 .trajectory-card h3 { margin: 1.3rem 0 1.35rem; color: var(--black); font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: .9; letter-spacing: -.075em; text-wrap: balance; }
 .trajectory-card__meta, .trajectory-card__block { padding-top: 1.15rem; border-top: 1px solid rgba(0,0,0,.12); }
-.trajectory-card__meta strong { display: block; margin-top: .45rem; font-size: 1.05rem; letter-spacing: -.02em; }
-.trajectory-card__block p { margin: .5rem 0 0; color: rgba(0,0,0,.72); font-size: clamp(1rem, 1.35vw, 1.12rem); line-height: 1.58; }
+.trajectory-card__meta strong { display: block; margin-top: .45rem; color: var(--black); font-size: 1.05rem; letter-spacing: -.02em; }
+.trajectory-card__block p { margin: .5rem 0 0; color: rgba(0,0,0,.8); font-size: clamp(1rem, 1.35vw, 1.12rem); line-height: 1.58; }
 .trajectory-card__closing { margin: 1.35rem 0 0; padding-left: 1rem; border-left: 2px solid var(--red); color: var(--black); font-weight: 850; line-height: 1.45; }
 
 @keyframes trajectory-card-pulse { 0% { opacity: .55; transform: translateY(6px); } 100% { opacity: 1; transform: translateY(0); } }
 
 @media (prefers-reduced-motion: reduce) { .trajectory-wheel { transition-duration: 1ms; } .trajectory-card.is-updating { animation: none; } }
 @media (max-width: 920px) { .trajectory-layout { grid-template-columns: 1fr; } .trajectory-card { min-height: auto; } }
-@media (max-width: 560px) { .trajectory-section { padding-block: 3.8rem; } .trajectory-heading h2 { font-size: clamp(2.35rem, 12vw, 3.35rem); } .trajectory-wheel-wrap { width: min(100%, 340px); } .trajectory-label { font-size: 7.7px; } .trajectory-pointer { height: 38px; } .trajectory-card { padding: 1.55rem; } .trajectory-card h3 { font-size: clamp(2rem, 11vw, 2.85rem); } }
+@media (max-width: 560px) { .trajectory-section { padding-block: 3.8rem; } .trajectory-heading h2 { font-size: clamp(2.35rem, 12vw, 3.35rem); } .trajectory-wheel-wrap { width: min(100%, 340px); } .trajectory-label { font-size: 7.15px; letter-spacing: .055em; } .trajectory-pointer { height: 38px; } .trajectory-card { padding: 1.55rem; } .trajectory-card h3 { font-size: clamp(2rem, 11vw, 2.85rem); } }
