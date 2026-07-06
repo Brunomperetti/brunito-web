@@ -4505,3 +4505,183 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
   .contact__gift-icon *,
   .contact__gift-stage .contact__voucher { transition-duration: 1ms !important; }
 }
+
+/* Contact final: premium voucher revealed by light */
+.contact__voucher-stage {
+  position: absolute;
+  left: 50%;
+  top: clamp(9.4rem, 13vw, 12rem);
+  z-index: 3;
+  width: min(72%, 330px);
+  min-height: 210px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.contact__voucher-trigger {
+  position: relative;
+  display: grid;
+  gap: .48rem;
+  width: min(100%, 286px);
+  margin-inline: auto;
+  padding: 1.05rem 1.1rem 1rem;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  background: #050505;
+  color: rgba(255,255,255,.2);
+  text-align: left;
+  box-shadow: 0 24px 52px rgba(0,0,0,.25);
+  opacity: .075;
+  cursor: pointer;
+  transform: translateY(12px) scale(.98);
+  transition: opacity 360ms ease, border-color 360ms ease, color 360ms ease, transform 420ms cubic-bezier(.22,1,.36,1), box-shadow 360ms ease;
+  pointer-events: none;
+}
+.contact__voucher-trigger::before {
+  content: "";
+  position: absolute;
+  left: 1.1rem;
+  right: 1.1rem;
+  top: .72rem;
+  height: 1px;
+  background: var(--red);
+  opacity: .18;
+}
+.contact__scene-eyebrow {
+  margin-top: .2rem;
+  color: var(--red);
+  font-size: .62rem;
+  font-weight: 900;
+  letter-spacing: .18em;
+}
+.contact__voucher-trigger strong {
+  color: inherit;
+  font-family: var(--font-display);
+  font-size: clamp(1.12rem, 1.7vw, 1.36rem);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+.contact__scene-code {
+  justify-self: start;
+  padding: .36rem .52rem;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  color: inherit;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+.contact__voucher-trigger small {
+  color: inherit;
+  font-size: .74rem;
+}
+.contact__content.is-lit .contact__voucher-trigger {
+  opacity: 1;
+  color: rgba(255,255,255,.92);
+  border-color: rgba(255,255,255,.28);
+  background: #080808;
+  box-shadow: 0 24px 56px rgba(0,0,0,.42), 0 0 42px rgba(255,255,255,.08);
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.contact__content.is-lit .contact__voucher-trigger::before { opacity: .82; }
+.contact__voucher-trigger:hover,
+.contact__voucher-trigger:focus-visible {
+  border-color: rgba(255,255,255,.5);
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+.contact__content.is-lit .contact__light-cone {
+  opacity: .7 !important;
+  width: min(34vw, 390px) !important;
+  filter: blur(14px) !important;
+  clip-path: polygon(48% 0, 52% 0, 82% 100%, 18% 100%) !important;
+}
+.contact__content.is-lit .contact__light-pool {
+  opacity: .2 !important;
+  width: min(34vw, 370px) !important;
+}
+.contact__benefit-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: rgba(0,0,0,.58);
+  backdrop-filter: blur(8px);
+}
+.contact__benefit-modal[hidden] { display: none; }
+.contact__benefit-dialog {
+  position: relative;
+  display: grid;
+  gap: .78rem;
+  width: min(100%, 430px);
+  padding: clamp(1.35rem, 2.6vw, 1.9rem);
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 26px;
+  background: #fff;
+  color: var(--black);
+  box-shadow: 0 34px 90px rgba(0,0,0,.42);
+}
+.contact__benefit-dialog::before {
+  content: "";
+  position: absolute;
+  left: clamp(1.35rem, 2.6vw, 1.9rem);
+  right: clamp(1.35rem, 2.6vw, 1.9rem);
+  top: clamp(1rem, 2vw, 1.35rem);
+  height: 1px;
+  background: var(--red);
+}
+.contact__benefit-dialog h3 {
+  margin: .35rem 0 0;
+  color: var(--black);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  line-height: .92;
+  letter-spacing: -.07em;
+}
+.contact__benefit-dialog p { margin: 0; color: rgba(0,0,0,.72); line-height: 1.5; }
+.contact__benefit-code {
+  justify-self: start;
+  padding: .56rem .72rem;
+  border: 1px solid rgba(0,0,0,.14);
+  border-radius: 999px;
+  background: #f5f5f5;
+  color: var(--black);
+  font-size: .8rem;
+  font-weight: 950;
+  letter-spacing: .16em;
+}
+.contact__benefit-dialog small { color: rgba(0,0,0,.54); font-size: .78rem; }
+.contact__benefit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .58rem;
+  margin-top: .3rem;
+}
+.contact__benefit-copy,
+.contact__benefit-close {
+  background: transparent !important;
+  color: var(--black) !important;
+  border: 1px solid rgba(0,0,0,.18) !important;
+  box-shadow: none !important;
+}
+.contact__benefit-copy:focus-visible,
+.contact__benefit-close:focus-visible,
+.contact__benefit-whatsapp:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+@media (max-width: 860px) {
+  .contact__voucher-stage { left: auto; right: clamp(1.15rem, 15vw, 6.2rem); top: 8.6rem; width: min(64vw, 320px); transform: none; }
+  .contact__content { padding-bottom: 15.5rem !important; min-height: 600px !important; }
+  .contact__content.is-lit .contact__light-cone { width: min(50vw, 340px) !important; }
+}
+@media (max-width: 560px) {
+  .contact__content { padding-bottom: 18rem !important; min-height: 640px !important; }
+  .contact__voucher-stage { left: 1rem; right: 1rem; top: auto; bottom: 2.2rem; width: auto; }
+  .contact__voucher-trigger { width: min(100%, 300px); }
+  .contact__benefit-actions { display: grid; grid-template-columns: 1fr; }
+  .contact__content.is-lit .contact__light-cone { width: 64vw !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact__voucher-trigger,
+  .contact__benefit-modal { transition-duration: 1ms !important; }
+}

@@ -55,47 +55,72 @@ const contactLightScenes = document.querySelectorAll('[data-contact-light]');
 if (contactLightScenes.length) {
   contactLightScenes.forEach((scene) => {
     const toggle = scene.querySelector('[data-contact-light-toggle]');
-    const gift = scene.querySelector('[data-contact-gift]');
-    const voucher = scene.querySelector('#contact-voucher');
-    const closeVoucher = scene.querySelector('[data-contact-voucher-close]');
+    const voucherTrigger = scene.querySelector('[data-contact-voucher-trigger]');
+    const modal = scene.querySelector('[data-contact-benefit-modal]');
+    const closeButtons = scene.querySelectorAll('[data-contact-benefit-close]');
     const copyButton = scene.querySelector('[data-contact-copy]');
+    const focusableModalSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    let lastFocusedElement = null;
 
-    const setVoucherOpen = (isOpen) => {
+    const setModalOpen = (isOpen) => {
       scene.classList.toggle('is-voucher-open', isOpen);
-      gift?.setAttribute('aria-expanded', String(isOpen));
-      voucher?.toggleAttribute('hidden', !isOpen);
+      modal?.toggleAttribute('hidden', !isOpen);
+      voucherTrigger?.setAttribute('aria-expanded', String(isOpen));
+
+      if (isOpen) {
+        lastFocusedElement = document.activeElement;
+        window.setTimeout(() => {
+          modal?.querySelector(focusableModalSelector)?.focus();
+        }, 0);
+        return;
+      }
+
+      if (lastFocusedElement instanceof HTMLElement) {
+        lastFocusedElement.focus();
+      }
     };
 
     const setContactLight = (isLit) => {
       scene.classList.toggle('is-lit', isLit);
       toggle?.setAttribute('aria-pressed', String(isLit));
 
-      if (gift) {
-        gift.tabIndex = isLit ? 0 : -1;
-        gift.setAttribute('aria-hidden', String(!isLit));
+      if (voucherTrigger) {
+        voucherTrigger.tabIndex = isLit ? 0 : -1;
+        voucherTrigger.setAttribute('aria-hidden', String(!isLit));
       }
 
       if (!isLit) {
-        setVoucherOpen(false);
+        setModalOpen(false);
       }
     };
 
-    setVoucherOpen(false);
+    setModalOpen(false);
     setContactLight(false);
 
     toggle?.addEventListener('click', () => {
       setContactLight(!scene.classList.contains('is-lit'));
     });
 
-    gift?.addEventListener('click', () => {
+    voucherTrigger?.addEventListener('click', () => {
       if (!scene.classList.contains('is-lit')) return;
 
-      setVoucherOpen(!scene.classList.contains('is-voucher-open'));
+      setModalOpen(true);
     });
 
-    closeVoucher?.addEventListener('click', () => {
-      setVoucherOpen(false);
-      gift?.focus();
+    closeButtons.forEach((button) => {
+      button.addEventListener('click', () => setModalOpen(false));
+    });
+
+    modal?.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        setModalOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && scene.classList.contains('is-voucher-open')) {
+        setModalOpen(false);
+      }
     });
 
     copyButton?.addEventListener('click', async () => {
