@@ -4384,3 +4384,124 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
   .contact__gift-hint,
   .contact__gift-stage .contact__voucher { transition-duration: 1ms !important; }
 }
+
+/* Contact final: concealed gift reveal */
+.contact__gift-stage {
+  left: 50% !important;
+  top: clamp(9rem, 12vw, 10.75rem) !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: min(72%, 330px) !important;
+  min-height: 300px !important;
+  transform: translateX(-50%) !important;
+  pointer-events: none !important;
+}
+.contact__gift {
+  width: clamp(72px, 6.8vw, 104px) !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  opacity: .045 !important;
+  filter: brightness(.18) grayscale(1) contrast(.85) !important;
+  transform: translate3d(0, 12px, 0) scale(.94) !important;
+  pointer-events: none !important;
+}
+.contact__gift-icon { filter: drop-shadow(0 14px 22px rgba(0,0,0,.22)); }
+.contact__gift-box,
+.contact__gift-top,
+.contact__gift-knot,
+.contact__gift-bow,
+.contact__gift-ribbon,
+.contact__gift-accent {
+  stroke-width: 4 !important;
+  stroke: rgba(255,255,255,.18) !important;
+  fill: #050505 !important;
+}
+.contact__gift-ribbon,
+.contact__gift-accent { fill: #070707 !important; }
+.contact__gift-hint { display: none !important; }
+.contact__content.is-lit .contact__gift {
+  opacity: .94 !important;
+  filter: brightness(1) grayscale(0) contrast(1) drop-shadow(0 18px 28px rgba(0,0,0,.34)) !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  pointer-events: auto !important;
+}
+.contact__content.is-lit .contact__gift-box,
+.contact__content.is-lit .contact__gift-top,
+.contact__content.is-lit .contact__gift-knot,
+.contact__content.is-lit .contact__gift-bow {
+  fill: #ededed !important;
+  stroke: rgba(255,255,255,.92) !important;
+}
+.contact__content.is-lit .contact__gift-ribbon {
+  fill: #cfcfcf !important;
+  stroke: rgba(15,15,15,.2) !important;
+}
+.contact__content.is-lit .contact__gift-accent {
+  fill: var(--red) !important;
+  opacity: .86 !important;
+  stroke: rgba(150,0,0,.2) !important;
+}
+.contact__content.is-voucher-open .contact__gift-lid { transform: translateY(-10px) rotate(-3deg) !important; }
+.contact__content.is-voucher-open .contact__gift-box,
+.contact__content.is-voucher-open .contact__gift-ribbon--vertical,
+.contact__content.is-voucher-open .contact__gift-ribbon--horizontal { opacity: .72 !important; transform: translateY(12px) scale(.96) !important; }
+.contact__gift-stage .contact__voucher[hidden] { display: block !important; }
+.contact__gift-stage .contact__voucher {
+  position: absolute !important;
+  top: clamp(6.15rem, 8.7vw, 7.65rem) !important;
+  left: 50% !important;
+  z-index: 4 !important;
+  display: grid !important;
+  width: min(100%, 326px) !important;
+  gap: .64rem !important;
+  padding: 1.05rem !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  border-radius: 22px !important;
+  background: rgba(250,250,250,.98) !important;
+  color: var(--black) !important;
+  box-shadow: 0 24px 54px rgba(0,0,0,.36) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate3d(-50%, -8px, 0) scale(.96) !important;
+  transition: opacity 260ms ease, visibility 260ms ease, transform 360ms cubic-bezier(.22,1,.36,1) !important;
+}
+.contact__gift-stage .contact__voucher::before { content: none !important; }
+.contact__content.is-voucher-open .contact__gift-stage .contact__voucher {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(-50%, 0, 0) scale(1) !important;
+}
+.contact__benefit-eyebrow { color: var(--red) !important; font-size: .66rem !important; letter-spacing: .18em !important; }
+.contact__gift-stage .contact__voucher strong { color: var(--black) !important; font-size: clamp(1.05rem, 1.8vw, 1.28rem) !important; line-height: 1.05 !important; }
+.contact__gift-stage .contact__voucher span:not(.contact__benefit-eyebrow):not(.contact__voucher-code) { color: rgba(0,0,0,.72) !important; font-size: .88rem !important; line-height: 1.35 !important; }
+.contact__voucher-code { justify-self: start; padding: .4rem .58rem; border: 1px solid rgba(0,0,0,.16); border-radius: 999px; color: var(--black) !important; background: #f2f2f2; font-size: .76rem !important; letter-spacing: .14em !important; }
+.contact__gift-stage .contact__voucher small { color: rgba(0,0,0,.52) !important; font-size: .76rem !important; }
+.contact__voucher-actions { display: grid; grid-template-columns: 1fr auto; gap: .5rem; align-items: center; margin-top: .18rem; }
+.contact__gift-stage .contact__voucher .contact__voucher-cta,
+.contact__voucher-copy { min-height: 42px; padding: .72rem .85rem !important; border-radius: 999px !important; font-size: .72rem !important; }
+.contact__voucher-copy { background: transparent !important; color: var(--black) !important; border: 1px solid rgba(0,0,0,.2) !important; box-shadow: none !important; }
+.contact__voucher-close { position: absolute; top: .42rem; right: .52rem; width: 30px; height: 30px; border: 0; border-radius: 999px; background: transparent; color: rgba(0,0,0,.55); cursor: pointer; font-size: 1.2rem; line-height: 1; }
+.contact__voucher-close:focus-visible,
+.contact__voucher-copy:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.contact__content.is-lit .contact__light-cone { opacity: .62 !important; width: min(25vw, 280px) !important; filter: blur(10px) !important; clip-path: polygon(49% 0, 51% 0, 74% 100%, 26% 100%) !important; }
+.contact__content.is-lit .contact__light-pool { opacity: .16 !important; width: min(24vw, 270px) !important; }
+@media (max-width: 860px) {
+  .contact__gift-stage { left: auto !important; right: clamp(1.25rem, 15vw, 6.2rem) !important; top: 8.4rem !important; width: min(64vw, 320px) !important; min-height: 310px !important; transform: none !important; }
+  .contact__content { padding-bottom: 17rem !important; min-height: 620px !important; }
+  .contact__content.is-lit .contact__light-cone { width: min(46vw, 300px) !important; }
+}
+@media (max-width: 560px) {
+  .contact__content { padding-bottom: 19.5rem !important; min-height: 660px !important; }
+  .contact__gift-stage { left: 1rem !important; right: 1rem !important; top: auto !important; bottom: 1.45rem !important; width: auto !important; min-height: 315px !important; }
+  .contact__gift { width: 82px !important; }
+  .contact__gift-stage .contact__voucher { width: min(100%, 312px) !important; top: 5.8rem !important; }
+  .contact__voucher-actions { grid-template-columns: 1fr; }
+  .contact__content.is-lit .contact__light-cone { width: 58vw !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact__gift,
+  .contact__gift-icon *,
+  .contact__gift-stage .contact__voucher { transition-duration: 1ms !important; }
+}

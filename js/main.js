@@ -56,17 +56,31 @@ if (contactLightScenes.length) {
   contactLightScenes.forEach((scene) => {
     const toggle = scene.querySelector('[data-contact-light-toggle]');
     const gift = scene.querySelector('[data-contact-gift]');
+    const voucher = scene.querySelector('#contact-voucher');
+    const closeVoucher = scene.querySelector('[data-contact-voucher-close]');
+    const copyButton = scene.querySelector('[data-contact-copy]');
+
+    const setVoucherOpen = (isOpen) => {
+      scene.classList.toggle('is-voucher-open', isOpen);
+      gift?.setAttribute('aria-expanded', String(isOpen));
+      voucher?.toggleAttribute('hidden', !isOpen);
+    };
 
     const setContactLight = (isLit) => {
       scene.classList.toggle('is-lit', isLit);
       toggle?.setAttribute('aria-pressed', String(isLit));
 
+      if (gift) {
+        gift.tabIndex = isLit ? 0 : -1;
+        gift.setAttribute('aria-hidden', String(!isLit));
+      }
+
       if (!isLit) {
-        scene.classList.remove('is-voucher-open');
-        gift?.setAttribute('aria-expanded', 'false');
+        setVoucherOpen(false);
       }
     };
 
+    setVoucherOpen(false);
     setContactLight(false);
 
     toggle?.addEventListener('click', () => {
@@ -74,13 +88,29 @@ if (contactLightScenes.length) {
     });
 
     gift?.addEventListener('click', () => {
-      if (!scene.classList.contains('is-lit')) {
-        setContactLight(true);
+      if (!scene.classList.contains('is-lit')) return;
+
+      setVoucherOpen(!scene.classList.contains('is-voucher-open'));
+    });
+
+    closeVoucher?.addEventListener('click', () => {
+      setVoucherOpen(false);
+      gift?.focus();
+    });
+
+    copyButton?.addEventListener('click', async () => {
+      const code = copyButton.dataset.contactCopy || 'BRUNITO-DIAG';
+
+      try {
+        await navigator.clipboard.writeText(code);
+        copyButton.textContent = 'Código copiado';
+      } catch (error) {
+        copyButton.textContent = code;
       }
 
-      const isOpen = !scene.classList.contains('is-voucher-open');
-      scene.classList.toggle('is-voucher-open', isOpen);
-      gift.setAttribute('aria-expanded', String(isOpen));
+      window.setTimeout(() => {
+        copyButton.textContent = 'Copiar código';
+      }, 2200);
     });
   });
 }
