@@ -4003,15 +4003,14 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
 .trajectory-wheel-wrap { position: relative; width: min(100%, 470px); aspect-ratio: 1; display: grid; place-items: center; }
 .trajectory-wheel { width: 100%; height: 100%; transform: rotate(var(--trajectory-rotation, 0deg)); transition: transform 2400ms cubic-bezier(.12,.82,.16,1); will-change: transform; filter: drop-shadow(0 22px 44px rgba(0,0,0,.4)); }
 .trajectory-wheel svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.trajectory-segment { stroke: rgba(255,255,255,.18); stroke-width: .65; }
-.trajectory-segment--dark { fill: #080808; }
-.trajectory-segment--mid { fill: #171717; }
-.trajectory-segment--light { fill: #f4f4f4; }
+.trajectory-segment { stroke: rgba(255,255,255,.24); stroke-width: .65; }
+.trajectory-segment--dark { fill: #050505; }
+.trajectory-segment--light { fill: #F5F5F5; }
 .trajectory-label-object { pointer-events: none; overflow: visible; }
 .trajectory-label { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; font-size: 8.2px; font-weight: 950; line-height: 1.02; letter-spacing: .075em; text-align: center; text-transform: uppercase; }
 .trajectory-label span { display: block; white-space: nowrap; }
-.trajectory-label--light { color: var(--black); }
-.trajectory-label--dark { color: var(--white); text-shadow: 0 1px 2px rgba(0,0,0,.45); }
+.trajectory-label--light { color: #050505; }
+.trajectory-label--dark { color: #FFFFFF; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
 .trajectory-dial-line { stroke: rgba(255,255,255,.32); stroke-width: .55; }
 .trajectory-outer-ring, .trajectory-inner-ring { fill: none; stroke: rgba(255,255,255,.62); stroke-width: .8; }
 .trajectory-inner-ring { stroke: rgba(179,38,30,.78); stroke-width: 1; }
@@ -4024,15 +4023,15 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
 .trajectory-spin[disabled] { cursor: wait; opacity: .72; }
 .trajectory-note { margin: 0; color: var(--gray); font-size: .82rem; font-weight: 760; letter-spacing: .08em; text-transform: uppercase; }
 
-.trajectory-card { position: relative; min-height: 520px; padding: clamp(1.7rem, 4vw, 3rem); border: 1px solid rgba(255,255,255,.9); background: var(--white); color: var(--black); display: flex; flex-direction: column; justify-content: center; }
+.trajectory-card { position: relative; min-height: 520px; padding: clamp(1.7rem, 4vw, 3rem); border: 1px solid rgba(255,255,255,.9); background: #F5F5F5; color: #050505; display: flex; flex-direction: column; justify-content: center; }
 .trajectory-card::before { content: ""; position: absolute; left: clamp(1.7rem, 4vw, 3rem); right: clamp(1.7rem, 4vw, 3rem); top: clamp(1.4rem, 3vw, 2.2rem); height: 1px; background: var(--red); }
 .trajectory-card.is-updating { animation: trajectory-card-pulse 420ms ease; }
-.trajectory-card__eyebrow, .trajectory-card__meta span, .trajectory-card__block span { margin: 0; color: var(--red); font-size: .68rem; font-weight: 950; letter-spacing: .18em; text-transform: uppercase; }
-.trajectory-card h3 { margin: 1.3rem 0 1.35rem; color: var(--black); font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: .9; letter-spacing: -.075em; text-wrap: balance; }
-.trajectory-card__meta, .trajectory-card__block { padding-top: 1.15rem; border-top: 1px solid rgba(0,0,0,.12); }
-.trajectory-card__meta strong { display: block; margin-top: .45rem; color: var(--black); font-size: 1.05rem; letter-spacing: -.02em; }
-.trajectory-card__block p { margin: .5rem 0 0; color: rgba(0,0,0,.8); font-size: clamp(1rem, 1.35vw, 1.12rem); line-height: 1.58; }
-.trajectory-card__closing { margin: 1.35rem 0 0; padding-left: 1rem; border-left: 2px solid var(--red); color: var(--black); font-weight: 850; line-height: 1.45; }
+.trajectory-card__eyebrow, .trajectory-card__meta span, .trajectory-card__block span { margin: 0; color: var(--red-deep); font-size: .68rem; font-weight: 950; letter-spacing: .18em; text-transform: uppercase; }
+.trajectory-card h3 { margin: 1.3rem 0 1.35rem; color: #050505; font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: .9; letter-spacing: -.075em; text-wrap: balance; }
+.trajectory-card__meta, .trajectory-card__block { padding-top: 1.15rem; border-top: 1px solid rgba(5,5,5,.14); }
+.trajectory-card__meta strong { display: block; margin-top: .45rem; color: #050505; font-size: 1.05rem; letter-spacing: -.02em; }
+.trajectory-card__block p { margin: .5rem 0 0; color: #2A2A2A; font-size: clamp(1rem, 1.35vw, 1.12rem); line-height: 1.58; }
+.trajectory-card__closing { margin: 1.35rem 0 0; padding-left: 1rem; border-left: 2px solid var(--red); color: #151515; font-weight: 850; line-height: 1.45; }
 
 @keyframes trajectory-card-pulse { 0% { opacity: .55; transform: translateY(6px); } 100% { opacity: 1; transform: translateY(0); } }
 
