@@ -594,8 +594,8 @@ if (trajectoryWheel && trajectorySpin && trajectoryCard) {
       const [textX, textY] = polarPoint(132, middle);
       const [lineX1, lineY1] = polarPoint(190, start);
       const [lineX2, lineY2] = polarPoint(68, start);
-      const lightSegment = index % 4 === 2;
-      const segmentClass = lightSegment ? 'trajectory-segment--light' : (index % 2 ? 'trajectory-segment--mid' : 'trajectory-segment--dark');
+      const lightSegment = index % 2 === 1;
+      const segmentClass = lightSegment ? 'trajectory-segment--light' : 'trajectory-segment--dark';
       const labelClass = lightSegment ? 'trajectory-label--light' : 'trajectory-label--dark';
       const labelLines = item.wheelLabel || [item.name];
       const labelMarkup = labelLines.map((line) => `<span>${line}</span>`).join('');
