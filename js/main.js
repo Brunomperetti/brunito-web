@@ -744,13 +744,27 @@ if (trajectoryWheel && trajectorySpin && trajectoryCard) {
     trajectoryCard.classList.add('is-updating');
   };
 
-  const getNextIndex = () => {
-    if (trajectoryItems.length < 2) return 0;
-    let nextIndex = selectedIndex;
-    while (nextIndex === selectedIndex) {
-      nextIndex = Math.floor(Math.random() * trajectoryItems.length);
+  let remainingTrajectoryIndexes = [];
+
+  const shuffleArray = (array) => {
+    for (let index = array.length - 1; index > 0; index -= 1) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [array[index], array[randomIndex]] = [array[randomIndex], array[index]];
     }
-    return nextIndex;
+    return array;
+  };
+
+  const refillTrajectoryBag = () => {
+    remainingTrajectoryIndexes = trajectoryItems.map((_, index) => index);
+    shuffleArray(remainingTrajectoryIndexes);
+  };
+
+  const getNextIndex = () => {
+    if (!remainingTrajectoryIndexes.length) {
+      refillTrajectoryBag();
+    }
+
+    return remainingTrajectoryIndexes.pop();
   };
 
   const spinTrajectory = () => {
@@ -774,6 +788,7 @@ if (trajectoryWheel && trajectorySpin && trajectoryCard) {
     }, reduceMotion ? 80 : 2450);
   };
 
+  refillTrajectoryBag();
   drawTrajectoryWheel();
   trajectorySpin.addEventListener('click', spinTrajectory);
 }
