@@ -4937,3 +4937,301 @@ body.is-contact-modal-open {
 .contact {
   background: var(--white) !important;
 }
+
+/* Responsive proportion pass: fluid scale for real laptop, tablet and mobile viewports. */
+:root {
+  --header-h: clamp(66px, 5.2vw, 78px);
+  --section-y: clamp(3rem, 5.6vw, 5.8rem);
+  --section-y-tight: clamp(2.7rem, 4.8vw, 4.8rem);
+}
+
+html {
+  scroll-padding-top: calc(var(--header-h) + 18px);
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+}
+
+.container {
+  width: min(100% - clamp(1.25rem, 4vw, 2rem), var(--container));
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--tight,
+.section--compact {
+  padding-block: var(--section-y-tight);
+}
+
+h1 {
+  max-width: 12.5ch;
+  font-size: clamp(3rem, 5.25vw, 5.25rem);
+  line-height: .96;
+}
+
+h2,
+.trajectory-heading h2,
+#casos .section-heading h2 {
+  font-size: clamp(2.2rem, 4.6vw, 4.65rem) !important;
+  line-height: .94;
+}
+
+.navbar {
+  min-height: var(--header-h);
+}
+
+.logo {
+  width: clamp(154px, 14.5vw, 214px);
+  flex-basis: clamp(154px, 14.5vw, 214px);
+  height: clamp(52px, 4.3vw, 62px);
+  min-height: clamp(52px, 4.3vw, 62px);
+}
+
+.nav-menu a {
+  padding: clamp(.45rem, .72vw, .52rem) clamp(.56rem, .95vw, .78rem);
+  font-size: clamp(.76rem, .72vw, .86rem);
+}
+
+.hero {
+  min-height: min(690px, calc(100svh - var(--header-h)));
+  padding-block: clamp(1rem, 2.6vw, 2.3rem);
+}
+
+.hero__content {
+  grid-template-columns: minmax(0, 1fr) minmax(310px, 398px) !important;
+  gap: clamp(1.6rem, 3.9vw, 4.2rem) !important;
+  align-items: center;
+  padding-block: clamp(1rem, 2.8vw, 3rem);
+}
+
+.hero__copy {
+  max-width: 720px;
+}
+
+.hero__text {
+  max-width: 52ch;
+  font-size: clamp(.98rem, 1.35vw, 1.18rem);
+}
+
+.hero__panel {
+  min-height: clamp(356px, 42vw, 410px);
+  padding: clamp(1.15rem, 2vw, 1.8rem) !important;
+}
+
+.hero__panel--intro {
+  width: min(100%, 392px) !important;
+  transform: none !important;
+}
+
+.hero__panel p {
+  font-size: clamp(1.16rem, 1.7vw, 1.52rem);
+}
+
+.elevator-scene {
+  min-height: clamp(178px, 20vw, 222px);
+  margin-top: clamp(.9rem, 1.8vw, 1.35rem);
+}
+
+.elevator-visual {
+  height: clamp(178px, 20vw, 222px);
+  max-width: 330px !important;
+}
+
+.panel-footer {
+  margin-top: clamp(.8rem, 1.5vw, 1.1rem) !important;
+  padding: clamp(.72rem, 1.2vw, .92rem) clamp(.8rem, 1.3vw, 1rem) !important;
+}
+
+.services-section {
+  padding-block: clamp(3rem, 5.4vw, 5.6rem) !important;
+}
+
+.services-grid {
+  gap: clamp(.85rem, 1.45vw, 1.35rem) !important;
+}
+
+.service-card {
+  aspect-ratio: 5 / 6.65 !important;
+}
+
+.service-card__front {
+  grid-template-rows: auto minmax(82px, .9fr) auto auto !important;
+  padding: clamp(.9rem, 1.35vw, 1.35rem) !important;
+}
+
+.service-card__graphic {
+  width: min(68%, 166px) !important;
+}
+
+.service-card__title {
+  min-height: 2.45em !important;
+  font-size: clamp(1.05rem, 1.48vw, 1.45rem) !important;
+}
+
+.service-card__text {
+  min-height: 2.65em !important;
+  font-size: clamp(.78rem, .86vw, .9rem) !important;
+}
+
+.experience-band {
+  padding-block: clamp(3rem, 5vw, 5.1rem) !important;
+}
+
+.experience-panel {
+  grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr);
+  gap: clamp(1.6rem, 4vw, 3.5rem);
+}
+
+.experience-metrics strong {
+  font-size: clamp(2.35rem, 4.4vw, 4.15rem);
+}
+
+.experience-metrics .metric-item {
+  padding: clamp(.82rem, 1.35vw, 1.12rem) clamp(.9rem, 1.45vw, 1.2rem);
+}
+
+.trajectory-section {
+  padding-block: clamp(3.4rem, 5.8vw, 6.4rem) !important;
+}
+
+.trajectory-heading {
+  margin-bottom: clamp(1.8rem, 3.6vw, 3.2rem);
+}
+
+.trajectory-layout {
+  grid-template-columns: minmax(280px, .86fr) minmax(300px, .92fr);
+  gap: clamp(1.4rem, 4.2vw, 4rem);
+}
+
+.trajectory-wheel-wrap {
+  width: min(100%, clamp(330px, 36vw, 450px));
+}
+
+.trajectory-card {
+  min-height: clamp(420px, 48vw, 500px);
+  padding: clamp(1.35rem, 2.7vw, 2.45rem);
+}
+
+.trajectory-card__title,
+.trajectory-card h3[data-trajectory-name] {
+  font-size: clamp(1.75rem, 3.2vw, 3rem) !important;
+}
+
+#casos.cases-section {
+  padding-block: clamp(3.6rem, 6vw, 6.2rem) !important;
+}
+
+#casos .split-layout,
+.split-layout,
+.about {
+  gap: clamp(1.6rem, 4.4vw, 4.8rem);
+}
+
+#casos .case-item {
+  padding-block: clamp(1.15rem, 1.9vw, 1.75rem) !important;
+}
+
+#casos .case-item h3 {
+  font-size: clamp(1.2rem, 1.9vw, 1.8rem);
+}
+
+#sobre-mi .about__mark.about-target {
+  width: min(100%, clamp(340px, 32vw, 392px)) !important;
+  min-height: clamp(460px, 46vw, 520px) !important;
+}
+
+#sobre-mi .about-target__board {
+  width: min(76%, 276px) !important;
+}
+
+.contact {
+  padding-block: clamp(2.5rem, 4.8vw, 4.8rem) !important;
+}
+
+.contact__content {
+  min-height: clamp(360px, 31vw, 420px) !important;
+  padding: clamp(1.75rem, 3.5vw, 3.5rem) !important;
+}
+
+.contact__voucher-stage {
+  top: clamp(7.8rem, 11vw, 10.2rem) !important;
+}
+
+.site-footer {
+  padding-block: clamp(1.2rem, 2vw, 1.7rem) !important;
+}
+
+@media (max-width: 1280px) {
+  :root { --container: 1040px; }
+  h1 { font-size: clamp(2.75rem, 4.65vw, 4.55rem); }
+  h2, .trajectory-heading h2, #casos .section-heading h2 { font-size: clamp(2.05rem, 4.1vw, 4rem) !important; }
+  .hero__content { grid-template-columns: minmax(0, 1fr) minmax(300px, 372px) !important; }
+  .services-deck { max-width: 960px !important; }
+  .service-card { aspect-ratio: 5 / 6.35 !important; }
+  .trajectory-card { min-height: 410px; }
+}
+
+@media (max-width: 1200px) {
+  :root { --container: 984px; }
+  .hero { min-height: auto; }
+  .hero__content { gap: clamp(1.35rem, 3vw, 2.7rem) !important; }
+  .hero__panel { min-height: 348px; }
+  .elevator-scene { min-height: 170px; }
+  .elevator-visual { height: 170px; }
+  .services-grid { gap: 1rem !important; }
+  .experience-panel { grid-template-columns: minmax(0, .86fr) minmax(340px, 1.14fr); }
+  .trajectory-layout { grid-template-columns: minmax(270px, .82fr) minmax(300px, .94fr); }
+}
+
+@media (max-width: 1024px) {
+  .nav-menu { gap: 0; padding: .22rem; }
+  .hero__content,
+  .experience-panel,
+  .trajectory-layout,
+  #casos .split-layout,
+  .split-layout,
+  .about {
+    grid-template-columns: 1fr !important;
+  }
+  .hero__panel--intro { justify-self: start !important; width: min(100%, 520px) !important; }
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; max-width: 720px; margin-inline: auto; }
+  .service-card { aspect-ratio: 5 / 6.55 !important; }
+  .experience-machine { max-width: 720px; }
+  .trajectory-wheel-wrap { width: min(100%, 430px); }
+  .trajectory-card { min-height: auto; }
+  #sobre-mi .about__mark.about-target { justify-self: center; }
+}
+
+@media (max-width: 768px) {
+  h1 { max-width: 13ch; font-size: clamp(2.45rem, 9vw, 3.8rem); }
+  .section-heading { margin-bottom: clamp(1.2rem, 4vw, 1.8rem); }
+  .hero__content { padding-block: clamp(1.5rem, 5vw, 2.5rem); }
+  .hero__panel--intro { justify-self: center !important; }
+  .contact__content { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 640px) {
+  :root { --header-h: 70px; }
+  .container { width: min(100% - 1.25rem, var(--container)); }
+  .services-grid { grid-template-columns: 1fr !important; max-width: min(100%, 340px) !important; }
+  .service-card { aspect-ratio: 5 / 6.15 !important; }
+  .service-card__graphic { width: min(62%, 150px) !important; }
+  .service-card__title { min-height: auto !important; }
+  .service-card__text { min-height: auto !important; }
+  .trajectory-wheel-wrap { width: min(100%, 340px); }
+  .contact__content { min-height: 590px !important; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: clamp(2.25rem, 12vw, 3.25rem); }
+  h2, .trajectory-heading h2, #casos .section-heading h2 { font-size: clamp(2rem, 11vw, 3rem) !important; }
+  .hero__panel { min-height: 0 !important; }
+  .panel-footer { font-size: .68rem !important; }
+  .trajectory-card { padding: 1.25rem; }
+  #sobre-mi .about__mark.about-target { width: min(100%, 330px) !important; min-height: 470px !important; }
+  .contact__benefit-modal { padding: 12px !important; }
+}
