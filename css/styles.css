@@ -3870,9 +3870,12 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
 .trajectory-segment { stroke: rgba(255,255,255,.24); stroke-width: .65; }
 .trajectory-segment--dark { fill: #050505; }
 .trajectory-segment--light { fill: #F5F5F5; }
+.trajectory-label-group { pointer-events: none; }
 .trajectory-label-object { pointer-events: none; overflow: visible; }
-.trajectory-label { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; font-size: 6.8px; font-weight: 950; line-height: 1.02; letter-spacing: .045em; text-align: center; text-transform: uppercase; }
-.trajectory-label span { display: block; white-space: nowrap; }
+.trajectory-label { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; font-size: 6.6px; font-weight: 950; line-height: 1; letter-spacing: .035em; text-align: center; text-transform: uppercase; }
+.trajectory-label--medium { font-size: 6px; letter-spacing: .025em; }
+.trajectory-label--long { font-size: 5.25px; letter-spacing: .012em; line-height: .98; }
+.trajectory-label span { display: block; max-width: 100%; white-space: nowrap; }
 .trajectory-label--light { color: #050505; }
 .trajectory-label--dark { color: #FFFFFF; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
 .trajectory-dial-line { stroke: rgba(255,255,255,.32); stroke-width: .55; }
@@ -3901,7 +3904,7 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
 
 @media (prefers-reduced-motion: reduce) { .trajectory-wheel { transition-duration: 1ms; } .trajectory-card.is-updating { animation: none; } }
 @media (max-width: 920px) { .trajectory-layout { grid-template-columns: 1fr; } .trajectory-card { min-height: auto; } }
-@media (max-width: 560px) { .trajectory-section { padding-block: 3.8rem; } .trajectory-heading h2 { font-size: clamp(2.35rem, 12vw, 3.35rem); } .trajectory-wheel-wrap { width: min(100%, 340px); } .trajectory-label { font-size: 6.1px; letter-spacing: .03em; } .trajectory-pointer { height: 38px; } .trajectory-card { padding: 1.55rem; } .trajectory-card__title, .trajectory-card h3[data-trajectory-name] { font-size: clamp(2rem, 11vw, 2.85rem); } }
+@media (max-width: 560px) { .trajectory-section { padding-block: 3.8rem; } .trajectory-heading h2 { font-size: clamp(2.35rem, 12vw, 3.35rem); } .trajectory-wheel-wrap { width: min(100%, 340px); } .trajectory-label { font-size: 5.95px; letter-spacing: .025em; } .trajectory-label--medium { font-size: 5.45px; } .trajectory-label--long { font-size: 4.9px; letter-spacing: .006em; } .trajectory-pointer { height: 38px; } .trajectory-card { padding: 1.55rem; } .trajectory-card__title, .trajectory-card h3[data-trajectory-name] { font-size: clamp(2rem, 11vw, 2.85rem); } }
 
 /* Contact benefit light reveal */
 .contact__lamp-scene {
