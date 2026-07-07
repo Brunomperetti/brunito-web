@@ -641,14 +641,14 @@ if (aboutTarget && prizeModal) {
 const trajectoryItems = [
   { shortName: 'Intel', title: 'Intel – Classmate PC', context: 'Campaña desarrollada en KP Alazraki', role: 'Creativo Senior', work: 'Planeamiento creativo, concepto de campaña, redacción publicitaria y presentación estratégica a cliente.', focus: 'Creatividad, planning y comunicación de producto.' },
   { shortName: 'MTV', title: 'MTV / Premios MTV México', context: 'Premios MTV Guadalajara 2008', role: 'Asistente de Producción', work: 'Producción audiovisual para evento internacional y coordinación operativa de contenidos.', focus: 'Producción, coordinación y contenido audiovisual.' },
-  { shortName: 'Mis Dulces 15', title: 'Mis Dulces 15', context: 'Programa televisivo MTV', role: 'Producción audiovisual', work: 'Asistencia de producción para contenido televisivo.', focus: 'Contenido, producción y storytelling.' },
+  { shortName: 'Mis 15', title: 'Mis Dulces 15', context: 'Programa televisivo MTV', role: 'Producción audiovisual', work: 'Asistencia de producción para contenido televisivo.', focus: 'Contenido, producción y storytelling.' },
   { shortName: 'Fade In', title: 'Fade In', context: 'Productora audiovisual en Guadalajara, México', role: 'Área de Dirección y Guión', work: 'Desarrollo de guiones, asistencia de dirección y dirección puntual de producciones audiovisuales.', focus: 'Guion, dirección audiovisual y producción.' },
   { shortName: 'Karakola', title: 'Karakola / Canal Mexiquense', context: 'Programa infantil cultural', role: 'Guionista / Dirección', work: 'Dirección y redacción de 143 guiones para temporada completa.', focus: 'Contenido televisivo, narrativa y producción.' },
   { shortName: 'Gob. Tepic', title: 'Gobierno de Tepic / Nayarit', context: 'Campañas públicas', role: 'Dirección / Preproducción', work: 'Campañas PAR, Antitabaco y spots de TV para comunicación pública.', focus: 'Comunicación institucional, dirección audiovisual y campaña pública.' },
-  { shortName: 'Ayto. Guadalajara', title: 'Ayuntamiento de Guadalajara', context: 'Comunicación institucional', role: 'Dirección / Asistencia de Dirección', work: 'Campañas Logros y Tú eliges, radio spot y comercial audiovisual.', focus: 'Comunicación pública, producción y creatividad.' },
+  { shortName: 'Ayto. GDL', title: 'Ayuntamiento de Guadalajara', context: 'Comunicación institucional', role: 'Dirección / Asistencia de Dirección', work: 'Campañas Logros y Tú eliges, radio spot y comercial audiovisual.', focus: 'Comunicación pública, producción y creatividad.' },
   { shortName: 'UAG', title: 'Universidad Autónoma de Guadalajara', context: 'Cliente en KP Alazraki', role: 'Creativo Senior', work: 'Planeamiento creativo, redacción y desarrollo de campaña publicitaria.', focus: 'Educación, creatividad y comunicación institucional.' },
   { shortName: 'Tajín', title: 'Tajín', context: 'Cliente en KP Alazraki', role: 'Creativo Senior', work: 'Creatividad publicitaria, desarrollo conceptual y comunicación de marca.', focus: 'Marca, mensaje y comunicación comercial.' },
-  { shortName: 'Tequila T.A.', title: 'Tequila Tierras Altas', context: 'Producción audiovisual', role: 'Asistente de Dirección', work: 'Trabajo de asistencia de dirección para comercial audiovisual.', focus: 'Producción, dirección y narrativa de marca.' },
+  { shortName: 'Vicapa MKT', title: 'Vicapa MKT', context: 'Marketing digital / cuentas B2B y B2C', role: 'Paid Media Senior & Growth Automation Specialist', work: 'Gestión estratégica y operativa de campañas publicitarias, desarrollo de activos digitales y automatización de procesos comerciales.', focus: 'Meta Ads, performance, leads, WhatsApp, activos digitales y automatización comercial.' },
   { shortName: 'GW', title: 'GW Argentina', context: 'Telecomunicaciones B2B', role: 'Responsable de Marketing', work: 'Google Ads, atención de clientes, estrategia digital, piezas comerciales, email marketing, stands y gestión de medios.', focus: 'Adquisición, comunicación comercial y soporte a ventas.' },
   { shortName: 'Millex', title: 'Millex', context: 'Mayorista mascotas B2B/B2C', role: 'Responsable de Marketing y Datos', work: 'Campañas, CRM, segmentación, email marketing, catálogo digital y acciones comerciales.', focus: 'Growth, performance, datos y operación comercial.' },
   { shortName: 'Petsu', title: 'Petsu', context: 'Mascotas / B2C', role: 'Marketing / Paid Media', work: 'Meta Ads, estrategia comercial, email marketing y comunicación digital.', focus: 'Performance, marca y captación.' },
@@ -708,15 +708,21 @@ if (trajectoryWheel && trajectorySpin && trajectoryCard) {
       const [lineX2, lineY2] = polarPoint(68, start);
       const lightSegment = index % 2 === 1;
       const segmentClass = lightSegment ? 'trajectory-segment--light' : 'trajectory-segment--dark';
-      const labelClass = lightSegment ? 'trajectory-label--light' : 'trajectory-label--dark';
+      const labelToneClass = lightSegment ? 'trajectory-label--light' : 'trajectory-label--dark';
+      const labelSizeClass = item.shortName.length >= 12 ? 'trajectory-label--long' : item.shortName.length >= 9 ? 'trajectory-label--medium' : '';
+      const textAngle = middle - 90;
+      const normalizedAngle = (textAngle + 360) % 360;
+      const readableAngle = normalizedAngle > 90 && normalizedAngle < 270 ? textAngle + 180 : textAngle;
       const labelLines = item.shortName.split(' ');
       const labelMarkup = labelLines.map((line) => `<span>${line}</span>`).join('');
 
       return `<path class="trajectory-segment ${segmentClass}" d="${segmentPath(start, end)}" />
         <line class="trajectory-dial-line" x1="${lineX1}" y1="${lineY1}" x2="${lineX2}" y2="${lineY2}" />
-        <foreignObject class="trajectory-label-object" x="${textX - 46}" y="${textY - 15}" width="92" height="30">
-          <div class="trajectory-label ${labelClass}" xmlns="http://www.w3.org/1999/xhtml">${labelMarkup}</div>
-        </foreignObject>`;
+        <g class="trajectory-label-group" transform="translate(${textX} ${textY}) rotate(${readableAngle})">
+          <foreignObject class="trajectory-label-object" x="-47" y="-15" width="94" height="30">
+            <div class="trajectory-label ${labelToneClass} ${labelSizeClass}" xmlns="http://www.w3.org/1999/xhtml">${labelMarkup}</div>
+          </foreignObject>
+        </g>`;
     }).join('');
 
     trajectoryWheel.innerHTML = `<svg viewBox="0 0 400 400" role="img" aria-label="Rueda de trayectoria con clientes y proyectos" focusable="false">
