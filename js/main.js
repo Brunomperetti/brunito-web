@@ -339,11 +339,17 @@ if (servicesDeck) {
   const trigger = servicesDeck.querySelector('[data-services-trigger]');
   const cards = Array.from(servicesDeck.querySelectorAll('[data-service-card]'));
   let servicesRevealed = false;
-  let isShuffling = false;
+  let servicesObserver;
+
+  const setServicesRevealedState = () => {
+    trigger.textContent = 'Servicios revelados';
+    trigger.setAttribute('aria-label', 'Servicios revelados');
+    trigger.setAttribute('aria-expanded', 'true');
+    trigger.setAttribute('aria-pressed', 'true');
+    cards.forEach((card) => card.setAttribute('aria-pressed', 'true'));
+  };
 
   const revealServices = () => {
-    if (isShuffling) return;
-
     if (servicesRevealed) {
       servicesDeck.classList.add('is-acknowledging');
       window.setTimeout(() => servicesDeck.classList.remove('is-acknowledging'), 260);
@@ -351,24 +357,9 @@ if (servicesDeck) {
     }
 
     servicesRevealed = true;
-    trigger.textContent = 'Capacidades reveladas';
-    trigger.setAttribute('aria-label', 'Capacidades reveladas');
-    trigger.setAttribute('aria-expanded', 'true');
-    cards.forEach((card) => card.setAttribute('aria-pressed', 'true'));
-
-    if (reduceMotion) {
-      servicesDeck.classList.add('is-revealed');
-      return;
-    }
-
-    isShuffling = true;
-    servicesDeck.classList.add('is-shuffling');
-
-    window.setTimeout(() => {
-      servicesDeck.classList.remove('is-shuffling');
-      servicesDeck.classList.add('is-revealed');
-      isShuffling = false;
-    }, 1040);
+    servicesObserver?.disconnect();
+    setServicesRevealedState();
+    servicesDeck.classList.add('is-revealed');
   };
 
   trigger?.addEventListener('click', revealServices);
@@ -376,6 +367,18 @@ if (servicesDeck) {
     card.setAttribute('aria-pressed', 'false');
     card.addEventListener('click', revealServices);
   });
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealServices();
+  } else {
+    servicesObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) revealServices();
+      });
+    }, { threshold: 0.28, rootMargin: '0px 0px -8% 0px' });
+
+    servicesObserver.observe(servicesDeck);
+  }
 }
 
 const experienceMachine = document.querySelector('[data-experience-machine]');
