@@ -3674,6 +3674,15 @@ p, .hero__text, .section-heading p:not(.eyebrow), .experience-copy p:not(.eyebro
   text-wrap: balance;
 }
 
+#casos .section-heading p:not(.eyebrow) {
+  max-width: 40ch;
+  margin: clamp(1.2rem, 2.2vw, 1.75rem) 0 0 !important;
+  color: var(--cases-muted) !important;
+  font-size: clamp(1rem, 1.35vw, 1.1rem);
+  line-height: 1.58;
+  text-wrap: balance;
+}
+
 #casos .case-list {
   display: grid;
   gap: 0 !important;
