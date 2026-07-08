@@ -5398,3 +5398,49 @@ h2,
     margin-inline: 0;
   }
 }
+
+/* Header/hero spacing correction: keep the approved logo scale, but remove the oversized empty band before the hero grid/content. */
+:root {
+  --header-h: clamp(72px, 5.2vw, 84px);
+}
+
+.site-header .navbar {
+  min-height: var(--header-h);
+  padding-block: 0;
+}
+
+.hero.section {
+  margin-top: 0;
+  min-height: min(650px, calc(100svh - var(--header-h)));
+  padding-top: clamp(.85rem, 1.8vw, 1.65rem);
+  padding-bottom: clamp(1.75rem, 3vw, 2.4rem);
+}
+
+.hero .hero__grid {
+  inset: clamp(.95rem, 2vw, 1.7rem) 5% 5%;
+}
+
+.hero .hero__content {
+  padding-top: clamp(.75rem, 1.7vw, 1.45rem);
+  padding-bottom: clamp(1.4rem, 2.8vw, 2.65rem);
+}
+
+@media (max-width: 768px) {
+  .hero.section {
+    padding-top: clamp(.55rem, 2.8vw, 1rem);
+  }
+
+  .hero .hero__grid {
+    inset: clamp(.75rem, 3.5vw, 1.25rem) .75rem 6%;
+  }
+
+  .hero .hero__content {
+    padding-top: clamp(1rem, 4vw, 1.65rem);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-h: 64px;
+  }
+}
