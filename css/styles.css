@@ -5276,3 +5276,100 @@ h2,
   #sobre-mi .about__mark.about-target { width: min(100%, 330px) !important; min-height: 470px !important; }
   .contact__benefit-modal { padding: 12px !important; }
 }
+
+/* Social links: restrained, editorial access points for contact and footer. */
+.social-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .62rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.035);
+  color: inherit;
+  line-height: 1;
+  transition: transform .24s ease, border-color .24s ease, background-color .24s ease, box-shadow .24s ease;
+}
+
+.social-link img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--red);
+  background: rgba(227,31,38,.14);
+  box-shadow: 0 12px 28px rgba(0,0,0,.22);
+}
+
+.social-link:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.social-links--contact {
+  margin-top: 1rem;
+}
+
+.social-links--contact .social-link {
+  border-color: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.055);
+}
+
+.social-links--footer {
+  justify-content: center;
+  margin-inline: auto;
+}
+
+.social-links--footer .social-link {
+  width: 40px;
+  height: 40px;
+  border-color: rgba(0,0,0,.13);
+  background: rgba(255,255,255,.54);
+}
+
+.social-links--footer .social-link img {
+  width: 19px;
+  height: 19px;
+}
+
+.social-links--footer .social-link:hover {
+  background: var(--black);
+  border-color: var(--black);
+  box-shadow: 0 10px 24px rgba(0,0,0,.13);
+}
+
+.footer__top-link {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .social-links--contact {
+    justify-content: center;
+  }
+
+  .social-links--contact .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer__content {
+    align-items: center !important;
+    text-align: center;
+  }
+
+  .social-links--footer {
+    margin-inline: 0;
+  }
+}
