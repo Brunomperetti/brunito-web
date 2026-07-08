@@ -5399,7 +5399,7 @@ h2,
   }
 }
 
-/* Header/hero spacing correction: keep the approved logo scale, but remove the oversized empty band before the hero grid/content. */
+/* Header/hero spacing correction: remove the oversized empty band before the hero grid/content. */
 :root {
   --header-h: clamp(72px, 5.2vw, 84px);
 }
@@ -5412,7 +5412,7 @@ h2,
 .hero.section {
   margin-top: 0;
   min-height: min(650px, calc(100svh - var(--header-h)));
-  padding-top: clamp(.85rem, 1.8vw, 1.65rem);
+  padding-top: clamp(24px, 3vw, 40px);
   padding-bottom: clamp(1.75rem, 3vw, 2.4rem);
 }
 
@@ -5421,7 +5421,7 @@ h2,
 }
 
 .hero .hero__content {
-  padding-top: clamp(.75rem, 1.7vw, 1.45rem);
+  padding-top: 0;
   padding-bottom: clamp(1.4rem, 2.8vw, 2.65rem);
 }
 
@@ -5435,7 +5435,7 @@ h2,
   }
 
   .hero .hero__content {
-    padding-top: clamp(1rem, 4vw, 1.65rem);
+    padding-top: 0;
   }
 }
 
