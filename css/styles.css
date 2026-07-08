@@ -5015,7 +5015,7 @@ body.is-contact-modal-open {
 
 /* Responsive proportion pass: fluid scale for real laptop, tablet and mobile viewports. */
 :root {
-  --header-h: clamp(76px, 6.2vw, 88px);
+  --header-h: clamp(72px, 5.2vw, 80px);
   --section-y: clamp(3rem, 5.6vw, 5.8rem);
   --section-y-tight: clamp(2.7rem, 4.8vw, 4.8rem);
 }
@@ -5057,6 +5057,7 @@ h2,
 .navbar {
   min-height: var(--header-h);
   align-items: center;
+  padding-block: 0;
 }
 
 .logo {
@@ -5080,7 +5081,7 @@ h2,
 }
 
 .nav-menu a {
-  padding: clamp(.45rem, .72vw, .52rem) clamp(.56rem, .95vw, .78rem);
+  padding: clamp(.4rem, .6vw, .48rem) clamp(.56rem, .95vw, .78rem);
   font-size: clamp(.76rem, .72vw, .86rem);
 }
 
@@ -5276,7 +5277,7 @@ h2,
 }
 
 @media (max-width: 640px) {
-  :root { --header-h: 68px; }
+  :root { --header-h: 64px; }
   .logo { width: auto; min-width: 0; max-width: none; flex-basis: auto; height: auto; min-height: 0; }
   .logo img { width: clamp(105px, 32vw, 130px); height: auto; max-width: none; max-height: none; object-fit: contain; display: block; }
   .nav-menu { inset: var(--header-h) .625rem auto; }
