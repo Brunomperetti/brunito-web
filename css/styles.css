@@ -5460,3 +5460,342 @@ h2,
     --header-h: 58px;
   }
 }
+
+/* Mobile UX refinement: keep desktop interactions intact while making phone screens direct, compact and optional. */
+.trajectory-mobile-spin {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .section {
+    padding-block: clamp(2.6rem, 10vw, 4.2rem);
+  }
+
+  .hero.section {
+    min-height: auto !important;
+    padding-top: clamp(.8rem, 3vw, 1.15rem) !important;
+    padding-bottom: clamp(2rem, 7vw, 3rem) !important;
+  }
+
+  .hero .hero__content {
+    display: block;
+    padding-block: clamp(1.1rem, 4vw, 1.8rem) !important;
+  }
+
+  .hero__copy {
+    max-width: 100%;
+  }
+
+  .hero__copy::after,
+  .hero__grid,
+  .hero__shape,
+  .hero__panel,
+  .hero__panel--intro {
+    display: none !important;
+  }
+
+  .hero h1 {
+    max-width: 11.5ch;
+    font-size: clamp(2.35rem, 10.5vw, 3.35rem) !important;
+    line-height: .92;
+    letter-spacing: -.07em;
+  }
+
+  .hero__text {
+    max-width: 31ch;
+    margin-top: .9rem;
+    font-size: clamp(.98rem, 4vw, 1.08rem) !important;
+    line-height: 1.42;
+  }
+
+  .hero__actions {
+    width: 100%;
+    margin-top: 1.15rem;
+    gap: .6rem;
+  }
+
+  .hero__actions .button {
+    flex: 1 1 100%;
+    min-height: 48px;
+    justify-content: center;
+  }
+
+  .services-section {
+    padding-block: clamp(2.8rem, 10vw, 4rem) !important;
+  }
+
+  .services-deck__trigger {
+    display: none !important;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+    gap: .78rem !important;
+  }
+
+  .service-card,
+  .services-deck.is-revealed .service-card {
+    aspect-ratio: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    transform: none !important;
+    filter: none !important;
+    cursor: default;
+  }
+
+  .service-card__inner,
+  .services-deck.is-revealed .service-card__inner {
+    position: relative !important;
+    inset: auto !important;
+    min-height: 0;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .service-card__back {
+    display: none !important;
+  }
+
+  .service-card__front {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto auto !important;
+    align-items: start;
+    gap: .15rem .78rem;
+    min-height: 0 !important;
+    padding: .98rem !important;
+    transform: none !important;
+    backface-visibility: visible !important;
+  }
+
+  .service-card__index {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    width: 2.35rem;
+    height: 2.35rem;
+    display: inline-grid;
+    place-items: center;
+    border: 1px solid rgba(0,0,0,.14);
+    border-radius: 999px;
+    font-size: .72rem !important;
+  }
+
+  .service-card__graphic {
+    display: none !important;
+  }
+
+  .service-card__title {
+    grid-column: 2;
+    min-height: 0 !important;
+    margin: 0;
+    font-size: clamp(1.06rem, 4.7vw, 1.26rem) !important;
+    line-height: 1.04 !important;
+  }
+
+  .service-card__text {
+    grid-column: 2;
+    min-height: 0 !important;
+    margin-top: .18rem;
+    font-size: .9rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .experience-band {
+    padding-block: clamp(2.7rem, 10vw, 4rem) !important;
+  }
+
+  .experience-panel {
+    gap: 1.25rem !important;
+  }
+
+  .experience-machine {
+    max-width: 100% !important;
+    padding: .95rem !important;
+  }
+
+  .experience-machine__header small,
+  .experience-lever {
+    display: none !important;
+  }
+
+  .experience-metrics {
+    gap: .58rem !important;
+  }
+
+  .experience-metrics .metric-item {
+    padding: .78rem .82rem !important;
+  }
+
+  .experience-metrics strong {
+    font-size: clamp(2rem, 10vw, 3rem) !important;
+    line-height: .9;
+  }
+
+  .trajectory-section {
+    padding-block: clamp(2.9rem, 10vw, 4.3rem) !important;
+  }
+
+  .trajectory-layout {
+    display: block !important;
+  }
+
+  .trajectory-desktop-ui,
+  .trajectory-wheel-panel,
+  .trajectory-wheel-wrap,
+  .trajectory-pointer,
+  .trajectory-center {
+    display: none !important;
+  }
+
+  .trajectory-card {
+    width: 100%;
+    margin-top: 1.15rem;
+    padding: clamp(1rem, 4.5vw, 1.25rem) !important;
+    border-radius: 22px !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .trajectory-card__title {
+    font-size: clamp(1.55rem, 7.2vw, 2.05rem) !important;
+    line-height: 1.02 !important;
+  }
+
+  .trajectory-card__block {
+    margin-top: .75rem !important;
+  }
+
+  .trajectory-card__block p,
+  .trajectory-card__meta strong,
+  .trajectory-card__closing {
+    line-height: 1.42 !important;
+  }
+
+  .trajectory-card__closing {
+    margin-top: .95rem !important;
+  }
+
+  .trajectory-mobile-spin {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: .9rem;
+  }
+
+  .about {
+    display: flex !important;
+    flex-direction: column-reverse;
+    gap: 1.35rem !important;
+  }
+
+  #sobre-mi .about__mark.about-target {
+    width: min(100%, 300px) !important;
+    min-height: 330px !important;
+    padding: .9rem !important;
+  }
+
+  #sobre-mi .about-target__board {
+    width: min(68%, 190px) !important;
+  }
+
+  .contact {
+    padding-block: clamp(2.4rem, 9vw, 3.6rem) !important;
+  }
+
+  .contact__content {
+    display: block !important;
+    min-height: 0 !important;
+    padding: clamp(1.35rem, 5vw, 1.75rem) !important;
+    border-radius: 24px !important;
+  }
+
+  .contact__lamp-scene,
+  .contact__lamp-switch,
+  .contact__voucher-stage,
+  .contact__constellation,
+  .contact__light-cone,
+  .contact__light-pool {
+    display: none !important;
+  }
+
+  .contact__copy {
+    max-width: 100%;
+  }
+
+  .contact__copy h2 {
+    font-size: clamp(2rem, 10vw, 2.75rem) !important;
+    line-height: .98 !important;
+  }
+
+  .contact__copy p {
+    font-size: .98rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .contact__whatsapp-cta {
+    width: 100%;
+    justify-content: center;
+    min-height: 50px;
+    margin-top: 1rem;
+  }
+
+  .site-footer {
+    padding-block: 1.1rem !important;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-heading h2,
+  .experience-panel h2,
+  .trajectory-heading h2 {
+    font-size: clamp(1.95rem, 9.8vw, 2.65rem) !important;
+    line-height: .98 !important;
+  }
+
+  .section-heading p,
+  .trajectory-heading p {
+    font-size: .96rem !important;
+    line-height: 1.45 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: min(100% - 1.1rem, var(--container));
+  }
+
+  .hero h1 {
+    font-size: clamp(2.12rem, 11.5vw, 2.95rem) !important;
+  }
+
+  .hero__actions .button {
+    padding-inline: 1rem;
+  }
+
+  #casos .case-item {
+    padding-block: 1rem !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero h1 {
+    font-size: clamp(2rem, 11vw, 2.55rem) !important;
+  }
+
+  .service-card__front {
+    padding: .86rem !important;
+  }
+
+  #sobre-mi .about__mark.about-target {
+    min-height: 300px !important;
+  }
+}

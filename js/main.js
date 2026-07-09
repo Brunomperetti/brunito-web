@@ -454,6 +454,11 @@ if (experienceMachine) {
 
   lever?.setAttribute('aria-pressed', 'false');
   lever?.addEventListener('click', rollExperienceMetrics);
+
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    metrics.forEach(settleMetric);
+    experienceMachine.classList.add('is-revealed');
+  }
 }
 
 const currentYear = document.querySelector('#current-year');
@@ -671,7 +676,8 @@ const trajectoryItems = [
 ];
 
 const trajectoryWheel = document.querySelector('[data-trajectory-wheel]');
-const trajectorySpin = document.querySelector('[data-trajectory-spin]');
+const trajectorySpinButtons = Array.from(document.querySelectorAll('[data-trajectory-spin]'));
+const trajectorySpin = trajectorySpinButtons[0];
 const trajectoryCard = document.querySelector('[data-trajectory-card]');
 
 if (trajectoryWheel && trajectorySpin && trajectoryCard) {
@@ -773,8 +779,10 @@ if (trajectoryWheel && trajectorySpin && trajectoryCard) {
   const spinTrajectory = () => {
     if (isSpinning) return;
     isSpinning = true;
-    trajectorySpin.disabled = true;
-    trajectorySpin.textContent = 'Girando...';
+    trajectorySpinButtons.forEach((button) => {
+      button.disabled = true;
+      button.textContent = button.classList.contains('trajectory-mobile-spin') ? 'Buscando...' : 'Girando...';
+    });
 
     const nextIndex = getNextIndex();
     const targetMiddle = nextIndex * segmentAngle + segmentAngle / 2;
@@ -785,13 +793,15 @@ if (trajectoryWheel && trajectorySpin && trajectoryCard) {
     window.setTimeout(() => {
       selectedIndex = nextIndex;
       updateTrajectoryCard(trajectoryItems[selectedIndex]);
-      trajectorySpin.disabled = false;
-      trajectorySpin.textContent = 'Ver otro trabajo';
+      trajectorySpinButtons.forEach((button) => {
+        button.disabled = false;
+        button.textContent = button.classList.contains('trajectory-mobile-spin') ? 'Ver otra experiencia' : 'Ver otro trabajo';
+      });
       isSpinning = false;
     }, reduceMotion ? 80 : 2450);
   };
 
   refillTrajectoryBag();
   drawTrajectoryWheel();
-  trajectorySpin.addEventListener('click', spinTrajectory);
+  trajectorySpinButtons.forEach((button) => button.addEventListener('click', spinTrajectory));
 }
