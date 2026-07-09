@@ -5307,21 +5307,25 @@ h2,
   gap: .62rem;
 }
 
-.social-link {
+.social-link,
+.site-footer .social-links .social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(255,255,255,.16);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.22);
   border-radius: 999px;
-  background: #0a0a0a;
+  background: #050505;
   color: inherit;
   line-height: 1;
   transition: transform .24s ease, border-color .24s ease, background-color .24s ease, box-shadow .24s ease;
 }
 
-.social-link img {
+.social-link img,
+.site-footer .social-links .social-link img {
   width: 20px;
   height: 20px;
   object-fit: contain;
@@ -5329,6 +5333,7 @@ h2,
   opacity: 1;
   filter: none;
   mix-blend-mode: normal;
+  transform: none;
 }
 
 .social-link:hover {
@@ -5368,15 +5373,21 @@ h2,
 }
 
 .social-links--footer .social-link {
-  width: 40px;
-  height: 40px;
-  border-color: rgba(255,255,255,.16);
-  background: #0a0a0a;
+  width: 48px;
+  height: 48px;
+  border-color: rgba(255,255,255,.22);
+  background: #050505;
 }
 
 .social-links--footer .social-link img {
-  width: 19px;
-  height: 19px;
+  width: 20px;
+  height: 20px;
+}
+
+.social-links--footer .social-link--instagram img,
+.social-links--footer .social-link--facebook img {
+  width: 22px;
+  height: 22px;
 }
 
 .social-links--footer .social-link:hover {
@@ -5881,19 +5892,32 @@ h2,
     visibility: visible !important;
   }
 
-  .social-links--footer .social-link {
-    width: 42px !important;
-    height: 42px !important;
-    background: var(--white) !important;
-    border-color: rgba(255,255,255,.82) !important;
+  .social-links--footer {
+    gap: 14px !important;
   }
 
-  .social-links--footer .social-link img {
+  .site-footer .social-links--footer .social-link {
+    width: 48px !important;
+    height: 48px !important;
+    padding: 0 !important;
+    background: #050505 !important;
+    border-color: rgba(255,255,255,.22) !important;
+  }
+
+  .site-footer .social-links--footer .social-link img {
     width: 20px !important;
     height: 20px !important;
     object-fit: contain !important;
     opacity: 1 !important;
     filter: none !important;
+    mix-blend-mode: normal !important;
+    transform: none !important;
+  }
+
+  .site-footer .social-links--footer .social-link--instagram img,
+  .site-footer .social-links--footer .social-link--facebook img {
+    width: 22px !important;
+    height: 22px !important;
   }
 }
 
