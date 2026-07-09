@@ -455,9 +455,13 @@ if (experienceMachine) {
   lever?.setAttribute('aria-pressed', 'false');
   lever?.addEventListener('click', rollExperienceMetrics);
 
-  if (window.matchMedia('(max-width: 768px)').matches) {
+  const isMobileExperience = window.matchMedia('(max-width: 768px)').matches;
+
+  if (isMobileExperience) {
     metrics.forEach(settleMetric);
     experienceMachine.classList.add('is-revealed');
+  } else {
+    metrics.forEach((metric) => setMetricValue(metric, '—'));
   }
 }
 
@@ -674,6 +678,21 @@ const trajectoryItems = [
   { shortName: 'Eco V. María', title: 'Eco Coaching Villa María', context: 'Formación / desarrollo personal', role: 'Estrategia + Paid Media', work: 'Estrategia de comunicación, edición de video y campañas Meta Ads.', focus: 'Comunicación, contenido y pauta.' },
   { shortName: 'B. Minetti', title: 'Bartolomé Minetti & Asoc.', context: 'Inmobiliario / Proyecto Hoyo 5', role: 'Paid Media Specialist', work: 'Estrategia de campaña, segmentación y anuncios orientados a consultas por WhatsApp.', focus: 'Leads inmobiliarios y performance local.' },
 ];
+
+
+const trajectoryClosing = document.querySelector('[data-trajectory-closing]');
+
+if (trajectoryClosing) {
+  const setTrajectoryClosingCopy = () => {
+    const isMobileTrajectory = window.matchMedia('(max-width: 768px)').matches;
+    trajectoryClosing.textContent = isMobileTrajectory
+      ? trajectoryClosing.dataset.mobileCopy || trajectoryClosing.textContent
+      : trajectoryClosing.dataset.desktopCopy || trajectoryClosing.textContent;
+  };
+
+  setTrajectoryClosingCopy();
+  window.addEventListener('resize', setTrajectoryClosingCopy);
+}
 
 const trajectoryWheel = document.querySelector('[data-trajectory-wheel]');
 const trajectorySpinButtons = Array.from(document.querySelectorAll('[data-trajectory-spin]'));
