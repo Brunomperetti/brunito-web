@@ -337,23 +337,45 @@ const servicesDeck = document.querySelector('[data-services-deck]');
 
 if (servicesDeck) {
   const cards = Array.from(servicesDeck.querySelectorAll('[data-service-card]'));
+  const desktopServicesQuery = window.matchMedia('(min-width: 769px)');
 
-  cards.forEach((card) => {
-    const setFlipped = (isFlipped) => {
-      card.classList.toggle('is-flipped', isFlipped);
+  const syncServiceCardMode = () => {
+    cards.forEach((card) => {
+      const title = card.querySelector('.service-card__title')?.textContent || 'servicio';
+
+      if (!desktopServicesQuery.matches) {
+        card.classList.remove('is-flipped');
+        card.removeAttribute('aria-pressed');
+        card.removeAttribute('aria-label');
+        card.setAttribute('tabindex', '-1');
+        return;
+      }
+
+      const isFlipped = card.classList.contains('is-flipped');
+      card.removeAttribute('tabindex');
       card.setAttribute('aria-pressed', String(isFlipped));
       card.setAttribute(
         'aria-label',
-        `${isFlipped ? 'Volver a la cara inicial de' : 'Ver detalle de'} ${card.querySelector('.service-card__title')?.textContent || 'servicio'}`
+        `${isFlipped ? 'Volver a la cara inicial de' : 'Ver detalle de'} ${title}`
       );
-    };
+    });
+  };
 
-    setFlipped(false);
+  const setFlipped = (card, isFlipped) => {
+    if (!desktopServicesQuery.matches) return;
 
+    card.classList.toggle('is-flipped', isFlipped);
+    syncServiceCardMode();
+  };
+
+  cards.forEach((card) => {
     card.addEventListener('click', () => {
-      setFlipped(!card.classList.contains('is-flipped'));
+      setFlipped(card, !card.classList.contains('is-flipped'));
     });
   });
+
+  syncServiceCardMode();
+  desktopServicesQuery.addEventListener('change', syncServiceCardMode);
 }
 
 
