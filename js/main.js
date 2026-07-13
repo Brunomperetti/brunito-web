@@ -336,50 +336,26 @@ if (elevatorWord && elevatorScene) {
 const servicesDeck = document.querySelector('[data-services-deck]');
 
 if (servicesDeck) {
-  const trigger = servicesDeck.querySelector('[data-services-trigger]');
   const cards = Array.from(servicesDeck.querySelectorAll('[data-service-card]'));
-  let servicesRevealed = false;
-  let servicesObserver;
 
-  const setServicesRevealedState = () => {
-    trigger.textContent = 'Servicios revelados';
-    trigger.setAttribute('aria-label', 'Servicios revelados');
-    trigger.setAttribute('aria-expanded', 'true');
-    trigger.setAttribute('aria-pressed', 'true');
-    cards.forEach((card) => card.setAttribute('aria-pressed', 'true'));
-  };
-
-  const revealServices = () => {
-    if (servicesRevealed) {
-      servicesDeck.classList.add('is-acknowledging');
-      window.setTimeout(() => servicesDeck.classList.remove('is-acknowledging'), 260);
-      return;
-    }
-
-    servicesRevealed = true;
-    servicesObserver?.disconnect();
-    setServicesRevealedState();
-    servicesDeck.classList.add('is-revealed');
-  };
-
-  trigger?.addEventListener('click', revealServices);
   cards.forEach((card) => {
-    card.setAttribute('aria-pressed', 'false');
-    card.addEventListener('click', revealServices);
+    const setFlipped = (isFlipped) => {
+      card.classList.toggle('is-flipped', isFlipped);
+      card.setAttribute('aria-pressed', String(isFlipped));
+      card.setAttribute(
+        'aria-label',
+        `${isFlipped ? 'Volver a la cara inicial de' : 'Ver detalle de'} ${card.querySelector('.service-card__title')?.textContent || 'servicio'}`
+      );
+    };
+
+    setFlipped(false);
+
+    card.addEventListener('click', () => {
+      setFlipped(!card.classList.contains('is-flipped'));
+    });
   });
-
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealServices();
-  } else {
-    servicesObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) revealServices();
-      });
-    }, { threshold: 0.28, rootMargin: '0px 0px -8% 0px' });
-
-    servicesObserver.observe(servicesDeck);
-  }
 }
+
 
 const experienceMachine = document.querySelector('[data-experience-machine]');
 
@@ -651,32 +627,34 @@ if (aboutTarget && prizeModal) {
 }
 
 const trajectoryItems = [
-  { shortName: 'Intel', title: 'Intel – Classmate PC', context: 'Campaña desarrollada en KP Alazraki', role: 'Creativo Senior', work: 'Planeamiento creativo, concepto de campaña, redacción publicitaria y presentación estratégica a cliente.', focus: 'Creatividad, planning y comunicación de producto.' },
-  { shortName: 'MTV', title: 'MTV / Premios MTV México', context: 'Premios MTV Guadalajara 2008', role: 'Asistente de Producción', work: 'Asistencia operativa en producción del evento, organización de alfombra roja, soporte de coordinación y acompañamiento para el desarrollo general de la jornada.', focus: 'Producción de evento, coordinación operativa y soporte en campo.' },
-  { shortName: 'Mis 15', title: 'Mis Dulces 15', context: 'Programa televisivo MTV', role: 'Producción audiovisual', work: 'Asistencia de producción para contenido televisivo.', focus: 'Contenido, producción y storytelling.' },
+  { shortName: 'Intel', title: 'Intel – Classmate PC', context: 'Campaña desarrollada en KP Alazraki', role: 'Creativo Senior', work: 'Planeamiento creativo, concepto de campaña, redacción publicitaria y presentación estratégica a cliente.', focus: 'Creatividad, planning y comunicación de producto.', logo: 'images/brands/intel-classmate-pc.png' },
+  { shortName: 'MTV', title: 'MTV / Premios MTV México', context: 'Premios MTV Guadalajara 2008', role: 'Asistente de Producción', work: 'Asistencia operativa en producción del evento, organización de alfombra roja, soporte de coordinación y acompañamiento para el desarrollo general de la jornada.', focus: 'Producción de evento, coordinación operativa y soporte en campo.', logo: 'images/brands/mtv.png' },
+  { shortName: 'Mis 15', title: 'Mis Dulces 15', context: 'Programa televisivo MTV', role: 'Producción audiovisual', work: 'Asistencia de producción para contenido televisivo.', focus: 'Contenido, producción y storytelling.', logo: 'images/brands/mtv_mis_dulces_15.png' },
   { shortName: 'Fade In', title: 'Fade In', context: 'Productora audiovisual en Guadalajara, México', role: 'Área de Dirección y Guión', work: 'Desarrollo de guiones, asistencia de dirección y dirección puntual de producciones audiovisuales.', focus: 'Guion, dirección audiovisual y producción.' },
   { shortName: 'Karakola', title: 'Karakola / Canal Mexiquense', context: 'Programa infantil cultural', role: 'Guionista / Dirección', work: 'Dirección y redacción de 143 guiones para temporada completa.', focus: 'Contenido televisivo, narrativa y producción.' },
-  { shortName: 'Gob. Tepic', title: 'Gobierno de Tepic / Nayarit', context: 'Campañas públicas', role: 'Dirección / Preproducción', work: 'Campañas PAR, Antitabaco y spots de TV para comunicación pública.', focus: 'Comunicación institucional, dirección audiovisual y campaña pública.' },
-  { shortName: 'Ayto. GDL', title: 'Ayuntamiento de Guadalajara', context: 'Comunicación institucional', role: 'Dirección / Asistencia de Dirección', work: 'Campañas Logros y Tú eliges, radio spot y comercial audiovisual.', focus: 'Comunicación pública, producción y creatividad.' },
-  { shortName: 'UAG', title: 'Universidad Autónoma de Guadalajara', context: 'Cliente en KP Alazraki', role: 'Creativo Senior', work: 'Planeamiento creativo, redacción y desarrollo de campaña publicitaria.', focus: 'Educación, creatividad y comunicación institucional.' },
-  { shortName: 'Tajín', title: 'Tajín', context: 'Cliente en KP Alazraki', role: 'Creativo Senior', work: 'Creatividad publicitaria, desarrollo conceptual y comunicación de marca.', focus: 'Marca, mensaje y comunicación comercial.' },
-  { shortName: 'Vicapa MKT', title: 'Vicapa MKT', context: 'Marketing digital / cuentas B2B y B2C', role: 'Paid Media Senior & Growth Automation Specialist', work: 'Gestión estratégica y operativa de campañas publicitarias, desarrollo de activos digitales y automatización de procesos comerciales.', focus: 'Meta Ads, performance, leads, WhatsApp, activos digitales y automatización comercial.' },
-  { shortName: 'GW', title: 'GW Argentina', context: 'Telecomunicaciones B2B', role: 'Responsable de Marketing', work: 'Google Ads, atención de clientes, estrategia digital, piezas comerciales, email marketing, stands y gestión de medios.', focus: 'Adquisición, comunicación comercial y soporte a ventas.' },
-  { shortName: 'Millex', title: 'Millex', context: 'Mayorista mascotas B2B/B2C', role: 'Responsable de Marketing y Datos', work: 'Campañas, CRM, segmentación, email marketing, catálogo digital y acciones comerciales.', focus: 'Growth, performance, datos y operación comercial.' },
-  { shortName: 'Petsu', title: 'Petsu', context: 'Mascotas / B2C', role: 'Marketing / Paid Media', work: 'Meta Ads, estrategia comercial, email marketing y comunicación digital.', focus: 'Performance, marca y captación.' },
-  { shortName: 'Rostock', title: 'Rostock', context: 'Autopartes B2B', role: 'Marketing / Paid Media', work: 'Google Ads, Meta Ads y generación de prospectos para distribuidores y casas de repuestos.', focus: 'Performance B2B y captación comercial.' },
-  { shortName: 'Pizza R', title: 'Pizza R', context: 'Gastronomía local', role: 'Paid Media Specialist', work: 'Google Ads orientado a llamadas, pedidos, búsquedas locales y Google Maps.', focus: 'Captación hiperlocal y optimización.' },
-  { shortName: 'Betos', title: 'Betos San Carlos', context: 'Gastronomía local', role: 'Paid Media Specialist', work: 'Google Ads para llamadas, búsquedas locales y visibilidad de sucursal.', focus: 'Performance local y contacto inmediato.' },
-  { shortName: 'Kiki', title: 'Kiki Market', context: 'Retail / gestión comercial', role: 'Paid Media + Soluciones Digitales', work: 'Google Ads, Meta Ads y herramientas para listas de precios, promociones y gestión comercial.', focus: 'Performance y eficiencia operativa.' },
-  { shortName: 'Azul', title: 'Azul Importación', context: 'Accesorios importados para autos', role: 'Paid Media Specialist', work: 'Meta Ads para alfombras 3D orientadas a ventas por WhatsApp.', focus: 'Campañas de conversión y venta directa.' },
-  { shortName: 'Puerta Mundial', title: 'Puerta Mundial', context: 'Minería / construcción / maquinaria', role: 'Paid Media Specialist', work: 'Google Ads y Meta Ads para captación de consultas calificadas.', focus: 'Tráfico calificado y captación comercial.' },
+  { shortName: 'Gob. Tepic', title: 'Gobierno de Tepic / Nayarit', context: 'Campañas públicas', role: 'Dirección / Preproducción', work: 'Campañas PAR, Antitabaco y spots de TV para comunicación pública.', focus: 'Comunicación institucional, dirección audiovisual y campaña pública.', logo: 'images/brands/gob-tepic.png' },
+  { shortName: 'Ayto. GDL', title: 'Ayuntamiento de Guadalajara', context: 'Comunicación institucional', role: 'Dirección / Asistencia de Dirección', work: 'Campañas Logros y Tú eliges, radio spot y comercial audiovisual.', focus: 'Comunicación pública, producción y creatividad.', logo: 'images/brands/ayto-gdl.png' },
+  { shortName: 'UAG', title: 'Universidad Autónoma de Guadalajara', context: 'Cliente en KP Alazraki', role: 'Creativo Senior', work: 'Planeamiento creativo, redacción y desarrollo de campaña publicitaria.', focus: 'Educación, creatividad y comunicación institucional.', logo: 'images/brands/uag.png' },
+  { shortName: 'Tajín', title: 'Tajín', context: 'Cliente en KP Alazraki', role: 'Creativo Senior', work: 'Creatividad publicitaria, desarrollo conceptual y comunicación de marca.', focus: 'Marca, mensaje y comunicación comercial.', logo: 'images/brands/tajin.png' },
+  { shortName: 'Vicapa', title: 'Vicapa MKT', context: 'Marketing digital / cuentas B2B y B2C', role: 'Paid Media Senior & Growth Automation Specialist', work: 'Gestión estratégica y operativa de campañas publicitarias, desarrollo de activos digitales y automatización de procesos comerciales.', focus: 'Meta Ads, performance, leads, WhatsApp, activos digitales y automatización comercial.', logo: 'images/brands/vicapa.png' },
+  { shortName: 'GW', title: 'GW Argentina', context: 'Telecomunicaciones B2B', role: 'Responsable de Marketing', work: 'Google Ads, atención de clientes, estrategia digital, piezas comerciales, email marketing, stands y gestión de medios.', focus: 'Adquisición, comunicación comercial y soporte a ventas.', logo: 'images/brands/gw-argentina.png' },
+  { shortName: 'Millex', title: 'Millex', context: 'Mayorista mascotas B2B/B2C', role: 'Responsable de Marketing y Datos', work: 'Campañas, CRM, segmentación, email marketing, catálogo digital y acciones comerciales.', focus: 'Growth, performance, datos y operación comercial.', logo: 'images/brands/millex.png' },
+  { shortName: 'Petsu', title: 'Petsu', context: 'Mascotas / B2C', role: 'Marketing / Paid Media', work: 'Meta Ads, estrategia comercial, email marketing y comunicación digital.', focus: 'Performance, marca y captación.', logo: 'images/brands/petsu.png' },
+  { shortName: 'Rostock', title: 'Rostock', context: 'Autopartes B2B', role: 'Marketing / Paid Media', work: 'Google Ads, Meta Ads y generación de prospectos para distribuidores y casas de repuestos.', focus: 'Performance B2B y captación comercial.', logo: 'images/brands/rostock.png' },
+  { shortName: 'Pizza R', title: 'Pizza R', context: 'Gastronomía local', role: 'Paid Media Specialist', work: 'Google Ads orientado a llamadas, pedidos, búsquedas locales y Google Maps.', focus: 'Captación hiperlocal y optimización.', logo: 'images/brands/pizza-r.png' },
+  { shortName: 'Betos', title: 'Betos San Carlos', context: 'Gastronomía local', role: 'Paid Media Specialist', work: 'Google Ads para llamadas, búsquedas locales y visibilidad de sucursal.', focus: 'Performance local y contacto inmediato.', logo: 'images/brands/betos.png' },
+  { shortName: 'Kiki', title: 'Kiki Market', context: 'Retail / gestión comercial', role: 'Paid Media + Soluciones Digitales', work: 'Google Ads, Meta Ads y herramientas para listas de precios, promociones y gestión comercial.', focus: 'Performance y eficiencia operativa.', logo: 'images/brands/kiki.png' },
+  { shortName: 'Azul', title: 'Azul Importación', context: 'Accesorios importados para autos', role: 'Paid Media Specialist', work: 'Meta Ads para alfombras 3D orientadas a ventas por WhatsApp.', focus: 'Campañas de conversión y venta directa.', logo: 'images/brands/azul-import.png' },
+  { shortName: 'Puerta', title: 'Puerta Mundial', context: 'Minería / construcción / maquinaria', role: 'Paid Media Specialist', work: 'Google Ads y Meta Ads para captación de consultas calificadas.', focus: 'Tráfico calificado y captación comercial.', logo: 'images/brands/puerta-mundial.png' },
   { shortName: 'Vocacion360', title: 'Vocacion360', context: 'Producto digital educativo', role: 'Estrategia + Desarrollo Digital', work: 'Test vocacional gratuito, experiencia web y resultados personalizados.', focus: 'Producto digital, datos y experiencia de usuario.' },
-  { shortName: 'Metamorfosis', title: 'Metamorfosis 360', context: 'Agencia / comunicación 360', role: 'Director Creativo', work: 'Estrategia publicitaria, dirección creativa, coordinación de equipos y campañas digitales.', focus: 'Creatividad, planning y coherencia de marca.' },
-  { shortName: 'Nutrixya', title: 'Nutrixya', context: 'Startup AgTech', role: 'Marketing / Branding', work: 'Identidad visual, WordPress, SEO técnico, contenidos y posicionamiento.', focus: 'Marca, adquisición y generación de demanda.' },
-  { shortName: 'Sportcom', title: 'Sportcom', context: 'Marketing y comunicación', role: 'Responsable de Marketing', work: 'Estrategias de comunicación, campañas digitales y automatizaciones de marketing.', focus: 'Captación, retención y marketing operativo.' },
-  { shortName: 'Eco C. Paz', title: 'Eco Coaching Carlos Paz', context: 'Formación / desarrollo personal', role: 'Paid Media Specialist', work: 'Campaña de Meta Ads orientada a difusión, alcance y captación de consultas para la propuesta de formación.', focus: 'Meta Ads, segmentación y pauta digital.' },
-  { shortName: 'Eco V. María', title: 'Eco Coaching Villa María', context: 'Formación / desarrollo personal', role: 'Estrategia + Paid Media', work: 'Estrategia de comunicación, edición de video y campañas Meta Ads.', focus: 'Comunicación, contenido y pauta.' },
-  { shortName: 'B. Minetti', title: 'Bartolomé Minetti & Asoc.', context: 'Inmobiliario / Proyecto Hoyo 5', role: 'Paid Media Specialist', work: 'Estrategia de campaña, segmentación y anuncios orientados a consultas por WhatsApp.', focus: 'Leads inmobiliarios y performance local.' },
+  { shortName: 'Metamorfosis', title: 'Metamorfosis 360', context: 'Agencia / comunicación 360', role: 'Director Creativo', work: 'Estrategia publicitaria, dirección creativa, coordinación de equipos y campañas digitales.', focus: 'Creatividad, planning y coherencia de marca.', logo: 'images/brands/metamorfosis.png' },
+  { shortName: 'Nutrixya', title: 'Nutrixya', context: 'Startup AgTech', role: 'Marketing / Branding', work: 'Identidad visual, WordPress, SEO técnico, contenidos y posicionamiento.', focus: 'Marca, adquisición y generación de demanda.', logo: 'images/brands/nutrixya.png' },
+  { shortName: 'Sportcom', title: 'Sportcom', context: 'Marketing y comunicación', role: 'Responsable de Marketing', work: 'Estrategias de comunicación, campañas digitales y automatizaciones de marketing.', focus: 'Captación, retención y marketing operativo.', logo: 'images/brands/sportcom.png' },
+  { shortName: 'Eco C. Paz', title: 'Eco Coaching Carlos Paz', context: 'Formación / desarrollo personal', role: 'Paid Media Specialist', work: 'Campaña de Meta Ads orientada a difusión, alcance y captación de consultas para la propuesta de formación.', focus: 'Meta Ads, segmentación y pauta digital.', logo: 'images/brands/eco-coaching.png' },
+  { shortName: 'Eco V. María', title: 'Eco Coaching Villa María', context: 'Formación / desarrollo personal', role: 'Estrategia + Paid Media', work: 'Estrategia de comunicación, edición de video y campañas Meta Ads.', focus: 'Comunicación, contenido y pauta.', logo: 'images/brands/eco-coaching.png' },
+  { shortName: 'B. Minetti', title: 'Bartolomé Minetti & Asoc.', context: 'Inmobiliario / Proyecto Hoyo 5', role: 'Paid Media Specialist', work: 'Estrategia de campaña, segmentación y anuncios orientados a consultas por WhatsApp.', focus: 'Leads inmobiliarios y performance local.', logo: 'images/brands/hoyo-5.png', logoAlt: 'Hoyo 5' },
+  { shortName: 'MOX', title: 'MOX', context: 'Operaciones de machine learning', role: 'Machine Learning Operations Engineer', work: 'Soporte operativo y técnico para flujos de machine learning, datos y procesos digitales.', focus: 'MLOps, datos, procesos y ejecución técnica.', logo: 'images/brands/mox.png' },
+  { shortName: 'Punto K', title: 'Punto K', context: 'Proyecto de comunicación y creatividad', role: 'Director creativo', work: 'Dirección creativa, criterio visual, mensajes y desarrollo de piezas para comunicación de marca.', focus: 'Creatividad, dirección de arte y comunicación.', logo: 'images/brands/punto-k.png' },
 ];
 
 
@@ -707,6 +685,8 @@ if (trajectoryWheel && trajectorySpin && trajectoryCard) {
     work: trajectoryCard.querySelector('[data-trajectory-work]'),
     focus: trajectoryCard.querySelector('[data-trajectory-focus]'),
     closing: trajectoryCard.querySelector('[data-trajectory-closing]'),
+    logoWrap: trajectoryCard.querySelector('[data-trajectory-logo-wrap]'),
+    logo: trajectoryCard.querySelector('[data-trajectory-logo]'),
   };
   const segmentAngle = 360 / trajectoryItems.length;
   let selectedIndex = -1;
@@ -766,6 +746,17 @@ if (trajectoryWheel && trajectorySpin && trajectoryCard) {
     fields.role.textContent = item.role;
     fields.work.textContent = item.work;
     fields.focus.textContent = item.focus;
+    if (fields.logo && fields.logoWrap) {
+      if (item.logo) {
+        fields.logo.src = item.logo;
+        fields.logo.alt = item.logoAlt || `Logo de ${item.title}`;
+        fields.logoWrap.hidden = false;
+      } else {
+        fields.logo.removeAttribute('src');
+        fields.logo.alt = '';
+        fields.logoWrap.hidden = true;
+      }
+    }
     fields.closing.textContent = 'Cada giro revela una experiencia concreta.';
     trajectoryCard.classList.remove('is-updating');
     void trajectoryCard.offsetWidth;
