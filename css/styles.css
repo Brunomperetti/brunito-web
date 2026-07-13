@@ -6332,3 +6332,65 @@ h2,
     justify-self: start;
   }
 }
+
+/* Mobile-only services: keep cards static and readable, without individual flip. */
+@media (max-width: 768px) {
+  .services-section .services-grid {
+    perspective: none !important;
+    transform-style: flat !important;
+  }
+
+  .services-section .service-card,
+  .services-section .services-deck.is-revealed .service-card {
+    aspect-ratio: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    cursor: default !important;
+    touch-action: auto !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .services-section .service-card:hover,
+  .services-section .services-deck.is-revealed .service-card:hover {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .services-section .service-card__inner,
+  .services-section .service-card.is-flipped .service-card__inner,
+  .services-section .services-deck.is-revealed .service-card__inner,
+  .services-section .services-deck.is-revealed .service-card.is-flipped .service-card__inner {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    min-height: 0 !important;
+    transform: none !important;
+    transform-style: flat !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .services-section .service-card__face {
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+  }
+
+  .services-section .service-card__back {
+    display: none !important;
+  }
+
+  .services-section .service-card__front {
+    position: relative !important;
+    inset: auto !important;
+    display: grid !important;
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+    grid-template-rows: 1fr !important;
+    align-items: center !important;
+    align-content: center !important;
+    min-height: 136px !important;
+    transform: none !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+  }
+}
